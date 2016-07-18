@@ -9,6 +9,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'devise'
 gem 'redis'
 
+
 gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'
@@ -24,10 +25,12 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'spring'
-  
-  
+
+
 end
 
 group :production do
   gem 'rails_12factor'
+  gem 'rails_12factor'
+  gem 'puma'
 end
