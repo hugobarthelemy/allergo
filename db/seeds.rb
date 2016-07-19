@@ -15,24 +15,32 @@ search_terms = %w(chocolat chips creme fromage soupe)
 
 search_terms.each do |search_term|
 
-  sample_products = Openfoodfacts::Product.search("chocolat", locale: 'world').sample(20)
+  sample_products = Openfoodfacts::Product.search(search_term, locale: 'world').last(20)
 
   sample_products.each do |product|
-    barecode = product.code
+    product.fetch
+    barcode = product.code
+
     p_name = product.product_name
-    p_updated_on = product.product_t
+    # binding.pry
+    p_updated_on = product.last_edit_dates_tags.first.to_date
+
     manufacturer = product.brands
-    category = product.categories_tags
+    # manufacturer = product.brands_tags
+    # manufacturer = manufacturer.join(',') unless manufacturer.nil?
+
+    categories = product.categories_tags
+    categories = categories.join(',') unless categories.nil?
 
     new_product = Product.new(
-      barecode:barecode,
+      barcode:barcode,
       name: p_name,
-      updated_on: updated_on,
+      updated_on: p_updated_on,
       manufacturer: manufacturer,
-      category: category
+      category: categories
     )
 
-    new_product.create
+    new_product.save
   end
 
 
