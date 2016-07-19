@@ -19,6 +19,9 @@ gem 'autoprefixer-rails'
 gem 'pundit'
 gem 'openfoodfacts'
 
+#search:
+gem 'pg_search'
+
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
