@@ -35,4 +35,5 @@ search_terms.each do |search_term|
     new_product.create
   end
 
+
 end
