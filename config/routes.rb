@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  get 'products/index'
+
+  get 'products/new'
+
+  get 'products/create'
+
+  get 'products/show'
+
+  get 'products/edit'
+
+  get 'products/update'
+
+  get 'products/destroy'
+
   devise_for :users
   root to: 'pages#home'
   # The priority is based upon order of creation: first created -> highest priority.
