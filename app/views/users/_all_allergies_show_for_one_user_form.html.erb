@@ -1,0 +1,5 @@
+<% all_allergies = Level.where(user_id: current_user.id) %>
+<% all_allergies.each do |allergy| %>
+  <%= Allergy.find(allergy[:allergy_id]).name %>
+  : <%= allergy.allergy_level %>
+<% end %>

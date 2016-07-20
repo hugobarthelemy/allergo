@@ -6,18 +6,20 @@ class AllergiesController < ApplicationController
   end
 
   def create
-    @allergy = Allergy.new(user: current_user, name: @allergy.name)
-    @level = Level.new(user: current_user, name: @allergy.level)
+    @allergy = Allergy.new(name: allergy_params[:name])
     authorize @allergy
     if @allergy.save
-      redirect_to new_user_allergy_path(@allergy)
+      @level = Level.new(user_id: current_user.id,
+                          allergy_id: @allergy.id,
+                          allergy_level: allergy_params[:level][:allergy_level]).save
+      redirect_to user_path(current_user)
     else
-      render user
+      redirect_to new_user_allergy_path(@allergy)
     end
   end
   private
   def allergy_params
       params.require(:allergy).permit(:name,
-                                  :level)
+                                  :level => [:allergy_level])
   end
 end
