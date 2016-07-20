@@ -1,23 +1,11 @@
-class UserPolicy < ApplicationPolicy
+class ProductPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope
+      scope.all
     end
   end
 
-  def show?
+  def index?
     true
-  end
-
-  def update?
-    true # tous les users signés peuvent editer
-  end
-
-  def create?
-    true # tous les utilisateurs peuvent créer un user
-  end
-
-  def delete?
-    false # seuls les admins peuvent deleter un produit
   end
 end
