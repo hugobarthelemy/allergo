@@ -1,0 +1,6 @@
+<h1>UserMailer#alert</h1>
+
+<p>
+  <%= "#{@greeting} #{@user_name}" %>, The following product(s) was(were) updated recently, check if it is still safe for you!
+</p>
+<%= @products_changed.join(',') %>
