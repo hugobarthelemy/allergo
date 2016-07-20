@@ -9,15 +9,15 @@
 # products and product_components destroyed for test seeding
 # this is not an update of the db!
 Product.destroy_all
-ProductComponent.destroy_all
-# Ingredient.destroy_all ## not destroyed between test seedings
+# ProductComponent.destroy_all
+Ingredient.destroy_all ## not destroyed between test seedings ?
 
 # extract sample products
-search_terms = %w(chocolat chips creme fromage soupe)
+search_terms = %w(milk)
 
 search_terms.each do |search_term|
 
-  sample_products = Openfoodfacts::Product.search(search_term, locale: 'world').last(5)
+  sample_products = Openfoodfacts::Product.search(search_term, locale: 'world').last(4)
 
   sample_products.each do |product|
     product.fetch
@@ -32,7 +32,7 @@ search_terms.each do |search_term|
 
     categories = product.categories_tags
     categories = categories.join(',') unless categories.nil?
-
+    p_ingredients = []
     p_ingredients = product.ingredients
 
     # languages_hierarchy
@@ -50,27 +50,51 @@ search_terms.each do |search_term|
     # ingredients seeding from products
     # binding.pry
     p_ingredients.each do |p_ingredient|
-      if ingredient = Ingredient.find_by(en_name: p_ingredient.id)
-      else
-        ingredient = Ingredient.new(
+      case product.lc
+      when "fr"
+        if ingredient = Ingredient.find_by(fr_name: p_ingredient.id)
+        else
+
+        ingredient = Ingredient.create(
+          # iso_reference: ,
+          fr_name: p_ingredient.id
+        )
+        end
+      when "en"
+        if ingredient = Ingredient.find_by(en_name: p_ingredient.id)
+        else
+
+        ingredient = Ingredient.create(
           # iso_reference: ,
           # fr_name: ,
           # ja_name:,
           en_name: p_ingredient.id
         )
+        end
+      when "ja"
+        if ingredient = Ingredient.find_by(ja_name: p_ingredient.id)
+        else
 
-        ingredient.save
+        ingredient = Ingredient.create(
+          # iso_reference: ,
+          # fr_name: ,
+          ja_name: p_ingredient.id
+        )
+        end
+      else
+        binding.pry
       end
 
-      product_component = ProductComponent.new(
-          ingredient_id: ingredient.id,
-          product_id: new_product.id,
-          amount: 2 # 2 for significant amount || ingredient
-        )
+    binding.pry if ingredient.nil?
 
-      product_component.save
+    product_component = ProductComponent.new(
+        ingredient_id: ingredient.id,
+        product_id: new_product.id,
+        amount: 2 # 2 for significant amount || ingredient
+      )
+
+    product_component.save
     end
-
   end
 
 
