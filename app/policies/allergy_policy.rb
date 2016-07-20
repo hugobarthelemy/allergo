@@ -20,4 +20,8 @@ class AllergyPolicy < ApplicationPolicy
   def create?
     true # tous les utilisateurs peuvent créer un user
   end
+
+  def destroy?
+    true
+  end
 end
