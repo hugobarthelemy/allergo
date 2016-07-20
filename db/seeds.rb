@@ -13,11 +13,11 @@ Product.destroy_all
 Ingredient.destroy_all ## not destroyed between test seedings ?
 
 # extract sample products
-search_terms = %w(milk)
+search_terms = %w(milk) #vous pouvez ajouter des ingrédients
 
 search_terms.each do |search_term|
 
-  sample_products = Openfoodfacts::Product.search(search_term, locale: 'world').last(4)
+  sample_products = Openfoodfacts::Product.search(search_term, locale: 'world').last(4) #nb d'élement seedé
 
   sample_products.each do |product|
     product.fetch
