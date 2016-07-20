@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160719150948) do
+ActiveRecord::Schema.define(version: 20160719213010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,12 +41,6 @@ ActiveRecord::Schema.define(version: 20160719150948) do
     t.datetime "updated_at",    null: false
   end
 
-  create_table "ingredients_products", force: :cascade do |t|
-    t.integer  "amount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "levels", force: :cascade do |t|
     t.integer  "allergy_level"
     t.integer  "user_id"
@@ -57,6 +51,17 @@ ActiveRecord::Schema.define(version: 20160719150948) do
 
   add_index "levels", ["allergy_id"], name: "index_levels_on_allergy_id", using: :btree
   add_index "levels", ["user_id"], name: "index_levels_on_user_id", using: :btree
+
+  create_table "product_components", force: :cascade do |t|
+    t.integer  "amount"
+    t.integer  "ingredient_id"
+    t.integer  "product_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "product_components", ["ingredient_id"], name: "index_product_components_on_ingredient_id", using: :btree
+  add_index "product_components", ["product_id"], name: "index_product_components_on_product_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "barcode"
@@ -115,4 +120,6 @@ ActiveRecord::Schema.define(version: 20160719150948) do
   add_foreign_key "allergies_ingredients", "ingredients"
   add_foreign_key "levels", "allergies"
   add_foreign_key "levels", "users"
+  add_foreign_key "product_components", "ingredients"
+  add_foreign_key "product_components", "products"
 end
