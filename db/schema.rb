@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20160720114901) do
 
   # These are extensions that must be enabled in order to support this database
@@ -40,6 +41,17 @@ ActiveRecord::Schema.define(version: 20160720114901) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
+
+  create_table "ingredients_products", force: :cascade do |t|
+    t.integer  "amount"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "ingredient_id"
+    t.integer  "product_id"
+  end
+
+  add_index "ingredients_products", ["ingredient_id"], name: "index_ingredients_products_on_ingredient_id", using: :btree
+  add_index "ingredients_products", ["product_id"], name: "index_ingredients_products_on_product_id", using: :btree
 
   create_table "levels", force: :cascade do |t|
     t.integer  "allergy_level"
@@ -133,6 +145,8 @@ ActiveRecord::Schema.define(version: 20160720114901) do
 
   add_foreign_key "allergies_ingredients", "allergies"
   add_foreign_key "allergies_ingredients", "ingredients"
+  add_foreign_key "ingredients_products", "ingredients"
+  add_foreign_key "ingredients_products", "products"
   add_foreign_key "levels", "allergies"
   add_foreign_key "levels", "users"
   add_foreign_key "product_components", "ingredients"
