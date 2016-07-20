@@ -1,7 +1,6 @@
 class AllergiesController < ApplicationController
   def new
     @allergy = Allergy.new
-    @level = Level.new
     authorize @allergy
   end
 
@@ -22,7 +21,7 @@ class AllergiesController < ApplicationController
     @allergy =  Allergy.find(params[:id])
     authorize @allergy
     if @allergy.destroy
-      redirect_to allergy_path(@event), notice: 'Allergy was successfully destroyed.'
+      redirect_to user_path(current_user), notice: 'Allergy was successfully destroyed.'
     else
       redirect_to user_path(current_user)
     end

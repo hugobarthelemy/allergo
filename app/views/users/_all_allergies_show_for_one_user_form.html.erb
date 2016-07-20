@@ -1,5 +1,24 @@
 <% all_allergies = Level.where(user_id: current_user.id) %>
 <% all_allergies.each do |allergy| %>
-  <%= Allergy.find(allergy[:allergy_id]).name %>
-  : <%= allergy.allergy_level %><br>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-offset-4 col-sm-1">
+        <%= Allergy.find(allergy[:allergy_id]).name %>
+        :
+      </div>
+      <div class="col-xs-12 col-sm-1">
+        <%= allergy.allergy_level %>
+      </div>
+      <div class="col-xs-12 col-sm-1 text-center">
+        <%= link_to "Edit", "#", {class: "btn btn-primary"} %>
+      </div>
+      <div class="col-xs-12 col-sm-2 text-center">
+      <p><%= link_to "Cancel my account", {:action=>"destroy", :controller=>"allergies", :id=>allergy.id, :user_id=>current_user.id} %></p>
+      </div>
+    </div>
+  </div>
 <% end %>
+
+
+
+, method: :delete, data: { confirm: 'Are you sure?' }
