@@ -1,3 +1,4 @@
 UserMailer#alert
 
-<%= @greeting %>, find me in app/views/user_mailer/alert.text.erb
+<%= "#{@greeting} #{@user_name}" %>, The following product(s) was(were) updated recently, check if it is still safe for you!
+<%= @products_changed.join(',') %>
