@@ -4,7 +4,11 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
 
-  resources :products
+  resources :products do
+    collection do
+      get 'search'
+    end
+  end
 
   resources :users, only: [:show, :edit, :update] do
     resources :allergies, only: [:new, :create, :edit, :destroy]
