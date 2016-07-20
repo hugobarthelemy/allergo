@@ -3,7 +3,6 @@
 <div class="container">
   <div class="row text-center">
     <div class="col-sm-6 col-sm-offset-3">
-      <ul class="product-controls">
         <img src=<%="#{@user.picture}"%> class="avatar dropdown-toggle"%>
         <h1>Show your profil</h1>
         <p>First name <%= @user.first_name%></p>
@@ -11,13 +10,14 @@
         <br><p><%= @user.provider%> mail <%= @user.email%></p>
         <br><p>Phone number <%= @user.phone_number%></p>
         <br><p>Email contact : <%= @user.email_contact%></p>
-      </ul>
       <%= link_to "Edit", edit_user_path, {class: "btn btn-primary"} %>
-    <ul class="product-controls">
+
       <h1>Your allergies</h1>
-      <%= render 'all_allergies_show_for_one_user_form' %>
-      <br><%= link_to "Add an allergy", new_user_allergy_path(current_user), {class: "btn btn-primary"} %>
-    </ul>
+
+
     </div>
   </div>
 </div>
+
+  <%= render 'all_allergies_show_for_one_user_form' %>
+  <class class="text-center"><br><%= link_to "Add an allergy", new_user_allergy_path(current_user), {class: "btn btn-primary"} %></class>
