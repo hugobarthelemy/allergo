@@ -2,21 +2,9 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
-  get 'products/index'
-
-  get 'products/new'
-
-  get 'products/create'
-
-  get 'products/show'
-
-  get 'products/edit'
-
-  get 'products/update'
-
-  get 'products/destroy'
-
   root to: 'pages#home'
+
+  resources :products
 
   resources :users, only: [:show, :edit, :update] do
     resources :allergies, only: [:new, :create, :edit, :destroy]

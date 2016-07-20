@@ -114,10 +114,10 @@
 <row name="barcode" null="1" autoincrement="0">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
-<row name="Name" null="1" autoincrement="0">
+<row name="name" null="1" autoincrement="0">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
-<row name="Updated_on" null="1" autoincrement="0">
+<row name="updated_on" null="1" autoincrement="0">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
 <row name="manufacturer" null="1" autoincrement="0">
@@ -130,7 +130,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="878" y="368" name="PRODUCTS_INGREDIENTS">
+<table x="878" y="368" name="PRODUCT_COMPONENTS">
 <row name="id" null="1" autoincrement="1">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
