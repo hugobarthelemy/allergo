@@ -99,3 +99,14 @@ search_terms.each do |search_term|
 
 
 end
+
+# seed des tables d'allergies
+Allergy.destroy_all
+allergy = Allergy.new(name: :milk)
+allergy.save
+allergie_ingredient = AllergyIngredient.new(allergy_id: Allergy.last.id)
+allergie_ingredient[:ingredient_id] = Ingredient.where(name: "milk")
+allergie_ingredient.save
+
+
+

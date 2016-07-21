@@ -8,6 +8,7 @@ class AllergiesController < ApplicationController
   def create
     @allergy = Allergy.new(name: allergy_params[:name])
     authorize @allergy
+
     if @allergy.save
       @level = Level.new(user_id: current_user.id,
                           allergy_id: @allergy.id,
