@@ -20,6 +20,7 @@ gem 'autoprefixer-rails'
 gem 'pundit'
 gem 'openfoodfacts'
 
+
 #search:
 gem 'pg_search'
 
@@ -31,6 +32,8 @@ group :development, :test do
   gem 'pry-rails'
   gem 'spring'
 
+# mailer
+gem "letter_opener", group: :development
 
 end
 

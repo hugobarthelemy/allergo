@@ -28,10 +28,18 @@ class ProductsController < ApplicationController
   end
 
   def update
+
+      # @product =
+
+      # after update
+      MailProductAlertJob.perform_later(@product)
+      ### TODO ### redirect
   end
 
   def destroy
   end
+
+  private
 
   def product_params
     params.require(:product).permit(:barcode, :name, :updated_on, :manufacturer, :category)
