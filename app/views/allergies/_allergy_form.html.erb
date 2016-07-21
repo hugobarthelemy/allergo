@@ -1,5 +1,8 @@
-<%= simple_form_for @level, url: user_allergies_path do |m| %>
+<%= simple_form_for @level, url: user_allergies_path(current_user.id) do |m| %>
   <%= m.association :allergy, include_blank: false %>
-  <%= m.input :allergy_level, collection: 0..2, include_blank: false %>
+  <%= m.input :allergy_level, collection: 1..2, include_blank: false %>
   <%= m.submit %>
 <% end %>
+
+
+
