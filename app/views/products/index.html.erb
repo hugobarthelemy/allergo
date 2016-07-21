@@ -1,10 +1,18 @@
 <h1>Find</h1>
 
-<form action="/products/search" method="get">
-  <input type="text" name="searched_words" placeholder="Petits pois Carrefour">
-  <input type="submit" value="Search">
+<% searched_words = "" %>
+
+<!-- <form action="/products/search" method="get" id="search-form"> -->
+<form>
+  <input type="text" name="searched_words" placeholder="Petits pois Carrefour" id="searched-words">
+  <input type="submit" value="Search" id="submit-button">
 </form>
+
+<% @products = Product.search_by_brand_and_title(searched_words) %>
 
 <% @products.each do |product| %>
   <p><%= product.name %> <%product.manufacturer%></p>
 <%end%>
+
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script src="search.js"></script>

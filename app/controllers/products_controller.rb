@@ -6,18 +6,21 @@ class ProductsController < ApplicationController
   end
 
   def search
+    @products = Product.first
     @products = policy_scope(Product)
+
+    redirect_to products_path
   end
 
   def new
-    @product = Product.new
-    authorize @product
+    # @product = Product.new
+    # authorize @product
   end
 
   def create
-    @product.save
-    authorize @product
-    redirect_to product_path
+    # @product.save
+    # authorize @product
+    # redirect_to product_path
   end
 
   def show
