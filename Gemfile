@@ -8,6 +8,9 @@ gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'devise'
 gem 'redis'
+gem 'sidekiq'
+gem 'sinatra'  # Dependency of sidekiq
+gem 'sidekiq-failures'
 gem 'omniauth-facebook'
 
 gem 'sass-rails'
@@ -24,6 +27,10 @@ gem 'openfoodfacts', :git => "git@github.com:Antoinerev/openfoodfacts-ruby.git"
 
 #search:
 gem 'pg_search'
+gem "algoliasearch-rails"
+
+#Add fields to form
+gem "cocoon"
 
 group :development, :test do
   gem 'binding_of_caller'

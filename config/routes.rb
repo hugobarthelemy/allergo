@@ -5,13 +5,17 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :products do
-    collection do
-      get 'search'
-    end
+    resources :ingredients, only: [:new, :create, :index]
+    resources :tracked_products, only: [:new, :create, :destroy]
   end
 
   resources :users, only: [:show, :edit, :update] do
     resources :allergies, only: [:new, :create, :edit, :destroy]
+  end
+
+  require "sidekiq/web"
+  authenticate :user, lambda { |u| u.admin } do
+    mount Sidekiq::Web => '/sidekiq'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

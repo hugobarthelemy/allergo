@@ -1,7 +1,8 @@
-<%= simple_form_for @allergy, url: user_allergies_path, action: :create do |m| %>
-  <%= m.input :name, :collection => %w[Gluten Milk]  %>
-    <%= m.simple_fields_for :level do |p| %>
-      <%= p.input :allergy_level, :collection => %w[0 1 2] %>
-  <% end %>
+<%= simple_form_for @level, url: user_allergies_path(current_user.id) do |m| %>
+  <%= m.association :allergy, include_blank: false %>
+  <%= m.input :allergy_level, collection: 1..2, include_blank: false %>
   <%= m.submit %>
 <% end %>
+
+
+

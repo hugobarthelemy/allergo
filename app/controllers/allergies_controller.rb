@@ -1,37 +1,35 @@
 class AllergiesController < ApplicationController
   def new
-    @allergy = Allergy.new
-    authorize @allergy
+    @level = current_user.levels.new
+    authorize @level
   end
 
   def create
-    @allergy = Allergy.new(name: allergy_params[:name])
-    authorize @allergy
+    @level = current_user.levels.new(allergy_params)
+    authorize @level
 
-    if @allergy.save
-      @level = Level.new(user_id: current_user.id,
-                          allergy_id: @allergy.id,
-                          allergy_level: allergy_params[:level][:allergy_level]).save
-      redirect_to user_path(current_user)
+    if @level.save
+      redirect_to user_path(current_user), notice: "Allergy was successfully added."
     else
-      redirect_to new_user_allergy_path(@allergy)
+      flash[:alert] = "Allergy could not be added!"
+      render :new
     end
   end
 
   def destroy
-    @allergy =  Allergy.find(params[:id])
-    authorize @allergy
-    if @allergy.destroy
+    level_a_suppr = current_user.levels.find(params[:id])
+    authorize level_a_suppr
+    if level_a_suppr.destroy
       redirect_to user_path(current_user), notice: 'Allergy was successfully destroyed.'
     else
-      redirect_to user_path(current_user)
+      redirect_to user_path(current_user), alert: 'Allergy could not be destroyed.'
     end
   end
 
   private
 
   def allergy_params
-      params.require(:allergy).permit(:name,
-                                  :level => [:allergy_level])
+      params.require(:level).permit(:allergy_level,
+                                  :allergy_id)
   end
 end

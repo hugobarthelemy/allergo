@@ -1,10 +1,2 @@
 <h1>Find</h1>
-
-<form action="/products/search" method="get">
-  <input type="text" name="searched_words" placeholder="Petits pois Carrefour">
-  <input type="submit" value="Search">
-</form>
-
-<% @products.each do |product| %>
-  <p><%= product.name %> <%product.manufacturer%></p>
-<%end%>
+<%= render 'shared/search' %>
