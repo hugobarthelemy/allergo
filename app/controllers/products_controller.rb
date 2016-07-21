@@ -5,10 +5,6 @@ class ProductsController < ApplicationController
     @products = policy_scope(Product)
   end
 
-  def search
-    @products = policy_scope(Product)
-  end
-
   def new
     @product = Product.new
     authorize @product
