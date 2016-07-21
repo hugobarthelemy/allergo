@@ -2,3 +2,29 @@
  * CSS code specific to home page
  * (margin/padding adjustments)
  * ------------------------------------- */
+#barcodevideo, #barcodecanvas, #barcodecanvasg {
+  height: 50vh;
+}
+
+#barcodecanvasg {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+#result {
+  font-family: verdana;
+  font-size: 1.5em;
+}
+
+#barcode {
+  position: relative;
+}
+
+#barcode video {
+ width: 100%;
+}
+
+#barcodecanvas {
+  display: none;
+}

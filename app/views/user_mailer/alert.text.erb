@@ -4,3 +4,13 @@ UserMailer#alert
 
 Name: <%= @product_changed.name %>
 Barcode: <%= @product_changed.barcode %>
+
+<% if @added_ingredients.first %>
+  New ingredients:
+  <ul>
+    <% @added_ingredients.each do |ingredient_name| %>
+    <li><strong><%= ingredient_name %></strong></li>
+    <% end %>
+  </ul>
+
+<% end %>
