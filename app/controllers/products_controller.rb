@@ -5,13 +5,6 @@ class ProductsController < ApplicationController
     @products = policy_scope(Product)
   end
 
-  def search
-    @products = Product.first
-    @products = policy_scope(Product)
-
-    redirect_to products_path
-  end
-
   def new
     # @product = Product.new
     # authorize @product
