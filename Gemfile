@@ -8,6 +8,9 @@ gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'devise'
 gem 'redis'
+gem 'sidekiq'
+gem 'sinatra'  # Dependency of sidekiq
+gem 'sidekiq-failures'
 gem 'omniauth-facebook'
 
 gem 'sass-rails'

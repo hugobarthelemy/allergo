@@ -30,7 +30,7 @@ class ProductsController < ApplicationController
 
 
       # after update
-      MailProductAlertJob.perform_later(@product)
+      MailProductAlertJob.perform_later(@product.id)
       ### TODO ### redirect
   end
 
