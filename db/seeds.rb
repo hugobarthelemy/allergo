@@ -102,11 +102,56 @@ end
 
 # seed des tables d'allergies
 Allergy.destroy_all
-allergy = Allergy.new(name: :milk)
-allergy.save
-allergie_ingredient = AllergyIngredient.new(allergy_id: Allergy.last.id)
+milk_allergy = Allergy.new(name: :milk)
+milk_allergy.save
+
+gluten_allergy = Allergy.new(name: :gluten)
+gluten_allergy.save
+
+peanuts_allergy = Allergy.new(name: :peanuts)
+peanuts_allergy.save
+
+# Definition des allergènes de chaque Allergy
+
+allergie_ingredient = AllergyIngredient.new(allergy_id: milk_allergy.id)
 allergie_ingredient[:ingredient_id] = Ingredient.where(name: "milk")
 allergie_ingredient.save
+
+# création des users
+
+User.destroy_all
+user = User.new(email: "hugopoubelle@gmail.com",
+  first_name: "Hugo",
+  last_name: "Barthelemy",
+  phone_number: "0676595703",
+  email_contact: "bidule@gmail.com",
+  provider: "facebook",
+  password: "123456",
+  uid: "10154325945005902",
+  picture: "http://graph.facebook.com/10154325945005902/picture?type=large",
+  token: "EAAM77PGixRIBAHTBcIr4Jqy8rE6RZAhxcVUS8YkJ9JLYHt7AK7OKHUUZCEUZBCYgBjR0ifuA29nLH3VtEYEUoZBnGTjfgOTbIJk8AsZAmyDU42BZBZCAvZB75fCAagmPE2WFiHto6ki6qs4t1Tz1YxNzisUObZA422YYZD",
+  token_expiry: "2016-09-17 17:55:37")
+user.save!
+level = Level.new(
+  allergy_level: "2",
+  user_id: user.id,
+  allergy_id: Allergy.where(name: :milk)[0].id)
+level.save!
+user = User.new(email: "laurent@garnier.com",
+  first_name: "Laurent",
+  last_name: "Garnier",
+  phone_number: "",
+  password: "123456",
+  email_contact: "Laurent@garnier.com",
+  picture: "http://www.kdbuzz.com/images/garnier_electrochoc.jpg")
+user.save!
+level = Level.new(
+  allergy_level: "1",
+  user_id: user.id,
+  allergy_id: Allergy.where(name: :milk)[0].id)
+level.save!
+
+
 
 
 
