@@ -5,9 +5,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :products do
-    collection do
-      get 'search'
-    end
+    resources :ingredients, only: [:new, :create, :index]
   end
 
   resources :users, only: [:show, :edit, :update] do

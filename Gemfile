@@ -24,6 +24,9 @@ gem 'openfoodfacts'
 #search:
 gem 'pg_search'
 
+#Add fields to form
+gem "cocoon"
+
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
