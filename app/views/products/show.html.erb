@@ -1,2 +1,11 @@
-<h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
+<h1><%=@product.name%></h1>
+<h2><%=@product.manufacturer%></h2>
+<p><%=@product.barcode%></p>
+<p><%=@product.updated_on%></p>
+<h3>Ingredients</h3>
+<%@product.ingredients.each do |ingredient|%>
+  <p><%=ingredient.fr_name%></p>
+  <p><%=ingredient.fr_name%></p>
+<%end%>
+<h3>Allergies</h3>
+
