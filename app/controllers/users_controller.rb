@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
+    @level = current_user.levels.new
+    authorize @level
     authorize @user
   end
 

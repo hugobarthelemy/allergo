@@ -20,4 +20,8 @@ class ProductPolicy < ApplicationPolicy
   def create?
     true # tous les utilisateurs peuvent créer un user
   end
+
+  def search?
+    true
+  end
 end
