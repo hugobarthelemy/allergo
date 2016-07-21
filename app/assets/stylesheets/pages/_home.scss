@@ -2,6 +2,27 @@
  * CSS code specific to home page
  * (margin/padding adjustments)
  * ------------------------------------- */
+
+.home-title {
+    h2 {
+      padding-top: 50px;
+      padding-bottom: 10px;
+    }
+    h4 {
+      padding-top: 30px;
+      padding-bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+  #send button {
+    margin-top: 10px
+  }
+}
+
+
+
+// !!! DO NOT TOUCH - CODE FOR SCANNER !!!
 #barcodevideo, #barcodecanvas, #barcodecanvasg {
   height: 50vh;
 }
@@ -19,6 +40,7 @@
 
 #barcode {
   position: relative;
+  display: none;
 }
 
 #barcode video {
