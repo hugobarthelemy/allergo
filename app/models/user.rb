@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
   has_many :levels
+  has_many :allergies, through: :levels
   has_many :reviews
   has_many :scanned_products
   has_many :tracked_products

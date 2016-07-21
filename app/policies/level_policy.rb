@@ -1,7 +1,7 @@
 class LevelPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope
+      scope.all
     end
   end
 
@@ -18,6 +18,10 @@ class LevelPolicy < ApplicationPolicy
   end
 
   def create?
-    true # tous les utilisateurs peuvent créer un user
+    user == record.user
+  end
+
+  def destroy?
+    user == record.user
   end
 end
