@@ -3,7 +3,7 @@
  * (margin/padding adjustments)
  * ------------------------------------- */
 #barcodevideo, #barcodecanvas, #barcodecanvasg {
-  height: 400px;
+  height: 50vh;
 }
 
 #barcodecanvasg {
@@ -19,6 +19,10 @@
 
 #barcode {
   position: relative;
+}
+
+#barcode video {
+ width: 100%;
 }
 
 #barcodecanvas {

@@ -1,16 +1,31 @@
+
 <div class="container">
-  <div id="barcode">
-    <video id="barcodevideo" autoplay></video>
-    <canvas id="barcodecanvasg" ></canvas>
+
+  <div class="row">
+    <div class="col-xs-12">
+
+    </div>
   </div>
-  <canvas id="barcodecanvas" ></canvas>
 
-  <form action="<%= root_path %>" method="get" id="send">
-    <input type="text" id="result" name="scanresult" placeholder="Barcode">
-    <button type="submit">
-        <i class="fa fa-search"></i>
-    </button>
-  </form>
+  <div class="row">
+    <div class="col-xs-12">
+      <div id="barcode">
+        <video id="barcodevideo" autoplay></video>
+        <canvas id="barcodecanvasg" ></canvas>
+      </div>
+      <canvas id="barcodecanvas" ></canvas>
+    </div>
+  </div>
 
-  <h3><%= @message %></h3>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <form action="<%= root_path %>" method="get" id="send" class="form-inline text-center">
+        <input class="form-control" type="text" id="result" name="scanresult" placeholder="Barcode">
+        <button type="submit" class="btn btn-info">
+            Go
+        </button>
+      </form>
+      <h3><%= @message %></h3>
+    </div>
+  </div>
 </div>

@@ -6,7 +6,7 @@ class PagesController < ApplicationController
       if @product = Product.find_by(barcode: @barcode)
         redirect_to product_path(@product)
       else
-        @message = "Cannot read barcode. Try again."
+        @message = "Unknown product. Try again."
       end
     end
   end
