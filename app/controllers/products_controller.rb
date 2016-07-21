@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:create, :show]
+  before_action :set_product, only: [:create, :show, :edit]
 
   def index
     @products = policy_scope(Product)
@@ -21,11 +21,11 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    authorize @product
   end
 
   def update
 
-      # @product =
 
       # after update
       MailProductAlertJob.perform_later(@product)
