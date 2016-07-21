@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
       # @product =
 
       # after update
-      MailProductAlertJob.perform_later(@product)
+      MailProductAlertJob.perform_later(@product.id)
       ### TODO ### redirect
   end
 
