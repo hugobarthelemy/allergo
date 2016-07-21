@@ -9,9 +9,9 @@ class AllergiesController < ApplicationController
     authorize @level
 
     if @level.save
-      redirect_to user_path(current_user), notice: "Allergy was successfully add."
+      redirect_to user_path(current_user), notice: "Allergy was successfully added."
     else
-      flash[:alert] = "Allergy wasn't add !"
+      flash[:alert] = "Allergy could not be added!"
       render :new
     end
   end
@@ -22,7 +22,7 @@ class AllergiesController < ApplicationController
     if level_a_suppr.destroy
       redirect_to user_path(current_user), notice: 'Allergy was successfully destroyed.'
     else
-      redirect_to user_path(current_user), alert: 'Allergy was NOT successfully destroyed.'
+      redirect_to user_path(current_user), alert: 'Allergy could not be destroyed.'
     end
   end
 
