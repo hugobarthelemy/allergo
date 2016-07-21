@@ -9,6 +9,7 @@ class MailProductAlertJob < ActiveJob::Base
       user_id = product_tracked.user_id
 
       UserMailer.alert(user_id, product_changed_id).deliver_later
+      puts "MAIL SENT!"
     end
   end
 end
