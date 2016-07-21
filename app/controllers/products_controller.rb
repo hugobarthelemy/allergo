@@ -31,16 +31,9 @@ class ProductsController < ApplicationController
 
       # @product =
 
-      ### after update
-      alert_users
+      # after update
+      MailProductAlertJob.perform_later(@product)
       ### TODO ### redirect
-  end
-
-  def alert_users
-    # chercher users qui ont le produit changé en tracking
-
-
-    UserMailer.alert(User.first, @product).deliver_now
   end
 
   def destroy
