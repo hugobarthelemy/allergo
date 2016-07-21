@@ -1,2 +1,16 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+  <div id="barcode">
+    <video id="barcodevideo" autoplay></video>
+    <canvas id="barcodecanvasg" ></canvas>
+  </div>
+  <canvas id="barcodecanvas" ></canvas>
+
+  <form action="<%= root_path %>" method="get" id="send">
+    <input type="text" id="result" name="scanresult" placeholder="Barcode">
+    <button type="submit">
+        <i class="fa fa-search"></i>
+    </button>
+  </form>
+
+  <h3><%= @message %></h3>
+</div>
