@@ -28,10 +28,25 @@ class ProductsController < ApplicationController
   end
 
   def update
+
+      # @product =
+
+      ### after update
+      alert_users
+      ### TODO ### redirect
+  end
+
+  def alert_users
+    # chercher users qui ont le produit changé en tracking
+
+
+    UserMailer.alert(User.first, @product).deliver_now
   end
 
   def destroy
   end
+
+  private
 
   def product_params
     params.require(:product).permit(:barcode, :name, :updated_on, :manufacturer, :category)
