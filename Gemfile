@@ -23,6 +23,10 @@ gem 'openfoodfacts'
 
 #search:
 gem 'pg_search'
+gem "algoliasearch-rails"
+
+#Add fields to form
+gem "cocoon"
 
 group :development, :test do
   gem 'binding_of_caller'
