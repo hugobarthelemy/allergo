@@ -13,10 +13,8 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-
     @product.save
     authorize @product
-    authorize @ingredient
     redirect_to product_path(@product)
   end
 

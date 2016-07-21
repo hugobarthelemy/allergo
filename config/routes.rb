@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :products do
     resources :ingredients, only: [:new, :create, :index]
+    resources :tracked_products, only: [:new, :create, :destroy]
   end
 
   resources :users, only: [:show, :edit, :update] do
