@@ -37,6 +37,12 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.4.0)
+    algoliasearch (1.10.0)
+      httpclient (~> 2.7.1)
+      json (>= 1.5.1)
+    algoliasearch-rails (1.14.1)
+      algoliasearch (>= 1.2.14)
+      json (>= 1.5.1)
     arel (6.0.3)
     autoprefixer-rails (6.3.7)
       execjs
@@ -78,6 +84,7 @@ GEM
       activesupport (>= 3.0.0, <= 4.3.0)
       faraday (>= 0.8, < 1.0)
       multi_json (~> 1.7)
+    httpclient (2.7.2)
     i18n (0.7.0)
     jbuilder (2.5.0)
       activesupport (>= 3.0.0, < 5.1)
@@ -216,6 +223,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  algoliasearch-rails
   autoprefixer-rails
   better_errors
   binding_of_caller

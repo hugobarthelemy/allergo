@@ -23,6 +23,7 @@ gem 'openfoodfacts'
 
 #search:
 gem 'pg_search'
+gem "algoliasearch-rails"
 
 #Add fields to form
 gem "cocoon"
