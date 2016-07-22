@@ -22,13 +22,21 @@
   <%= render 'all_allergies_show_for_one_user_form' %>
   <class class="text-center">
   <br>
-  <%= link_to "Add an allergy", "#", {class: "btn btn-primary js-add-form-level-in-user-show"} %></class>
+<div class="container">
+  <div class="row text-center">
+    <div class="col-sm-6 col-sm-offset-3">
+      <%= link_to "Add an allergy", "#", {class: "btn btn-primary js-add-form-level-in-user-show"} %></class>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col-sm-6 col-sm-offset-3">
     <div class="new_allergy">
-
     </div>
     <div class="edit_allergy">
-
     </div>
+    </div>
+  </div>
+</div>
 <!-- JS du add allergy -->
 <% content_for(:after_js) do %>
   <script>

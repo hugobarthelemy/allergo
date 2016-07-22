@@ -6,9 +6,10 @@ class MailProductAlertJob < ActiveJob::Base
     products_tracked = TrackedProduct.where(product_id: product_changed_id)
 
     products_tracked.each do |product_tracked|
-      user_id = product_tracked.user_id
+      @user_id = product_tracked.user_id
 
-      UserMailer.alert(user, product_changed_id, added_ingredients).deliver_later
+      UserMailer.alert(@user_id, product_changed_id, added_ingredients).deliver_later
+
     end
   end
 end

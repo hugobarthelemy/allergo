@@ -5,7 +5,9 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.alert.subject
   #
-  def alert(user, product_changed_id, added_ingredients=[])
+
+  def alert(user_id, product_changed_id, added_ingredients=[])
+
     @greeting = "Hi"
     @product_changed = Product.find(product_changed_id)
     @added_ingredients = added_ingredients
