@@ -1,5 +1,9 @@
 <h3>Leave a review</h3>
 
-<%= form_for [@product, @review] do |f| %>
-  <%= f.text_field :content %>
-<%= f.submit "add a review" %> <% end %>
+<%= simple_form_for @product, url: product_reviews_path(@product), method: :post do |m| %>
+  <%= m.simple_fields_for @review do |p| %>
+    <%= p.input :score %>
+    <%= p.input :content %>
+    <%= p.button :submit %>
+  <% end %>
+<% end %>
