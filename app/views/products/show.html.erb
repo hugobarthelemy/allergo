@@ -34,3 +34,8 @@
   <%end%>
 <%end%>
 
+<h3>Reviews</h3>
+<% @product.reviews.each do |review|%>
+    <p><%=review.content%></p>
+<%end%>
+
