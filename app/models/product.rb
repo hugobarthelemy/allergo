@@ -42,12 +42,14 @@ class Product < ActiveRecord::Base
     new_product.save
 
     product_api.ingredients.each do |ingredient|
-
+      # creation de la liste d'ingredients du produit
       new_product.ingredients << Ingredient.create_from_api(ingredient.id, product_api.lc)
-
-      # new_product.ingredients.new(Ingredient.create_from_api(ingredient.id, product_api.lc))
     end
 
+    product_api.allergens.each do |allergen|
+      # creation de la liste d'allergènes
+      AllergyIngredient.find_or_create_by(allergen)
+    end
 
 
   end
