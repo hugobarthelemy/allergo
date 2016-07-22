@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.product-actions {
+  display: inline-block;
+}
+
+
 .track-btn{
   background-color: $green;
   padding: 8px 15px;
@@ -24,4 +29,11 @@
     display: inline-block;
     text-decoration: none;
   }
+}
+
+.review-card {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 15px;
 }
