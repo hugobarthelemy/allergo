@@ -4,7 +4,7 @@
 
       <h3 class="text-center">Leave a review</h3>
 
-      <%= simple_form_for @product, url: product_reviews_path(@product), method: :post do |m| %>
+      <%= simple_form_for [@product, @user], url: product_reviews_path(@product), method: :post do |m| %>
         <%= m.simple_fields_for @review do |p| %>
           <%= p.input :score, as: :radio_buttons, :collection => [0, 1, 2], label: 'How did you feel after eating this product?' %>
           <%= p.input :content, label: 'Your comments' %>
