@@ -12,7 +12,7 @@ Ingredient.destroy_all ## not destroyed between test seedings ?
 Allergy.destroy_all
 
 # extract sample products
-search_terms = %w(milk chocolat) #vous pouvez ajouter des ingrédients
+search_terms = %w(chocolat) #vous pouvez ajouter des ingrédients
 
 search_terms.each do |search_term|
 
@@ -138,34 +138,34 @@ level = Level.new(
 level.save!
 
 # Scanne product # tous les users ont scanné tous les produits
-# ScannedProduct.destroy_all
-for product_id in (Product.last.id - 9)...(Product.last.id) do
-  for user_id in (User.last.id - 4)...(User.last.id) do
-    ScannedProduct.new(
-      user_id: user_id,
-      product_id: product_id).save
+ScannedProduct.destroy_all
+
+Product.last(8).each do |product|
+  User.last(4).each do |user|
+    ScannedProduct.create!(user_id: user.id, product_id: product.id)
   end
 end
 
 # Tracked product # tous les users track tous les produits
-# TrackedProduct.destroy_all
-for product_id in (Product.last.id - 9)...(Product.last.id) do
-  for user_id in (User.last.id - 4)...(User.last.id) do
-    TrackedProduct.new(
-      user_id: user_id,
-      product_id: product_id).save
+TrackedProduct.destroy_all
+
+Product.last(8).each do |product|
+  User.last(4).each do |user|
+    TrackedProduct.create!(user_id: user.id, product_id: product.id)
   end
 end
 
-# Reviews # tous les users ont laissé un avis sur chaque produit
 
-# Review.destroy_all
-for product_id in (Product.last.id - 9)...(Product.last.id) do
-  for user_id in (User.last.id - 4)...(User.last.id) do
-    Review.new(
+# Reviews # tous les users ont laissé un avis sur chaque produit
+Review.destroy_all
+
+Product.last(8).each do |product|
+  User.last(4).each do |user|
+    Review.create!(
       score: [0, 1, 2].sample,
-      user_id: user_id,
-      product_id: product_id).save
+      user_id: user.id,
+      product_id: product.id
+    )
   end
 end
 
