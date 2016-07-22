@@ -18,13 +18,26 @@
           }
         }).on('autocomplete:selected', function(event, suggestion) {
           console.log('onselected', suggestion);
+          console.log(suggestion.name);
+          $("<p>" + suggestion.name + "</p>").appendTo('#ingredient-name');
+
+
         });
         $('.search-terms a').click(function(e) {
           ac.autocomplete.setVal($(this).text());
           ac.autocomplete.open();
           ac.focus();
         })
+
+
+
+        $(function () {
+          $('#Add').on('click', function () {
+            $('<p>Text</p>').appendTo('#ingredient-name');
+          });
+        });
       });
   </script>
 <% end %>
+
 
