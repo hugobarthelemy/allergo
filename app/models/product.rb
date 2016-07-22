@@ -13,6 +13,7 @@ class Product < ActiveRecord::Base
   has_many :ingredients, through: :product_components
 
   accepts_nested_attributes_for :ingredients, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :reviews
   # permet de passer les attributs de la classe ingredient dans les params de la classe product dans le controller product
   # params.require(:product).permit(:barcode, :name, :updated_on, :manufacturer, :category, ingredients_attributes: [:id, :iso_reference :fr_name :en_name :ja_name, :_destroy])
   def self.create_from_api(product_api)

@@ -78,7 +78,7 @@ laurent = User.new(email: "laurent@garnier.com",
   last_name: "Garnier",
   phone_number: "",
   password: "123456",
-  email_contact: "Laurent@garnier.com",
+  email_contact: "laurent@garnier.com",
   picture: "http://www.kdbuzz.com/images/garnier_electrochoc.jpg")
 laurent.save!
 level = Level.new(
@@ -93,7 +93,7 @@ laura = User.new(email: "laura@pedroni.com",
   last_name: "Perdoni",
   phone_number: "",
   password: "123456",
-  email_contact: "Laura@perdoni.com",
+  email_contact: "laura@perdoni.com",
   picture: "http://www.kdbuzz.com/images/garnier_electrochoc.jpg")
 laura.save!
 level = Level.new(
@@ -158,6 +158,7 @@ for product_id in (Product.last.id - 9)...(Product.last.id) do
 end
 
 # Reviews # tous les users ont laissé un avis sur chaque produit
+
 # Review.destroy_all
 for product_id in (Product.last.id - 9)...(Product.last.id) do
   for user_id in (User.last.id - 4)...(User.last.id) do

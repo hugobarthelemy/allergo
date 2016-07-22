@@ -27,4 +27,8 @@ class ProductPolicy < ApplicationPolicy
   def untrack?
     true
   end
+
+  def track?
+    true
+  end
 end
