@@ -12,7 +12,7 @@ Ingredient.destroy_all ## not destroyed between test seedings ?
 Allergy.destroy_all
 
 # extract sample products
-search_terms = %w(chocolat) #vous pouvez ajouter des ingrédients
+search_terms = %w(milk chips chocolat pates) #vous pouvez ajouter des ingrédients
 
 search_terms.each do |search_term|
 
