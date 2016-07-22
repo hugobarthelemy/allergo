@@ -1,6 +1,0 @@
-class TrackedProductsController < ApplicationController
-
-
-end
-
-
