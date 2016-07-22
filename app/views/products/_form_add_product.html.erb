@@ -1,5 +1,5 @@
 <%= simple_form_for @product do |f| %>
-  <%= f.input :name %>
+  <%= f.input :name, input_html: {id: "q"} %>
   <h3> Ingredients </h3>
     <%= f.simple_fields_for :ingredients do |ingredient| %>
       <%= render 'ingredient_fields', f: ingredient %>
