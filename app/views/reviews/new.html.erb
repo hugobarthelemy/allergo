@@ -1,0 +1,5 @@
+<h3>Leave a review</h3>
+
+<%= form_for [@product, @review] do |f| %>
+  <%= f.text_field :content %>
+<%= f.submit "add a review" %> <% end %>

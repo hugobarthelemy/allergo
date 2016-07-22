@@ -1,8 +1,9 @@
 <h1><%=@product.name%></h1>
+
 <h2><%=@product.manufacturer%></h2>
+
 <p><%= link_to '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 '.html_safe, edit_product_path(@product), {class: "edit"} %></p>
-
 
 
 <!-- Returns true if the product is tracked by the user, false if it is untracked -->
@@ -15,14 +16,18 @@
 
 
 
+<p>Barcode: <%=@product.barcode%></p>
 
-<p><%=@product.barcode%></p>
-<p><%=@product.updated_on%></p>
+<p>Product last update: <%=@product.updated_on%></p>
+
 <h3>Ingredients</h3>
+
 <%@product.ingredients.each do |ingredient|%>
   <p><%=ingredient.fr_name%></p>
 <%end%>
+
 <h3>Allergies</h3>
+
 <% @product.ingredients.each do |ingredient|%>
   <% ingredient.allergies.each do |allergy| %>
     <p><%=allergy.name%></p>
