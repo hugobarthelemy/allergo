@@ -1,5 +1,10 @@
 <%= simple_form_for @product do |f| %>
+  <%= f.input :name %>
   <%= f.input :name, input_html: {id: "q"} %>
+  <button class="add_ingredient">Add ingredient</button>
+
+
+  <%= hidden_field_tag :ingredients_list, id: "ingredient_list" %>
   <h3> Ingredients </h3>
     <%= f.simple_fields_for :ingredients do |ingredient| %>
       <%= render 'ingredient_fields', f: ingredient %>
@@ -10,5 +15,12 @@
   <%= f.submit %>
 <% end %>
 
-
 <p id="ingredient-name"></p>
+
+
+<%= content_for(:after_js) do%>
+  <script>
+
+  </script>
+<% end%>
+
