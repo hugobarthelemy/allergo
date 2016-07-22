@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit]
+  before_action :set_product, only: [:show, :edit, :untrack, :track]
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     @products = policy_scope(Product)
@@ -15,6 +16,18 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.save
     authorize @product
+    redirect_to product_path(@product)
+  end
+
+  def track
+    @tracked_product = TrackedProduct.new(product_id: @product.id, user_id: current_user.id).save
+    redirect_to product_path(@product)
+    authorize @product
+  end
+
+  def untrack
+    authorize @product
+    current_user.products.delete(@product)
     redirect_to product_path(@product)
   end
 
@@ -48,6 +61,10 @@ class ProductsController < ApplicationController
   end
 
   def set_product
-    @product = Product.find(params[:id])
+    if params[:id]
+      @product = Product.find(params[:id])
+    else
+      @product = Product.find(params[:product_id])
+    end
   end
 end

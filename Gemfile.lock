@@ -1,3 +1,11 @@
+GIT
+  remote: git@github.com:Antoinerev/openfoodfacts-ruby.git
+  revision: c4671c44c1760781c31a6b64f0fcf47f47abe3cc
+  specs:
+    openfoodfacts (0.3.2)
+      hashie (~> 3.4)
+      nokogiri (~> 1.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -80,11 +88,6 @@ GEM
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     hashie (3.4.4)
-    her (0.8.1)
-      activemodel (>= 3.0.0, <= 4.3.0)
-      activesupport (>= 3.0.0, <= 4.3.0)
-      faraday (>= 0.8, < 1.0)
-      multi_json (~> 1.7)
     httpclient (2.7.2)
     i18n (0.7.0)
     jbuilder (2.5.0)
@@ -130,10 +133,6 @@ GEM
     omniauth-oauth2 (1.4.0)
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
-    openfoodfacts (0.3.1)
-      hashie (~> 3.4)
-      her (~> 0.8)
-      nokogiri (~> 1.6)
     orm_adapter (0.5.0)
     pg (0.18.4)
     pg_search (1.0.6)
@@ -250,7 +249,7 @@ DEPENDENCIES
   jquery-rails
   letter_opener
   omniauth-facebook
-  openfoodfacts
+  openfoodfacts!
   pg
   pg_search
   pry-byebug

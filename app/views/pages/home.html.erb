@@ -2,8 +2,10 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-xs-12">
-
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <div class="text-center home-title">
+        <h2>Press to scan your product</h2>
+      </div>
     </div>
   </div>
 
@@ -18,14 +20,30 @@
   </div>
 
   <div class="row">
+    <div class="col-xs-12">
+      <div class="text-center">
+        <img src="barcode_scanner.ico" alt="" id="scan-icon">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="text-center home-title">
+        <h4>Or enter its barcode below</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
       <form action="<%= root_path %>" method="get" id="send" class="form-inline text-center">
-        <input class="form-control" type="text" id="result" name="scanresult" placeholder="Barcode">
+        <input class="form-control" type="text" id="result" name="scanresult" placeholder="ean-13">
         <button type="submit" class="btn btn-info">
             Go
         </button>
       </form>
-      <h3><%= @message %></h3>
+      <h3 class="text-center"><%= @message %></h3>
     </div>
   </div>
 </div>
