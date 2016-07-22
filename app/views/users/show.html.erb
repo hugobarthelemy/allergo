@@ -10,7 +10,7 @@
         <br><p><%= @user.provider%> mail <%= @user.email%></p>
         <br><p>Phone number <%= @user.phone_number%></p>
         <br><p>Email contact : <%= @user.email_contact%></p>
-      <%= link_to "Edit",  {class: "btn btn-primary js-edit-form-level-in-user-show"} %>
+      <%= link_to "Edit", edit_user_path, {class: "btn btn-primary"} %>
 <!-- edit_user_path, -->
       <h1>Your allergies</h1>
 
@@ -26,9 +26,7 @@
     <div class="new_allergy">
 
     </div>
-    <div class="edit_allergy">
 
-    </div>
 <!-- JS du add allergy -->
 <% content_for(:after_js) do %>
   <script>
@@ -37,12 +35,5 @@
     });
   </script>
 <% end %>
-<!-- JS du edit allergy -->
-<% content_for(:after_js) do %>
-  <script>
-    $(".js-edit-form-level-in-user-show").on( "click", function( event ) {
-      $(".edit_allergy").append("<%= j (render 'allergies/allergy_form', level: @level).html_safe %>")
-    });
-  </script>
-<% end %>
+
 
