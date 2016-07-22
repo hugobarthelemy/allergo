@@ -40,17 +40,29 @@ class Product < ActiveRecord::Base
       category: categories
     )
     # new_product.save!
-    new_product.save
+    new_product.save!
 
     product_api.ingredients.each do |ingredient|
-
-      new_product.ingredients << Ingredient.create_from_api(ingredient.id, product_api.lc)
-
-      # new_product.ingredients.new(Ingredient.create_from_api(ingredient.id, product_api.lc))
+      # creation de la liste d'ingredients du produit
+      product_ingredient = Ingredient.create_from_api(ingredient.id, product_api.lc)
+      new_product.ingredients << product_ingredient
+      new_product.product_components.find_by(ingredient_id: product_ingredient.id).update!(amount: 2)
     end
 
+    if product_api.allergens_tags
+      if product_api.allergens_tags.class == String
+        # creation de la liste d'allergènes
+        AllergyIngredient.find_or_create_by(product_api.allergens_tags)
+      else
+        # product_allergens = []
+        # product_allergens << product_api.allergens
 
-
+        product_api.allergens_tags.each do |allergen|
+          # creation de la liste d'allergènes
+          AllergyIngredient.define_new(allergen)
+        end
+      end
+    end
   end
 
   def compare_ingredients_from_api
