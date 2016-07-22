@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit]
+  before_action :set_product, only: [:show, :edit, :untrack]
 
   def index
     @products = policy_scope(Product)
@@ -18,6 +18,11 @@ class ProductsController < ApplicationController
     redirect_to product_path(@product)
   end
 
+  def untrack
+    authorize @product
+    current_user.products.delete(@product)
+    redirect_to product_path(@product)
+  end
   def show
     authorize @product
   end
@@ -48,6 +53,10 @@ class ProductsController < ApplicationController
   end
 
   def set_product
-    @product = Product.find(params[:id])
+    if params[:id]
+      @product = Product.find(params[:id])
+    else
+      @product = Product.find(params[:product_id])
+    end
   end
 end

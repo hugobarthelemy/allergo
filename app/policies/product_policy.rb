@@ -24,4 +24,7 @@ class ProductPolicy < ApplicationPolicy
   def search?
     true
   end
+  def untrack?
+    true
+  end
 end
