@@ -1,16 +1,15 @@
 class ReviewsController < ApplicationController
   before_action :find_product, only: [ :new, :create ]
-  skip_after_action :verify_authorized
 
   def new
     @review = Review.new
-    # authorize @review
+    authorize @review
   end
 
   def create
     @review = @product.reviews.build(review_params)
     @review.save
-    # authorize @review
+    authorize @review
     redirect_to product_path(@product)
   end
 
