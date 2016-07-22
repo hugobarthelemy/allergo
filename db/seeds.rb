@@ -159,7 +159,7 @@ for product_id in (Product.last.id - 9)...(Product.last.id) do
 end
 
 # Reviews # tous les users ont laissé un avis sur chaque produit
-Reviews.destroy_all
+Review.destroy_all
 for product_id in (Product.last.id - 9)...(Product.last.id) do
   for user_id in (User.last.id - 4)...(User.last.id) do
     Review.new(
