@@ -1,5 +1,21 @@
-<h3>Leave a review</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
 
-<%= form_for [@product, @review] do |f| %>
-  <%= f.text_field :content %>
-<%= f.submit "add a review" %> <% end %>
+      <h3 class="text-center">Leave a review</h3>
+
+      <%= simple_form_for @product, url: product_reviews_path(@product), method: :post do |m| %>
+        <%= m.simple_fields_for @review do |p| %>
+          <%= p.input :score, as: :radio_buttons, :collection => [0, 1, 2], label: 'How did you feel after eating this product?' %>
+          <%= p.input :content, label: 'Your comments' %>
+          <%= p.button :submit, class: 'text-center' %>
+        <% end %>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+
+
+

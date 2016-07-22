@@ -16,7 +16,7 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:score, :content)
+    params.require(:product)[:review].permit(:score, :content)
   end
 
   def find_product
