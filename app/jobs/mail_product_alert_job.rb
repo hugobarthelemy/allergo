@@ -9,6 +9,7 @@ class MailProductAlertJob < ActiveJob::Base
       @user_id = product_tracked.user_id
 
       UserMailer.alert(@user_id, product_changed_id, added_ingredients).deliver_later
+
     end
   end
 end
