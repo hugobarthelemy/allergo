@@ -79,7 +79,7 @@ laurent = User.new(email: "laurent@garnier.com",
   last_name: "Garnier",
   phone_number: "",
   password: "123456",
-  email_contact: "Laurent@garnier.com",
+  email_contact: "laurent@garnier.com",
   picture: "http://www.kdbuzz.com/images/garnier_electrochoc.jpg")
 laurent.save!
 level = Level.new(
@@ -94,7 +94,7 @@ laura = User.new(email: "laura@pedroni.com",
   last_name: "Perdoni",
   phone_number: "",
   password: "123456",
-  email_contact: "Laura@perdoni.com",
+  email_contact: "laura@perdoni.com",
   picture: "http://www.kdbuzz.com/images/garnier_electrochoc.jpg")
 laura.save!
 level = Level.new(
