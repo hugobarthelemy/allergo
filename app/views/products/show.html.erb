@@ -14,11 +14,8 @@
   <p><%= link_to "Track", product_track_path(@product), method: :post , class: "track-btn"%></p>
 <% end %>
 
-
-
-<p>Barcode: <%=@product.barcode%></p>
-
-<p>Product last update: <%=@product.updated_on%></p>
+<p><%=@product.barcode%></p>
+<p><%=@product.updated_on%></p>
 
 <h3>Ingredients</h3>
 
