@@ -36,6 +36,9 @@
 
 <h3>Reviews</h3>
 <% @product.reviews.each do |review|%>
-    <p><%=review.content%></p>
+    <p>Score: <%=review.score%></p>
+    <p>Content: <%=review.content%></p>
 <%end%>
+
+<%= link_to "New review", new_product_review_path(@product), class: "btn btn-primary" %>
 
