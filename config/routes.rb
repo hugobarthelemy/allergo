@@ -6,8 +6,9 @@ Rails.application.routes.draw do
 
   resources :products do
     resources :ingredients, only: [:new, :create, :index]
-    resources :tracked_products, only: [:new, :create]
+    # resources :tracked_products, only: [:new, :create]
     delete "/untrack", to: "products#untrack"
+    post "/track", to: "products#track"
   end
 
   resources :users, only: [:show, :edit, :update] do
