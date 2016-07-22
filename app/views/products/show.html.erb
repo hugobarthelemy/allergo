@@ -32,6 +32,15 @@
 <%end%>
 
 <h3>Reviews</h3>
+
+<div class="score-list">
+  <li>
+    <ol>Number of people who rated 0: <%= @score_zero %></ol>
+    <ol>Number of people who rated 1: <%= @score_one %></ol>
+    <ol>Number of people who rated 2: <%= @score_two %></ol>
+  </li>
+</div>
+
 <% @product.reviews.each do |review|%>
     <p>Score: <%=review.score%></p>
     <p>Content: <%=review.content%></p>

@@ -15,3 +15,13 @@
   border-radius: 3px;
   color: white;
 }
+
+.score-list {
+  li {
+    list-style: none;
+  }
+  ol {
+    display: inline-block;
+    text-decoration: none;
+  }
+}
