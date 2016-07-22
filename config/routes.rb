@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show, :edit, :update] do
-    resources :allergies, only: [:new, :create, :edit, :destroy]
+    resources :allergies, only: [:new, :create, :edit, :update, :destroy]
   end
 
   require "sidekiq/web"

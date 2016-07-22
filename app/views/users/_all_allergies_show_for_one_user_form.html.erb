@@ -10,7 +10,7 @@
         <%= allergy.allergy_level %>
       </div>
       <div class="col-xs-12 col-sm-1 text-center">
-        <%= link_to "Edit", "#", {class: "btn btn-primary"} %>
+        <%= link_to "Edit", edit_user_allergy_path(current_user, allergy), {class: "btn btn-primary"} %>
       </div>
       <div class="col-xs-12 col-sm-2 text-center">
       <p><%= link_to "Cancel my allergy", user_allergy_path(current_user, allergy), method: :delete %></p>
@@ -18,6 +18,3 @@
     </div>
   </div>
 <% end %>
-
-
-
