@@ -1,16 +1,15 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
 
+User.destroy_all
 # products and product_components destroyed for test seeding
 # this is not an update of the db!
 Product.destroy_all
 # ProductComponent.destroy_all
 Ingredient.destroy_all ## not destroyed between test seedings ?
+
+Allergy.destroy_all
 
 # extract sample products
 search_terms = %w(milk chocolat) #vous pouvez ajouter des ingrédients
@@ -27,7 +26,7 @@ search_terms.each do |search_term|
   end
 
 # seed des tables d'allergies
-Allergy.destroy_all
+
 milk_allergy = Allergy.new(name: :milk)
 milk_allergy.save!
 
@@ -54,7 +53,7 @@ allergie_ingredient.save
 # création des users
 
 # Hugo intollerant au lait
-User.destroy_all
+
 hugo = User.new(email: "hugopoubelle@gmail.com",
   first_name: "Hugo",
   last_name: "Barthelemy",
@@ -139,7 +138,7 @@ level = Level.new(
 level.save!
 
 # Scanne product # tous les users ont scanné tous les produits
-ScannedProduct.destroy_all
+# ScannedProduct.destroy_all
 for product_id in (Product.last.id - 9)...(Product.last.id) do
   for user_id in (User.last.id - 4)...(User.last.id) do
     ScannedProduct.new(
@@ -149,7 +148,7 @@ for product_id in (Product.last.id - 9)...(Product.last.id) do
 end
 
 # Tracked product # tous les users track tous les produits
-TrackedProduct.destroy_all
+# TrackedProduct.destroy_all
 for product_id in (Product.last.id - 9)...(Product.last.id) do
   for user_id in (User.last.id - 4)...(User.last.id) do
     TrackedProduct.new(
@@ -159,7 +158,7 @@ for product_id in (Product.last.id - 9)...(Product.last.id) do
 end
 
 # Reviews # tous les users ont laissé un avis sur chaque produit
-Reviews.destroy_all
+# Review.destroy_all
 for product_id in (Product.last.id - 9)...(Product.last.id) do
   for user_id in (User.last.id - 4)...(User.last.id) do
     Review.new(
