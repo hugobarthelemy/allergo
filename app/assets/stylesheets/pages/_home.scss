@@ -14,6 +14,12 @@
     }
 }
 
+#scan-icon:hover {
+  position: relative;
+  top: -5px;
+  right: -2px;
+}
+
 @media screen and (max-width: 800px) {
   #send button {
     margin-top: 10px
