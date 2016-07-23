@@ -55,30 +55,22 @@
 
       <h3>Allergy Reviews</h3>
 
-      <div class="score-list">
+      <div class="inlinelist text-center">
         <li>
-          <ol><i class="fa fa-smile-o" aria-hidden="true"></i> <%= @score_zero %></ol>
+          <ol class="ol-first"><i class="fa fa-smile-o" aria-hidden="true"></i> <%= @score_zero %></ol>
           <ol><i class="fa fa-meh-o" aria-hidden="true"></i> <%= @score_one %></ol>
           <ol><i class="fa fa-frown-o" aria-hidden="true"></i> <%= @score_two %></ol>
         </li>
       </div>
 
-      <% @product.reviews.each do |review|%>
+      <% @reviews.each do |review|%>
         <div class="review-card">
-          <p><%= review.user.first_name %> <%= review.user.last_name %> - <%= review.user.updated_at %></p>
-          <% if review.score == 0 %>
-              <p> Feedback: <i class="fa fa-smile-o" aria-hidden="true"></i></p>
-          <% elsif review.score == 1 %>
-              <p> Feedback: <i class="fa fa-meh-o" aria-hidden="true"></i></p>
-          <% else %>
-              <p> Feedback: <i class="fa fa-frown-o" aria-hidden="true"></i></p>
-          <% end %>
-          <p>Content: <%=review.content%></p>
+          <%= render 'shared/review_card', review: review %>
         </div>
       <%end%>
-
-      <%= link_to "New review", new_product_review_path(@product), class: "btn btn-primary" %>
-
+      <div class="text-center">
+        <%= link_to "New review", new_product_review_path(@product), class: "btn btn-primary" %>
+      </div>
     </div>
   </div>
 </div>
