@@ -13,21 +13,79 @@ when "development"
   Allergy.destroy_all
 
   # extract sample products
-  search_terms = %w(milk chips chocolat pates) #vous pouvez ajouter des ingrédients
 
-  search_terms.each do |search_term|
 
-    sample_products = Openfoodfacts::Product.search(search_term, locale: 'world').first(5) #nb d'élement seedé
+  require 'csv'
 
-    sample_products.each do |product|
-      product.fetch
+  csv_options = {
+       col_sep: "\t",
+       quote_char: '"',
+       headers: :first_row
+  }
 
-  sample_products.each do |product|
-    product.fetch
+  filepath    = 'db/fr.openfoodfacts.org.products.csv'  # Relative to current file
 
-    Product.create_from_api(product) # creates a product and creates ingredients if new
+  CSV.foreach(filepath, csv_options) do |row|
+
+    begin
+
+      modified_date = row['last_modified_datetime'].to_date
+
+      new_product = Product.create!(barcode:row['code'],
+                                    name: row['product_name'],
+                                    updated_on: modified_date,
+                                    manufacturer: row['brands'],
+                                    category: row['categories_tags']
+                                    )
+
+      image_url = row['image_url']
+
+      if  row['ingredients_text'].nil?
+        ingredients = []
+      else
+        ingredients_text = row['ingredients_text']
+        ingredients_array = ingredients_text.partition(/\(.+\)/)
+        ingredients_array.each do |ingredients_blocks|
+          ingredients_blocks = ingredients_blocks[1...-1] if ingredients_blocks.match(/\(.+\)/)
+          ingredients = ingredients_blocks.split(", ")
+        end
+      end
+
+
+      allergens = row['allergens_tags']
+
+      if allergens
+        allergens.split(",").each do |allergen|
+          # creation de la liste d'allergènes
+          AllergyIngredient.define_new(allergen)
+          binding.pry
+        end
+      end
+
+      # traces = row['traces']
+      traces_tags = row['traces_tags']
+
+      if traces_tags
+        traces_tags.split(",").each do |trace|
+          ProductComponent.create_trace_from_api(trace, new_product)
+        end
+      end
+    rescue  CSV::MalformedCSVError => er
+      puts er.message
+      puts "This one: #{line}"
+      # and continue
+
+    end
   end
-end
+
+
+
+  # sample_products.each do |product|
+  #   product.fetch
+
+  #   Product.create_from_api(product) # creates a product and creates ingredients if new
+  # end
+
 
 
   # seed des tables d'allergies
