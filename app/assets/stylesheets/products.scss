@@ -21,14 +21,23 @@
   color: white;
 }
 
-.score-list {
+.inlinelist {
   li {
     list-style: none;
+    padding: 15px 0;
   }
   ol {
     display: inline-block;
     text-decoration: none;
   }
+}
+
+.float-right {
+  float: right;
+}
+
+.ol-first {
+  padding-left: 0px;
 }
 
 .review-card {

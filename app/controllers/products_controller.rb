@@ -35,6 +35,7 @@ class ProductsController < ApplicationController
     @score_zero = @product.reviews.where(score: 0).count
     @score_one = @product.reviews.where(score: 1).count
     @score_two = @product.reviews.where(score: 2).count
+    @reviews = @product.reviews.order(updated_at: :desc)
     authorize @product
   end
 
