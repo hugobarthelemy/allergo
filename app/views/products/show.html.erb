@@ -49,7 +49,7 @@
 
       <% @product.reviews.each do |review|%>
         <div class="review-card">
-
+          <p><%= review.user.first_name %> <%= review.user.last_name %> - <%= review.user.updated_at %></p>
           <% if review.score == 0 %>
               <p> Feedback: <i class="fa fa-smile-o" aria-hidden="true"></i></p>
           <% elsif review.score == 1 %>
