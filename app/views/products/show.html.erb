@@ -39,9 +39,9 @@
 
       <h3>Allergy Reviews</h3>
 
-      <div class="score-list">
+      <div class="score-list text-center">
         <li>
-          <ol><i class="fa fa-smile-o" aria-hidden="true"></i> <%= @score_zero %></ol>
+          <ol class="ol-first"><i class="fa fa-smile-o" aria-hidden="true"></i> <%= @score_zero %></ol>
           <ol><i class="fa fa-meh-o" aria-hidden="true"></i> <%= @score_one %></ol>
           <ol><i class="fa fa-frown-o" aria-hidden="true"></i> <%= @score_two %></ol>
         </li>
@@ -60,9 +60,9 @@
           <p>Content: <%=review.content%></p>
         </div>
       <%end%>
-
-      <%= link_to "New review", new_product_review_path(@product), class: "btn btn-primary" %>
-
+      <div class="text-center">
+        <%= link_to "New review", new_product_review_path(@product), class: "btn btn-primary" %>
+      </div>
     </div>
   </div>
 </div>

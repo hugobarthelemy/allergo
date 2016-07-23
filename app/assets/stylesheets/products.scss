@@ -24,11 +24,16 @@
 .score-list {
   li {
     list-style: none;
+    padding: 15px 0;
   }
   ol {
     display: inline-block;
     text-decoration: none;
   }
+}
+
+.ol-first {
+  padding-left: 0px;
 }
 
 .review-card {
