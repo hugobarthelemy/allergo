@@ -13,7 +13,8 @@ class Ingredient < ActiveRecord::Base
     when "ja"
       Ingredient.find_or_create_by(ja_name: ingredient_name)
     else
-      ### TODO ###
+      ### TODO ### "world" name
+      Ingredient.find_or_create_by(en_name: ingredient_name)
     end
 
     # product_component = ProductComponent.new(

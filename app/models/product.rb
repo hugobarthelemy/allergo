@@ -6,6 +6,11 @@ class Product < ActiveRecord::Base
                   #:using => :trigram
 
   has_many :product_components, dependent: :destroy
+  has_many :significant_ingredients, -> { where "amount = 2" },
+    class_name: "ProductComponent"
+  has_many :trace_ingredients, -> { where "amount = 1" },
+    class_name: "ProductComponent"
+
   has_many :reviews, dependent: :destroy
   has_many :scanned_products, dependent: :destroy
   has_many :tracked_products, dependent: :destroy
