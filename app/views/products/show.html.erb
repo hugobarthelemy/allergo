@@ -1,41 +1,68 @@
-<h1><%=@product.name%></h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+      <div class="text-center">
+        <h1><%=@product.name%></h1>
 
-<h2><%=@product.manufacturer%></h2>
+        <h2><%=@product.manufacturer%></h2>
+        <div class="product-actions">
+          <%= link_to '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+          '.html_safe, edit_product_path(@product), {class: "edit"} %>
 
-<p><%= link_to '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-'.html_safe, edit_product_path(@product), {class: "edit"} %></p>
 
+          <!-- Returns true if the product is tracked by the user, false if it is untracked -->
+          <% product_tracked_by_user = !(@product.tracked_products.find_by_user_id(current_user.id).nil?) %>
+          <% if product_tracked_by_user  %>
+            <%= link_to "Untrack", product_untrack_path(@product), method: :delete, class: "untrack-btn" %>
+          <% else %>
+            <%= link_to "Track", product_track_path(@product), method: :post , class: "track-btn"%>
+          <% end %>
+        </div>
+      </div>
 
-<!-- Returns true if the product is tracked by the user, false if it is untracked -->
-<% product_tracked_by_user = !(@product.tracked_products.find_by_user_id(current_user.id).nil?) %>
-<% if product_tracked_by_user  %>
-  <p><%= link_to "Untrack", product_untrack_path(@product), method: :delete, class: "untrack-btn" %></p>
-<% else %>
-  <p><%= link_to "Track", product_track_path(@product), method: :post , class: "track-btn"%></p>
-<% end %>
+      <p><%=@product.barcode%></p>
+      <p>Last update: <%=@product.updated_on%></p>
 
-<p><%=@product.barcode%></p>
-<p><%=@product.updated_on%></p>
+      <h3>Ingredients</h3>
 
-<h3>Ingredients</h3>
+      <%@product.ingredients.each do |ingredient|%>
+        <p><%=ingredient.fr_name%></p>
+      <%end%>
 
-<%@product.ingredients.each do |ingredient|%>
-  <p><%=ingredient.fr_name%></p>
-<%end%>
+      <h3>Allergies</h3>
 
-<h3>Allergies</h3>
+      <% @product.ingredients.each do |ingredient|%>
+        <% ingredient.allergies.each do |allergy| %>
+          <p><%=allergy.name%></p>
+        <%end%>
+      <%end%>
 
-<% @product.ingredients.each do |ingredient|%>
-  <% ingredient.allergies.each do |allergy| %>
-    <p><%=allergy.name%></p>
-  <%end%>
-<%end%>
+      <h3>Allergy Reviews</h3>
 
-<h3>Reviews</h3>
-<% @product.reviews.each do |review|%>
-    <p>Score: <%=review.score%></p>
-    <p>Content: <%=review.content%></p>
-<%end%>
+      <div class="score-list">
+        <li>
+          <ol><i class="fa fa-smile-o" aria-hidden="true"></i> <%= @score_zero %></ol>
+          <ol><i class="fa fa-meh-o" aria-hidden="true"></i> <%= @score_one %></ol>
+          <ol><i class="fa fa-frown-o" aria-hidden="true"></i> <%= @score_two %></ol>
+        </li>
+      </div>
 
-<%= link_to "New review", new_product_review_path(@product), class: "btn btn-primary" %>
+      <% @product.reviews.each do |review|%>
+        <div class="review-card">
+          <p><%= review.user.first_name %> <%= review.user.last_name %> - <%= review.user.updated_at %></p>
+          <% if review.score == 0 %>
+              <p> Feedback: <i class="fa fa-smile-o" aria-hidden="true"></i></p>
+          <% elsif review.score == 1 %>
+              <p> Feedback: <i class="fa fa-meh-o" aria-hidden="true"></i></p>
+          <% else %>
+              <p> Feedback: <i class="fa fa-frown-o" aria-hidden="true"></i></p>
+          <% end %>
+          <p>Content: <%=review.content%></p>
+        </div>
+      <%end%>
 
+      <%= link_to "New review", new_product_review_path(@product), class: "btn btn-primary" %>
+
+    </div>
+  </div>
+</div>

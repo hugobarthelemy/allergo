@@ -32,6 +32,9 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @score_zero = @product.reviews.where(score: 0).count
+    @score_one = @product.reviews.where(score: 1).count
+    @score_two = @product.reviews.where(score: 2).count
     authorize @product
   end
 
@@ -49,6 +52,7 @@ class ProductsController < ApplicationController
 
   def destroy
   end
+
 
   private
 
