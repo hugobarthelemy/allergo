@@ -91,7 +91,7 @@ when "development"
   # Laura allergique au lait et intollerante au gluten
   laura = User.new(email: "laura@pedroni.com",
     first_name: "Laura",
-    last_name: "Perdoni",
+    last_name: "Pedroni",
     phone_number: "",
     password: "123456",
     email_contact: "laura@pedroni.com",
@@ -180,7 +180,7 @@ when "development"
 when "production"
   laura = User.new(email: "laura@pedroni.com",
     first_name: "Laura",
-    last_name: "Perdoni",
+    last_name: "Pedroni",
     phone_number: "",
     password: "123456",
     email_contact: "laura@pedroni.com",
