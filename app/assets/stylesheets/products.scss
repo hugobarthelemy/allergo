@@ -21,7 +21,7 @@
   color: white;
 }
 
-.score-list {
+.inlinelist {
   li {
     list-style: none;
     padding: 15px 0;
@@ -30,6 +30,10 @@
     display: inline-block;
     text-decoration: none;
   }
+}
+
+.float-right {
+  float: right;
 }
 
 .ol-first {
