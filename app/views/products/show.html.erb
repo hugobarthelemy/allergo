@@ -25,7 +25,8 @@
 
       <h3>Ingredients</h3>
 
-      <%@product.ingredients.each do |ingredient|%>
+      <%@product.significant_ingredients.each do |sig_ingredient|%>
+        <% ingredient = Ingredient.find(sig_ingredient.ingredient_id) %>
         <p>
           <%= ingredient.fr_name unless nil %>
           <%= ingredient.en_name unless nil %>
