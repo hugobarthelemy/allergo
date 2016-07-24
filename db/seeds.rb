@@ -34,27 +34,40 @@ when "development"
 
   filepath_write    = 'db/modified_dates.csv'
 
-  @array_of_csv =[]
+  all_barcodes =[]
 
-  CSV.foreach(filepath_read, csv_options_read) do |row|
-    begin
-      modified_datetime = row['last_modified_datetime']
-      modified_date = modified_datetime.to_date
+  CSV.open(filepath_write, 'wb', csv_options_write) do |row|
+      row << ['code']
+  end
+# 7610200318800
+      mega_array = CSV.read(filepath_read, csv_options_read)
 
-    rescue ArgumentError
-      @array_of_csv << "Product '#{row['code']}' to be checked"
-      puts "Product '#{row}' to be checked"
-    else
-      @array_of_csv << modified_date
+      # mega_array.match(/\d{13}/) do |codes_array, code|
+      #   codes_array << code unless codes_array.last == code
+      # end
+
+      # binding.pry
+      # start_position = 0
+      # mega_array.each do |element|
+
+      #   barcode = element.match(/\d{13}/)[start_position]
+
+      #   start_position = element.index(/\d{13}/)
+
+      # barcode = row['code']
+      # all_barcodes << barcode
+      # CSV.open(filepath_write, 'ab', csv_options_write) do |csv|
+      #   csv << [barcode]
+      # end
+
+  # end
+
+  CSV.open(filepath_write, 'ab', csv_options_write) do |row|
+    mega_array.each do |csv_item|
+      row << csv_item['code']
     end
   end
-
-  CSV.open(filepath_write, 'wb', csv_options_write) do |csv|
-    array_of_csv.each do |date_element|
-      csv << date_element
-    end
-  end
-
+binding.pry
 
 
 
