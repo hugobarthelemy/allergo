@@ -24,7 +24,7 @@ when "development"
        headers: :first_row
   }
 
-  filepath_read    = 'db/fr.openfoodfacts.org.products.csv'  # Relative to current file
+  filepath_read    = 'db/small_sample.csv' # 'db/fr.openfoodfacts.org.products.csv'  # Relative to current file
 
   csv_options_write = {
        col_sep: ',',
@@ -32,100 +32,51 @@ when "development"
        quote_char: '"'
   }
 
-  filepath_write    = 'db/modified_dates.csv'
+  filepath_write    = 'db/sample_codes.csv'
+
 
   all_barcodes =[]
+  codes_array = []
+  start_position = 0
 
-  CSV.open(filepath_write, 'wb', csv_options_write) do |row|
+
+
+  # TODO #
+  # importer dernier code du csv codes
+  last_code = CSV.read(filepath_write, csv_options_write).last
+  csv_text = File.read(filepath_read, csv_options_read)
+  start_position = csv_text.index(last_code.first) + 13 unless last_code.nil? || last_code.empty?
+  binding.pry
+  if start_position = 0
+    CSV.open(filepath_write, 'wb', csv_options_write) do |row|
       row << ['code']
-  end
-# 7610200318800
-      mega_array = CSV.read(filepath_read, csv_options_read)
-
-      # mega_array.match(/\d{13}/) do |codes_array, code|
-      #   codes_array << code unless codes_array.last == code
-      # end
-
-      # binding.pry
-      # start_position = 0
-      # mega_array.each do |element|
-
-      #   barcode = element.match(/\d{13}/)[start_position]
-
-      #   start_position = element.index(/\d{13}/)
-
-      # barcode = row['code']
-      # all_barcodes << barcode
-      # CSV.open(filepath_write, 'ab', csv_options_write) do |csv|
-      #   csv << [barcode]
-      # end
-
-  # end
-
-  CSV.open(filepath_write, 'ab', csv_options_write) do |row|
-    mega_array.each do |csv_item|
-      row << csv_item['code']
     end
   end
-binding.pry
+  # rechercher ce code dans le big csv et donner l'index à start_position
+  # reprendre l'extraction
+  #
+  # ouvrir le fichier de codes
+  # pour chaque code chercher le produit dans l'API
+  # créer les objets
 
 
+# 7610200318800
+      # csv_text = File.read(filepath_read, csv_options_read)
+
+      until csv_text.match(/\d{13}/, start_position).nil? do
+        barcode = csv_text.match(/\d{13}/, start_position) unless csv_text.match(/\d{13}/, start_position).nil?
+        codes_array << barcode.to_s unless codes_array.last == barcode.to_s
+        start_position = csv_text.index(/\d{13}/, start_position) + 13
+        puts start_position
+      end
 
 
-  # CSV.foreach(filepath, csv_options_read) do |row|
+  CSV.open(filepath_write, 'ab', csv_options_write) do |csv|
+    codes_array.each do |csv_item|
+      csv << [csv_item]
+    end
+  end
 
-  #     modified_datetime = row['last_modified_datetime']
-
-  #     modified_date = modified_datetime.to_date unless modified_datetime.nil?
-
-  #     new_product = Product.create!(barcode:row['code'],
-  #                                   name: row['product_name'],
-  #                                   updated_on: modified_date,
-  #                                   manufacturer: row['brands'],
-  #                                   category: row['categories_tags']
-  #                                   )
-
-  #     image_url = row['image_url']
-
-  #     if  row['ingredients_text'].nil?
-  #       ingredients = []
-  #     else
-  #       ingredients_text = row['ingredients_text']
-  #       ingredients_array = ingredients_text.partition(/\(.+\)/)
-  #       ingredients_array.each do |ingredients_blocks|
-  #         ingredients_blocks = ingredients_blocks[1...-1] if ingredients_blocks.match(/\(.+\)/)
-  #         ingredients = ingredients_blocks.split(", ")
-  #       end
-  #     end
-
-
-  #     allergens = row['allergens_tags']
-
-  #     if allergens
-  #       allergens.split(",").each do |allergen|
-  #         # creation de la liste d'allergènes
-  #         AllergyIngredient.define_new(allergen)
-  #         binding.pry
-  #       end
-  #     end
-
-  #     # traces = row['traces']
-  #     traces_tags = row['traces_tags']
-
-  #     if traces_tags
-  #       traces_tags.split(",").each do |trace|
-  #         ProductComponent.create_trace_from_api(trace, new_product)
-  #       end
-  #     end
-  # end
-
-
-
-  # sample_products.each do |product|
-  #   product.fetch
-
-  #   Product.create_from_api(product) # creates a product and creates ingredients if new
-  # end
 
 
 
