@@ -11,13 +11,13 @@
 </form>
 
 <div class="container">
-  <% if @product_search %>
-    <% @result.each do |result| %>
-      <div class="row">
+  <div class="row">
+    <% if @product_search %>
+      <% @result.each do |result| %>
         <div class="col-xs-12 col-sm-4">
-        <%= render 'shared/product_card', prod: result %>
+          <%= render 'shared/product_card', prod: result %>
         </div>
-      </div>
     <% end %>
   <% end %>
+  </div>
 </div>
