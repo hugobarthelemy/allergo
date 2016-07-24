@@ -17,66 +17,94 @@ when "development"
 
   require 'csv'
 
-  csv_options = {
+  csv_options_read = {
        col_sep: "\t",
+       row_sep: :auto,
        quote_char: '"',
        headers: :first_row
   }
 
-  filepath    = 'db/fr.openfoodfacts.org.products.csv'  # Relative to current file
+  filepath_read    = 'db/fr.openfoodfacts.org.products.csv'  # Relative to current file
 
-  CSV.foreach(filepath, csv_options) do |row|
+  csv_options_write = {
+       col_sep: ',',
+       force_quotes: true,
+       quote_char: '"'
+  }
 
+  filepath_write    = 'db/modified_dates.csv'
+
+  @array_of_csv =[]
+
+  CSV.foreach(filepath_read, csv_options_read) do |row|
     begin
+      modified_datetime = row['last_modified_datetime']
+      modified_date = modified_datetime.to_date
 
-      modified_date = row['last_modified_datetime'].to_date
-
-      new_product = Product.create!(barcode:row['code'],
-                                    name: row['product_name'],
-                                    updated_on: modified_date,
-                                    manufacturer: row['brands'],
-                                    category: row['categories_tags']
-                                    )
-
-      image_url = row['image_url']
-
-      if  row['ingredients_text'].nil?
-        ingredients = []
-      else
-        ingredients_text = row['ingredients_text']
-        ingredients_array = ingredients_text.partition(/\(.+\)/)
-        ingredients_array.each do |ingredients_blocks|
-          ingredients_blocks = ingredients_blocks[1...-1] if ingredients_blocks.match(/\(.+\)/)
-          ingredients = ingredients_blocks.split(", ")
-        end
-      end
-
-
-      allergens = row['allergens_tags']
-
-      if allergens
-        allergens.split(",").each do |allergen|
-          # creation de la liste d'allergènes
-          AllergyIngredient.define_new(allergen)
-          binding.pry
-        end
-      end
-
-      # traces = row['traces']
-      traces_tags = row['traces_tags']
-
-      if traces_tags
-        traces_tags.split(",").each do |trace|
-          ProductComponent.create_trace_from_api(trace, new_product)
-        end
-      end
-    rescue  CSV::MalformedCSVError => er
-      puts er.message
-      puts "This one: #{line}"
-      # and continue
-
+    rescue ArgumentError
+      @array_of_csv << "Product '#{row['code']}' to be checked"
+      puts "Product '#{row}' to be checked"
+    else
+      @array_of_csv << modified_date
     end
   end
+
+  CSV.open(filepath_write, 'wb', csv_options_write) do |csv|
+    array_of_csv.each do |date_element|
+      csv << date_element
+    end
+  end
+
+
+
+
+
+  # CSV.foreach(filepath, csv_options_read) do |row|
+
+  #     modified_datetime = row['last_modified_datetime']
+
+  #     modified_date = modified_datetime.to_date unless modified_datetime.nil?
+
+  #     new_product = Product.create!(barcode:row['code'],
+  #                                   name: row['product_name'],
+  #                                   updated_on: modified_date,
+  #                                   manufacturer: row['brands'],
+  #                                   category: row['categories_tags']
+  #                                   )
+
+  #     image_url = row['image_url']
+
+  #     if  row['ingredients_text'].nil?
+  #       ingredients = []
+  #     else
+  #       ingredients_text = row['ingredients_text']
+  #       ingredients_array = ingredients_text.partition(/\(.+\)/)
+  #       ingredients_array.each do |ingredients_blocks|
+  #         ingredients_blocks = ingredients_blocks[1...-1] if ingredients_blocks.match(/\(.+\)/)
+  #         ingredients = ingredients_blocks.split(", ")
+  #       end
+  #     end
+
+
+  #     allergens = row['allergens_tags']
+
+  #     if allergens
+  #       allergens.split(",").each do |allergen|
+  #         # creation de la liste d'allergènes
+  #         AllergyIngredient.define_new(allergen)
+  #         binding.pry
+  #       end
+  #     end
+
+  #     # traces = row['traces']
+  #     traces_tags = row['traces_tags']
+
+  #     if traces_tags
+  #       traces_tags.split(",").each do |trace|
+  #         ProductComponent.create_trace_from_api(trace, new_product)
+  #       end
+  #     end
+  # end
 
 
 
