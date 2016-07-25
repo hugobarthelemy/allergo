@@ -9,10 +9,11 @@ class PagesController < ApplicationController
       if @product = Product.find_by(barcode: @barcode)
         redirect_to product_path(@product)
       else
-        @product = Openfoodfacts::Product.get(@barcode, locale: 'fr')
+        product = Openfoodfacts::Product.get(@barcode)
         if product
           product.fetch
-          Product.create_from_api(product) # creates a product and creates ingredients if new
+          @product = Product.create_from_api(product) # creates a product and creates ingredients if new
+          redirect_to product_path(@product)
         else
           @message = "Unknown product. Try again."
         end
