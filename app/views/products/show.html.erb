@@ -1,80 +1,112 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-      <div class="text-center">
-        <h1><%=@product.name%></h1>
+<!-- Not for mobile -->
+<div class="hidden-xs">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+        <div class="text-center">
+          <h1><%=@product.name%></h1>
 
-        <h2><%=@product.manufacturer%></h2>
-        <div class="product-actions">
-          <%= link_to '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-          '.html_safe, edit_product_path(@product), {class: "edit"} %>
+          <h2><%=@product.manufacturer%></h2>
+          <div class="product-actions">
+            <%= link_to '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            '.html_safe, edit_product_path(@product), {class: "edit"} %>
 
 
-          <!-- Returns true if the product is tracked by the user, false if it is untracked -->
-          <% product_tracked_by_user = !(@product.tracked_products.find_by_user_id(current_user.id).nil?) %>
-          <% if product_tracked_by_user  %>
-            <%= link_to "Untrack", product_untrack_path(@product), method: :delete, class: "untrack-btn" %>
-          <% else %>
-            <%= link_to "Track", product_track_path(@product), method: :post , class: "track-btn"%>
-          <% end %>
+            <!-- Returns true if the product is tracked by the user, false if it is untracked -->
+            <% product_tracked_by_user = !(@product.tracked_products.find_by_user_id(current_user.id).nil?) %>
+            <% if product_tracked_by_user  %>
+              <%= link_to "Untrack", product_untrack_path(@product), method: :delete, class: "untrack-btn" %>
+            <% else %>
+              <%= link_to "Track", product_track_path(@product), method: :post , class: "track-btn"%>
+            <% end %>
+          </div>
         </div>
-      </div>
 
-      <p><%=@product.barcode%></p>
-      <p>Last update: <%=@product.updated_on%></p>
+        <p><%=@product.barcode%></p>
+        <p>Last update: <%=@product.updated_on%></p>
 
-      <h3>Ingredients</h3>
+        <h3>Ingredients</h3>
 
-      <%@product.significant_ingredients.each do |sig_ingredient|%>
-        <% ingredient = Ingredient.find(sig_ingredient.ingredient_id) %>
-        <p>
-          <%= ingredient.fr_name unless nil %>
-          <%= ingredient.en_name unless nil %>
-          <%= ingredient.ja_name unless nil %>
-        </p>
-      <%end%>
-
-      <h3>Traces</h3>
-
-      <% @product.trace_ingredients.each do |trace| %>
-        <% trace_ingredient = Ingredient.find(trace.ingredient_id) %>
-        <p>
-          <%= trace_ingredient.fr_name unless nil %>
-          <%= trace_ingredient.en_name unless nil %>
-          <%= trace_ingredient.ja_name unless nil %>
-        </p>
-      <% end %>
-
-      <h3>Allergies</h3>
-
-      <% @product.ingredients.each do |ingredient|%>
-        <% ingredient.allergies.each do |allergy| %>
-          <p><%=allergy.name%></p>
+        <%@product.significant_ingredients.each do |sig_ingredient|%>
+          <% ingredient = Ingredient.find(sig_ingredient.ingredient_id) %>
+          <p>
+            <%= ingredient.fr_name unless nil %>
+            <%= ingredient.en_name unless nil %>
+            <%= ingredient.ja_name unless nil %>
+          </p>
         <%end%>
-      <%end%>
 
-      <h3>Allergy Reviews</h3>
+        <h3>Traces</h3>
 
-      <div class="inlinelist text-center">
-        <li>
-          <ol class="ol-first"><i class="fa fa-smile-o" aria-hidden="true"></i> <%= @score_zero %></ol>
-          <ol><i class="fa fa-meh-o" aria-hidden="true"></i> <%= @score_one %></ol>
-          <ol><i class="fa fa-frown-o" aria-hidden="true"></i> <%= @score_two %></ol>
-        </li>
-      </div>
+        <% @product.trace_ingredients.each do |trace| %>
+          <% trace_ingredient = Ingredient.find(trace.ingredient_id) %>
+          <p>
+            <%= trace_ingredient.fr_name unless nil %>
+            <%= trace_ingredient.en_name unless nil %>
+            <%= trace_ingredient.ja_name unless nil %>
+          </p>
+        <% end %>
 
-      <% @reviews.each do |review|%>
-        <div class="review-card">
-          <%= render 'shared/review_card', review: review %>
+        <h3>Allergies</h3>
+        <% @product.ingredients.each do |ingredient|%>
+          <% ingredient.allergies.each do |allergy| %>
+            <p><%=allergy.name%></p>
+          <%end%>
+        <%end%>
+
+        <h3>Allergy Reviews</h3>
+<!-- TODO : en faire une partial -->
+        <div class="inlinelist text-center">
+          <li>
+            <ol class="ol-first"><i class="fa fa-smile-o" aria-hidden="true"></i> <%= @score_zero %></ol>
+            <ol><i class="fa fa-meh-o" aria-hidden="true"></i> <%= @score_one %></ol>
+            <ol><i class="fa fa-frown-o" aria-hidden="true"></i> <%= @score_two %></ol>
+          </li>
         </div>
-      <%end%>
-      <div class="text-center">
-        <%= link_to "New review", new_product_review_path(@product), class: "btn btn-primary" %>
+
+        <% @reviews.each do |review|%>
+          <div class="review-card">
+            <%= render 'shared/review_card', review: review %>
+          </div>
+        <%end%>
+        <div class="text-center">
+          <%= link_to "New review", new_product_review_path(@product), class: "btn btn-primary" %>
+        </div>
       </div>
     </div>
   </div>
 </div>
 <!-- footer si mobile -->
-<div class="hidden-sm hidden-lg hidden-xl footer">
-<%= render 'shared/footer_mobile' %>
+<div class="mobile-box hidden-sm hidden-lg hidden-md">
+  <a href="/" class="logo-shazam hidden-sm hidden-lg hidden-md">
+    <%= image_tag "logo-shazam.png" %>
+  </a>
+  <div class="mobile-show-title-h1 text-center">
+    <h1><%=@product.name%></h1>
+  </div>
+  <div class="text-center avatar-product">
+    <%= image_tag "nutella-pot-1kg.jpg" %>
+  </div>
+  <!-- allergies logo -->
+  <div class="picto-allergies">
+    <%= image_tag "picto_allergies/crustacean_shellfish_picto.png" %>
+    <%= image_tag "picto_allergies/eggs-picto.png" %>
+    <%= image_tag "picto_allergies/fish_picto.png" %>
+    <%= image_tag "picto_allergies/milk_picto.png" %>
+    <%= image_tag "picto_allergies/peanuts_picto.png" %>
+    <%= image_tag "picto_allergies/soybeans_picto.png" %>
+    <%= image_tag "picto_allergies/tree_nuts_picto.png" %>
+    <%= image_tag "picto_allergies/wheat_picto.png" %>
+    </div>
+  <!-- btn star -->
+  <div class="folow-btn">
+    <button type="button" class="btn btn-default btn-sm">
+      <span class="glyphicon glyphicon-star" aria-hidden="true"></span> folow
+    </button>
+  </div>
+  <div class="footer">
+    <%= render 'shared/footer_mobile' %>
+  </div>
 </div>
+
+

@@ -13,4 +13,12 @@ class PagesController < ApplicationController
       end
     end
   end
+
+  def ingredient_show_mobile
+    @product = Product.find(params[:id])
+  end
+
+  def reviews_show_mobile
+    @product = Product.find(params[:id])
+  end
 end

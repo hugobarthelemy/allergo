@@ -3,13 +3,16 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
   root to: 'pages#home'
+  get 'reviews_show_mobile', to: 'pages#reviews_show_mobile'
+  get 'ingredient_show_mobile', to: 'pages#ingredient_show_mobile'
+
 
   resources :products do
     resources :ingredients, only: [:new, :create, :index]
 
     # resources :tracked_products, only: [:new, :create]
 
-    resources :tracked_products, only: [:new, :create]
+    resources :trackerad_products, only: [:new, :create]
     resources :reviews, only: [:new, :create]
 
     delete "/untrack", to: "products#untrack"
