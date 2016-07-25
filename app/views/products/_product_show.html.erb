@@ -13,18 +13,51 @@
   <p>Do NOT eat me!</p>
 <%end%>
 
-
-<!-- allergies logo -->
+<!-- Display significative allergens in product matching user's-->
 <div class="picto-allergies">
-  <%= image_tag "picto_allergies/crustacean_shellfish_picto.png" %>
-  <%= image_tag "picto_allergies/eggs-picto.png" %>
-  <%= image_tag "picto_allergies/fish_picto.png" %>
-  <%= image_tag "picto_allergies/milk_picto.png" %>
-  <%= image_tag "picto_allergies/peanuts_picto.png" %>
-  <%= image_tag "picto_allergies/soybeans_picto.png" %>
-  <%= image_tag "picto_allergies/tree_nuts_picto.png" %>
-  <%= image_tag "picto_allergies/wheat_picto.png" %>
-  </div>
+  <% @significative_allergens_matching_product_and_users.each do |allergen| %>
+    <% if !(allergen.fr_name.nil?) %>
+      <% case allergen.fr_name %>
+        <% when "lait" %>
+          <%= image_tag "picto_allergies/milk_picto.png" %>
+        <% when "oeuf" %>
+          <%= image_tag "picto_allergies/eggs-picto.png" %>
+        <% when "poisson" %>
+          <%= image_tag "picto_allergies/fish_picto.png" %>
+        <% when "coquillage" %>
+          <%= image_tag "picto_allergies/crustacean_shellfish_picto.png" %>
+        <% when "cacahuete" %>
+          <%= image_tag "picto_allergies/peanuts_picto.png" %>
+        <% when "soja" %>
+          <%= image_tag "picto_allergies/soybeans_picto.png" %>
+        <% when "noix" %>
+          <%= image_tag "picto_allergies/tree_nuts_picto.png" %>
+        <% when "ble" %>
+          <%= image_tag "picto_allergies/wheat_picto.png" %> -->
+      <% end %>
+    <% elsif !(allergen.en_name.nil?) %>
+      <% case allergen.en_name %>
+        <% when "milk" %>
+          <%= image_tag "picto_allergies/milk_picto.png" %>
+        <% when "egg" %>
+          <%= image_tag "picto_allergies/eggs-picto.png" %>
+        <% when "fish" %>
+          <%= image_tag "picto_allergies/fish_picto.png" %>
+        <% when "crustacean" %>
+          <%= image_tag "picto_allergies/crustacean_shellfish_picto.png" %>
+        <% when "peanuts" %>
+          <%= image_tag "picto_allergies/peanuts_picto.png" %>
+        <% when "soybeans" %>
+          <%= image_tag "picto_allergies/soybeans_picto.png" %>
+        <% when "tree_nuts" %>
+          <%= image_tag "picto_allergies/tree_nuts_picto.png" %>
+        <% when "wheat" %>
+          <%= image_tag "picto_allergies/wheat_picto.png" %> -->
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
 <!-- btn star -->
 <!-- Returns true if the product is tracked by the user, false if it is untracked -->
 <div class="folow-btn">
