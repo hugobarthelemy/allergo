@@ -10,7 +10,8 @@ class Product < ActiveRecord::Base
     class_name: "ProductComponent"
   has_many :trace_ingredients, -> { where "amount = 1" },
     class_name: "ProductComponent"
-
+  has_many :allergen_ingredients, -> { where "amount = 4" },
+    class_name: "ProductComponent"
   has_many :reviews, dependent: :destroy
   has_many :scanned_products, dependent: :destroy
   has_many :tracked_products, dependent: :destroy
