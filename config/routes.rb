@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     resources :allergies, only: [:new, :create, :edit, :update, :destroy]
   end
 
+  get 'pages/favorites'
+
   require "sidekiq/web"
   authenticate :user, lambda { |u| u.admin } do
     mount Sidekiq::Web => '/sidekiq'
