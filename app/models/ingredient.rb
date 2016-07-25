@@ -24,13 +24,12 @@ class Ingredient < ActiveRecord::Base
       ### TODO ### "world" name
       Ingredient.find_or_create_by(en_name: ingredient_name)
     end
+  end
 
-    # product_component = ProductComponent.new(
-    #     ingredient_id: ingredient.id,
-    #     product_id: new_product.id,
-    #     amount: 2 # 2 for significant amount || ingredient
-    #   )
 
-    # product_component.save
+  def any_name
+    return self.en_name unless self.en_name.blank?
+    return self.fr_name unless self.fr_name.blank?
+    return self.ja_name unless self.ja_name.blank?
   end
 end

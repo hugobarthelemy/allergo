@@ -12,8 +12,9 @@ require 'csv'
   # Product.destroy_all
   # ProductComponent.destroy_all
   # Ingredient.destroy_all ## not destroyed between test seedings ?
-
+  AllergyIngredient.destroy_all
   Allergy.destroy_all
+
 
 
   # GetProductsFromCsvService.create_products_from_codes('sample_real_codes.csv')
@@ -78,26 +79,26 @@ require 'csv'
   end
 
 
-  # allergen = Ingredient.find_by(en_name: "lactoserum")
-  # AllergyIngredient.create(allergy_id: milk_allergy.id, ingredient_id: allergen)
+  allergen = Ingredient.find_or_create_by(en_name: "lactoserum")
+  AllergyIngredient.create(allergy_id: milk_allergy.id, ingredient_id: allergen.id)
 
-  # allergen = Ingredient.find_by(fr_name: "lactoserum")
-  # AllergyIngredient.create(allergy_id: milk_allergy.id, ingredient_id: allergen)
+  allergen = Ingredient.find_by(fr_name: "lactoserum")
+  AllergyIngredient.create(allergy_id: milk_allergy.id, ingredient_id: allergen.id) unless allergen.id.nil?
 
 
-  # # GLUTEN ALLERGENS #
-  # allergen = Ingredient.find_by(en_name: "gluten")
-  # AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen)
+  # GLUTEN ALLERGENS #
+  allergen = Ingredient.find_or_create_by(en_name: "gluten")
+  AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen.id)
 
-  # allergen = Ingredient.find_by(fr_name: "gluten")
-  # AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen)
+  allergen = Ingredient.find_by(fr_name: "gluten")
+  AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen.id) unless allergen.id.nil?
 
-  # # PEANUTS ALLERGENS #
-  # allergen = Ingredient.find_by(en_name: "peanuts")
-  # AllergyIngredient.create(allergy_id: peanuts_allergy.id, ingredient_id: allergen)
+  # PEANUTS ALLERGENS #
+  allergen = Ingredient.find_or_create_by(en_name: "peanuts")
+  AllergyIngredient.create(allergy_id: peanuts_allergy.id, ingredient_id: allergen.id)
 
-  # allergen = Ingredient.find_by(fr_name: "peanuts")
-  # AllergyIngredient.create(allergy_id: peanuts_allergy.id, ingredient_id: allergen)
+  allergen = Ingredient.find_or_create_by(fr_name: "cacahuetes")
+  AllergyIngredient.create(allergy_id: peanuts_allergy.id, ingredient_id: allergen.id)
 
   ## TODO ### in japanese
 
