@@ -5,9 +5,12 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.alert.subject
   #
-  def alert(user_id, product_changed_id)
+
+  def alert(user_id, product_changed_id, added_ingredients=[])
+
     @greeting = "Hi"
     @product_changed = Product.find(product_changed_id)
+    @added_ingredients = added_ingredients
 
     @user = User.find(user_id)  # Instance variable => available in view
     @user_name = "#{@user.first_name} #{@user.last_name}"

@@ -3,3 +3,23 @@
 
 
 
+<form action="<%= products_path %>" class="navbar-wagon-search" method="get">
+  <input type="text" class="navbar-wagon-search-input" name="product" placeholder="Search by product">
+  <button type="submit" class="navbar-wagon-search-btn">
+    <i class="fa fa-search"></i>
+  </button>
+
+</form>
+
+<div class="container">
+  <div class="row">
+    <% if @product_search %>
+      <% @result.each do |result| %>
+        <div class="col-xs-12 col-sm-4">
+          <%= render 'shared/product_card', prod: result %>
+        </div>
+    <% end %>
+  <% end %>
+  </div>
+</div>
+

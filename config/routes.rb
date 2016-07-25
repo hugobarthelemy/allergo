@@ -1,16 +1,23 @@
 Rails.application.routes.draw do
 
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
   root to: 'pages#home'
 
   resources :products do
     resources :ingredients, only: [:new, :create, :index]
-    resources :tracked_products, only: [:new, :create, :destroy]
+
+    # resources :tracked_products, only: [:new, :create]
+
+    resources :tracked_products, only: [:new, :create]
+    resources :reviews, only: [:new, :create]
+
+    delete "/untrack", to: "products#untrack"
+    post "/track", to: "products#track"
   end
 
   resources :users, only: [:show, :edit, :update] do
-    resources :allergies, only: [:new, :create, :edit, :destroy]
+    resources :allergies, only: [:new, :create, :edit, :update, :destroy]
   end
 
   require "sidekiq/web"

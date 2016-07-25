@@ -10,7 +10,7 @@
         <br><p><%= @user.provider%> mail <%= @user.email%></p>
         <br><p>Phone number <%= @user.phone_number%></p>
         <br><p>Email contact : <%= @user.email_contact%></p>
-      <%= link_to "Edit",  {class: "btn btn-primary js-edit-form-level-in-user-show"} %>
+      <%= link_to "Edit", edit_user_path, {class: "btn btn-primary"} %>
 <!-- edit_user_path, -->
       <h1>Your allergies</h1>
 
@@ -22,13 +22,16 @@
   <%= render 'all_allergies_show_for_one_user_form' %>
   <class class="text-center">
   <br>
-  <%= link_to "Add an allergy", "#", {class: "btn btn-primary js-add-form-level-in-user-show"} %></class>
-    <div class="new_allergy">
+<div class="container">
+  <div class="row text-center">
+    <div class="col-sm-6 col-sm-offset-3">
+      <div class="new_allergy">
 
+      </div>
+      <%= link_to "Add an allergy", "#", {class: "btn btn-primary js-add-form-level-in-user-show"} %></class>
     </div>
-    <div class="edit_allergy">
-
-    </div>
+  </div>
+</div>
 <!-- JS du add allergy -->
 <% content_for(:after_js) do %>
   <script>
@@ -37,12 +40,5 @@
     });
   </script>
 <% end %>
-<!-- JS du edit allergy -->
-<% content_for(:after_js) do %>
-  <script>
-    $(".js-edit-form-level-in-user-show").on( "click", function( event ) {
-      $(".edit_allergy").append("<%= j (render 'allergies/allergy_form', level: @level).html_safe %>")
-    });
-  </script>
-<% end %>
+
 

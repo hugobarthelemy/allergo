@@ -4,11 +4,15 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
-  has_many :levels
+
+  has_many :levels, dependent: :destroy
+  has_many :reviews, dependent: :destroy
+  has_many :scanned_products, dependent: :destroy
+  has_many :tracked_products, dependent: :destroy
+
   has_many :allergies, through: :levels
-  has_many :reviews
-  has_many :scanned_products
-  has_many :tracked_products
+  has_many :products, through: :tracked_products
+
   def self.find_for_facebook_oauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
