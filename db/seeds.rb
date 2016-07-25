@@ -12,19 +12,8 @@ when "development"
 
   Allergy.destroy_all
 
-  # extract sample products
-  search_terms = %w(milk chips chocolat pates) #vous pouvez ajouter des ingrédients
 
-  search_terms.each do |search_term|
-
-    sample_products = Openfoodfacts::Product.search(search_term, locale: 'world').first(5) #nb d'élement seedé
-
-    sample_products.each do |product|
-      product.fetch
-
-      Product.create_from_api(product) # creates a product and creates ingredients if new
-    end
-  end
+  GetProductsFromCsvService.create_products_from_codes('sample_real_codes.csv')
 
 
   # seed des tables d'allergies

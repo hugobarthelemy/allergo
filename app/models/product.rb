@@ -63,18 +63,10 @@ class Product < ActiveRecord::Base
     end
 
     if product_api.allergens_tags
-      # if product_api.allergens_tags.class == String
-      #   # creation de la liste d'allergènes
-      #   AllergyIngredient.find_or_create_by(product_api.allergens_tags)
-      # else
-        # product_allergens = []
-        # product_allergens << product_api.allergens_tags
-
-        product_api.allergens_tags.each do |allergen|
-          # creation de la liste d'allergènes
-          AllergyIngredient.define_new(allergen)
-        end
-      # end
+      product_api.allergens_tags.each do |allergen|
+        # creation de la liste d'allergènes
+        AllergyIngredient.define_new(allergen)
+      end
     end
 
     if product_api.traces_tags
