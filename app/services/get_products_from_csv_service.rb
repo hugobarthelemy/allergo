@@ -1,6 +1,6 @@
 class GetProductsFromCsvService
 
-require 'csv'
+  require 'csv'
 
 
   def self.get_codes(filename_read)

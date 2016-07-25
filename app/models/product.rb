@@ -56,23 +56,26 @@ class Product < ActiveRecord::Base
     # new_product.save!
     new_product.save!
 
-    product_api.ingredients.each do |ingredient|
-      # creation de la liste d'ingredients du produit
-      product_ingredient = Ingredient.create_from_api(ingredient.id, product_api.lc)
-      new_product.ingredients << product_ingredient
-      new_product.product_components.find_by(ingredient_id: product_ingredient.id).update!(amount: 2)
+    if product_api.ingredients
+      product_api.ingredients.each do |ingredient|
+        # creation de la liste d'ingredients du produit
+        product_ingredient = Ingredient.create_from_api(ingredient.id, product_api.lc)
+        new_product.ingredients << product_ingredient
+        new_product.product_components.find_by(ingredient_id: product_ingredient.id).update!(amount: 2)
+      end
     end
 
     if product_api.allergens_tags
       product_api.allergens_tags.each do |allergen|
         # creation de la liste d'allergènes
         AllergyIngredient.define_new(allergen)
+        ProductComponent.create_allergen_or_trace_from_api(allergen, new_product, 4)
       end
     end
 
     if product_api.traces_tags
       product_api.traces_tags.each do |trace|
-        ProductComponent.create_trace_from_api(trace, new_product)
+        ProductComponent.create_allergen_or_trace_from_api(trace, new_product, 1)
       end
     end
   end
