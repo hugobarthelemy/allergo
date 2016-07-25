@@ -10,7 +10,6 @@
   <%end%>
 
   <h3>Traces</h3>
-
   <% @product.trace_ingredients.each do |trace| %>
     <% trace_ingredient = Ingredient.find(trace.ingredient_id) %>
     <p>

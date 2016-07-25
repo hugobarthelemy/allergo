@@ -18,19 +18,23 @@
   </div>
 <!-- btn star -->
 <!-- Returns true if the product is tracked by the user, false if it is untracked -->
-<% product_tracked_by_user = !(@product.tracked_products.find_by_user_id(current_user.id).nil?) %>
-<% if product_tracked_by_user  %>
-  <%= link_to "Untrack", product_untrack_path(@product), method: :delete, class: "untrack-btn" %>
-<% else %>
-  <%= link_to "Track", product_track_path(@product), method: :post , class: "track-btn"%>
-<% end %>
-
-
 <div class="folow-btn">
+  <% product_tracked_by_user = !(@product.tracked_products.find_by_user_id(current_user.id).nil?) %>
+  <% if product_tracked_by_user %>
+    <%= link_to "Untrack", product_untrack_path(@product), method: :delete, class: "untrack-btn" %>
+  <% else %>
+    <%= link_to "Track", product_track_path(@product), method: :post , class: "track-btn"%>
+  <% end %>
+</div>
+<div class="folow-btn">
+  <p>Product barcode:  <%=@product.barcode%></p>
+  <p>Last update:      <%=@product.updated_on%></p>
+</div>
+
+<!-- <div class="folow-btn">
   <button type="button" class="btn btn-default btn-sm">
     <span class="glyphicon glyphicon-star" aria-hidden="true"></span> folow
   </button>
-</div>
+</div> -->
 
-<p>Product barcode : <%=@product.barcode%></p>
-<p>Last update:      <%=@product.updated_on%></p>
+
