@@ -1,5 +1,8 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+
+require 'csv'
+
 case Rails.env
 when "development"
   # development specific seeding code
@@ -13,8 +16,25 @@ when "development"
   Allergy.destroy_all
 
 
-  GetProductsFromCsvService.create_products_from_codes('sample_real_codes.csv')
+  # GetProductsFromCsvService.create_products_from_codes('sample_real_codes.csv')
 
+  csv_options = {
+     col_sep: ',',
+     force_quotes: true,
+     quote_char: '"',
+     headers: :first_row
+    }
+
+    filepath_codes = Rails.root.join("db").join('sample_real_codes.csv').to_s
+
+    CSV.foreach(filepath_codes, csv_options) do |row|
+
+      product = Openfoodfacts::Product.get(row['code'])
+      if product
+        product.fetch
+        Product.create_from_api(product) # creates a product and creates ingredients if new
+      end
+    end
 
   # seed des tables d'allergies
 
