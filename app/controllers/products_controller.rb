@@ -41,6 +41,9 @@ class ProductsController < ApplicationController
     @score_one = @product.reviews.where(score: 1).count
     @score_two = @product.reviews.where(score: 2).count
     @reviews = @product.reviews.order(updated_at: :desc)
+
+    allergy_matches?
+
     authorize @product
   end
 
@@ -57,6 +60,20 @@ class ProductsController < ApplicationController
   end
 
   def destroy
+  end
+
+  def allergy_matches?
+    product.alergene.ingredient
+    @product.significant_ingredients.each do |significant_ingredient|
+      significant_ingredient.allergenes.each do |product_allergene|
+        current_user.allergies.each do |user_allergy|
+          if user_allergy == product_allergene
+            puts product_allergy
+            returns true
+          end
+        end
+      end
+    end
   end
 
 
