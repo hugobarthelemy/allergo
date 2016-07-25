@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   end
 
   get 'pages/favorites'
+  get 'pages/allergies_allergens' => 'pages#allergies_allergens'
 
   require "sidekiq/web"
   authenticate :user, lambda { |u| u.admin } do

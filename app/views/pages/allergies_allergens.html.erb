@@ -1,0 +1,13 @@
+<div class="container">
+  <% @Allergies.each do |allergy| %>
+    <div class="row">
+      <div class="col-xs-4">
+        <%= allergy.name %>
+      </div>
+      <div class="col-xs-8">
+        <!-- TODO : les ingredients correspondant -->
+        <p>Les ingredients correspondant à l'allergie</p>
+      </div>
+    </div>
+  <% end %>
+</div>
