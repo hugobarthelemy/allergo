@@ -42,8 +42,9 @@ class ProductsController < ApplicationController
     @score_two = @product.reviews.where(score: 2).count
     @reviews = @product.reviews.order(updated_at: :desc)
 
-    @product_eatable = true if allergens_in_product.empty?
-
+    @significative_allergens_matching_product_and_users = significative_allergens_matching_product_and_users
+    @product_eatable = true if @significative_allergens_matching_product_and_users.empty?
+    @all_significative_allergens_in_product = all_significative_allergens_in_product
     authorize @product
   end
 
@@ -62,22 +63,28 @@ class ProductsController < ApplicationController
   def destroy
   end
 
-  def allergens_in_product
-    matching_allergens = []
-    user_ingredient_allergen_array = []
+  def all_significative_allergens_in_product
     product_allergen_array = []
     @product.allergen_ingredients.each do |product_allergen| #extracts all allergens contained in the product
       product_allergen_array << product_allergen.ingredient
     end
+    return product_allergen_array
+  end
+
+  def all_significative_allergens_user
+    user_ingredient_allergen_array = []
     current_user.allergies.each do |user_allergy|
       user_allergy.ingredients.each do |user_ingredient_allergen|
         user_ingredient_allergen_array << user_ingredient_allergen
       end
     end
+    return user_ingredient_allergen_array
+  end
 
-
-    matching_allergens = user_ingredient_allergen_array.select do |allergen|
-      product_allergen_array.include?(allergen)
+  def significative_allergens_matching_product_and_users
+    matching_allergens = []
+    matching_allergens = all_significative_allergens_user.select do |allergen|
+      all_significative_allergens_in_product.include?(allergen)
     end
     return matching_allergens
   end
