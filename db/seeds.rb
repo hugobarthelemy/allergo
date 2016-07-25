@@ -187,13 +187,13 @@ when "development"
 ##############################################################################
 
 
-when "production"
-  laura = User.new(email: "laura@pedroni.com",
-    first_name: "Laura",
-    last_name: "Pedroni",
-    phone_number: "",
-    password: "123456",
-    email_contact: "laura@pedroni.com",
-    picture: "http://www.kdbuzz.com/images/garnier_electrochoc.jpg")
-  laura.save!
+# when "production"
+#   laura = User.new(email: "laura@pedroni.com",
+#     first_name: "Laura",
+#     last_name: "Pedroni",
+#     phone_number: "",
+#     password: "123456",
+#     email_contact: "laura@pedroni.com",
+#     picture: "http://www.kdbuzz.com/images/garnier_electrochoc.jpg")
+#   laura.save!
 end
