@@ -35,13 +35,7 @@
     </div>
   </div>
 
-  <form action="<%= products_path %>" class="form-inline text-center" method="get">
-    <input type="text" class="navbar-wagon-search-input" name="product" placeholder="Search by product">
-    <button type="submit" class="btn btn-info">
-        Go
-    </button>
-
-  </form>
+  <%= render 'shared/search' %>
 
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">

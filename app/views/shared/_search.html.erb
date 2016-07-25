@@ -1,23 +1,30 @@
-<% searched_words = "" %>
+<div class="text-center">
 
-<!-- <form action="/products/search" method="get" id="search-form"> -->
-<form id="search-form" action="/products">
-  <input type="text" name="searched_words" placeholder="Petits pois Carrefour" id="searched-words">
-  <input type="submit" value="Search" id="submit-button">
-</form>
+  <% searched_words = "" %>
 
-<% searched_words = params[:searched_words] %>
-<% @products = Product.search_by_manufacturer_and_name(searched_words) %>
+  <div class="index-searchbar">
+    <!-- <form action="/products/search" method="get" id="search-form"> -->
+    <form id="search-form" action="/products">
+      <input type="text" name="searched_words" placeholder="Bacon - Costco" id="searched-words" class="navbar-wagon-search-input">
+      <input type="submit" value="Go" id="submit-button" class="btn btn-info">
+    </form>
+  </div>
 
-<% @products.each do |product| %>
-  <%= link_to product_path(product) do%>
-    <div class="card-product">
-      <p><%= product.name %> <%product.manufacturer%></p>
+  <% @searched_words = params[:searched_words] %>
+  <% @products = Product.search_by_manufacturer_and_name(@searched_words) %>
+
+
+  <div class="container">
+    <div class="row">
+     <% @products.each do |result| %>
+      <div class="col-xs-12 col-sm-4">
+        <%= render 'shared/product_card', prod: result %>
+      </div>
+    <% end %>
     </div>
-  <%end%>
-<%end%>
+  </div>
 
-<p id="product-infos"></p>
+
 
 
 
