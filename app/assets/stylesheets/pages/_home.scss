@@ -15,9 +15,7 @@
 }
 
 #scan-icon:hover {
-  position: relative;
-  top: -5px;
-  right: -3px;
+  transform: scale(0.9);
 }
 
 @media screen and (max-width: 800px) {

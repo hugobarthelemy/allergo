@@ -4,6 +4,10 @@ class ProductsController < ApplicationController
 
   def index
     @products = policy_scope(Product)
+    if params[:product]
+      @product_search = params[:product].downcase
+      @result = @products.select { |product| product.name.downcase.include?(@product_search) }
+    end
   end
 
   def new
