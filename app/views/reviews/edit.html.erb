@@ -3,13 +3,10 @@
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
 
       <h3 class="text-center">Leave a review</h3>
-
-       <%= simple_form_for @product, url: product_reviews_path(@product), method: :patch do |m| %>
-         <%= m.simple_fields_for @review do |p| %>
-           <%= p.input :score, as: :radio_buttons, :collection => [0, 1, 2], label: 'How did you feel after eating this product?' %>
-           <%= p.input :content, label: 'Your comments' %>
-           <%= p.button :submit, class: 'text-center' %>
-         <% end %>
+       <%= simple_form_for @review, url: product_review_path(@product, @review) do |m| %>
+           <%= m.input :score, as: :radio_buttons, :collection => [0, 1, 2], label: 'How did you feel after eating this product?' %>
+           <%= m.input :content, label: 'Your comments' %>
+           <%= m.button :submit, class: 'text-center' %>
        <% end %>
 
     </div>

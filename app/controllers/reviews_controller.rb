@@ -20,6 +20,7 @@ class ReviewsController < ApplicationController
   end
 
   def update
+
     @review.update(review_params)
     authorize @review
     redirect_to product_path(@product)
@@ -28,7 +29,7 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:product)[:review].permit(:score, :content)
+    params.require(:review).permit(:score, :content)
   end
 
   def find_product
