@@ -1,4 +1,8 @@
-<h1 class="text-center fav-title">You are tracking the following products</h1>
+<% unless @favorites.empty? %>
+  <h1 class="text-center fav-title">You are tracking the following products</h1>
+<% else %>
+  <h1 class="text-center fav-title">Oops, you are not tracking any products yet.</h1>
+<% end %>
 
 <div class="container">
   <div class="row">

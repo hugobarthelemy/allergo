@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row text-center">
     <div class="col-sm-6 col-sm-offset-3">
-        <img src=<%="#{@user.picture}"%> class="avatar dropdown-toggle"%>
+        <%= image_tag @user.profile_pict, class: "avatar-large" %>
         <h1>Show your profil</h1>
         <p>First name <%= @user.first_name%></p>
         <br><p>Last name <%= @user.last_name%></p>
