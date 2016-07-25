@@ -8,6 +8,10 @@ $(function(){
       $(".ingredient-card-mobile").removeClass("hide");
       $(".product-card-mobile").addClass("hide");
       $(".reviews-card-mobile").addClass("hide");
+      // couleur de footer
+      $(".js-ingredient-tab").addClass("active");
+      $(".js-product-tab").removeClass("active");
+      $(".js-reviews-tab").removeClass("active");
     }
     // Change active tab
 
@@ -21,8 +25,13 @@ $(function(){
     $(this).addClass("active");
     if  ($(".reviews-card-mobile").hasClass("hide")) {
       $(".reviews-card-mobile").removeClass("hide");
+      $(".reviews-card-mobile").removeClass("active");
       $(".product-card-mobile").addClass("hide");
       $(".ingredient-card-mobile").addClass("hide");
+      // couleur de footer
+      $(".js-reviews-tab").addClass("active");
+      $(".js-product-tab").removeClass("active");
+      $(".js-ingredient-tab").removeClass("active");
     }
   })
 // click sur le btn product du footer mobile
@@ -33,6 +42,10 @@ $(function(){
       $(".product-card-mobile").removeClass("hide");
       $(".reviews-card-mobile").addClass("hide");
       $(".ingredient-card-mobile").addClass("hide");
+      // couleur de footer
+      $(".js-product-tab").addClass("active");
+      $(".js-ingredient-tab").removeClass("active");
+      $(".js-reviews-tab").removeClass("active");
     }
   })
 });
