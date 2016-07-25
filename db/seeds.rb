@@ -64,6 +64,19 @@ require 'csv'
     AllergyIngredient.create(allergy_id: milk_allergy.id, ingredient_id: allergen.id)
   end
 
+  # PEANUT ALLERGY #
+  contains_peanuts_fr = Ingredient.where('fr_name ~* :name', name: 'cacahuetes')
+  contains_peanuts_fr.each do |allergen|
+    # allergen = Ingredient.find_by(fr_name: milky)
+    AllergyIngredient.create(allergy_id: peanuts_allergy.id, ingredient_id: allergen.id)
+  end
+
+  contains_peanuts_en = Ingredient.where('en_name ~* :name', name: 'peanuts')
+  contains_peanuts_en.each do |allergen|
+    # allergen = Ingredient.find_by(en_name: milky)
+    AllergyIngredient.create(allergy_id: peanuts_allergy.id, ingredient_id: allergen.id)
+  end
+
 
   # allergen = Ingredient.find_by(en_name: "lactoserum")
   # AllergyIngredient.create(allergy_id: milk_allergy.id, ingredient_id: allergen)
