@@ -3,8 +3,8 @@
 
 require 'csv'
 
-case Rails.env
-when "development"
+# case Rails.env
+# when "development"
   # development specific seeding code
   User.destroy_all
   # products and product_components destroyed for test seeding
@@ -196,4 +196,5 @@ when "development"
 #     email_contact: "laura@pedroni.com",
 #     picture: "http://www.kdbuzz.com/images/garnier_electrochoc.jpg")
 #   laura.save!
-end
+# else
+# end
