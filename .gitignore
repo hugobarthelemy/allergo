@@ -8,6 +8,7 @@ public/assets
 
 # Ignore application configuration
 /config/application.yml
+/config/initializer/algoliasearch.rb
 
 /db/en.openfoodfacts.org.products.csv
 /db/fr.openfoodfacts.org.products.csv

@@ -1,0 +1,17 @@
+.btn-ingredient{
+  color: $green;
+  font-weight: 45px;
+}
+
+.ingredient-tag{
+  color: white;
+  background-color: $green;
+  padding: 15px 20px;
+  border-radius: 3px;
+  margin: 5px 0px;
+}
+
+#ingredient-name-display-field{
+  list-style-type: none;
+  display: inline-block;
+}

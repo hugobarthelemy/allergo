@@ -1,11 +1,15 @@
 <%= simple_form_for @product do |f| %>
-  <%= f.input :name %>
-  <h3> Ingredients </h3>
-    <%= f.simple_fields_for :ingredients do |ingredient| %>
-      <%= render 'ingredient_fields', f: ingredient %>
-    <% end %>
-    <div class="links">
-      <%= link_to_add_association 'add ingredient', f, :ingredients %>
-    </div>
-  <%= f.submit %>
+  <%= f.input :name, label: "Product's name" %>
+
+  <input id="ingredient_name" name="ingredient[fr_name]" type="text" />
+  <p class="btn-ingredient"><i class="fa fa-plus-circle" aria-hidden="true"></i></p>
+  <%= hidden_field_tag :ingredients_list, "", id: "ingredient_list" %>
+  <%= f.submit "Create the product", class: 'submit-btn' %>
 <% end %>
+
+
+<ul id="ingredient-name-display-field"></ul>
+
+<p id="field-id"></p>
+
+

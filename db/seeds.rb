@@ -22,12 +22,9 @@ when "development"
     sample_products.each do |product|
       product.fetch
 
-  sample_products.each do |product|
-    product.fetch
-
-    Product.create_from_api(product) # creates a product and creates ingredients if new
+      Product.create_from_api(product) # creates a product and creates ingredients if new
+    end
   end
-end
 
 
   # seed des tables d'allergies
