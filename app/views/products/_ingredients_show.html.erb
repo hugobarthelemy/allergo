@@ -26,4 +26,7 @@
       <p><%=allergy.name%></p>
     <%end%>
   <%end%>
+  <div class="product-actions">
+    <%= link_to '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'.html_safe, edit_product_path(@product), {class: "edit"} %>
+  </div>
 </div>

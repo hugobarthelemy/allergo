@@ -1,0 +1,36 @@
+<div class="mobile-show-title-h1 text-center">
+  <h1><%=@product.name%></h1>
+  <h2><%=@product.manufacturer%></h2>
+</div>
+<div class="text-center avatar-product">
+  <%= image_tag "nutella-pot-1kg.jpg" %>
+</div>
+<!-- allergies logo -->
+<div class="picto-allergies">
+  <%= image_tag "picto_allergies/crustacean_shellfish_picto.png" %>
+  <%= image_tag "picto_allergies/eggs-picto.png" %>
+  <%= image_tag "picto_allergies/fish_picto.png" %>
+  <%= image_tag "picto_allergies/milk_picto.png" %>
+  <%= image_tag "picto_allergies/peanuts_picto.png" %>
+  <%= image_tag "picto_allergies/soybeans_picto.png" %>
+  <%= image_tag "picto_allergies/tree_nuts_picto.png" %>
+  <%= image_tag "picto_allergies/wheat_picto.png" %>
+  </div>
+<!-- btn star -->
+<!-- Returns true if the product is tracked by the user, false if it is untracked -->
+<% product_tracked_by_user = !(@product.tracked_products.find_by_user_id(current_user.id).nil?) %>
+<% if product_tracked_by_user  %>
+  <%= link_to "Untrack", product_untrack_path(@product), method: :delete, class: "untrack-btn" %>
+<% else %>
+  <%= link_to "Track", product_track_path(@product), method: :post , class: "track-btn"%>
+<% end %>
+
+
+<div class="folow-btn">
+  <button type="button" class="btn btn-default btn-sm">
+    <span class="glyphicon glyphicon-star" aria-hidden="true"></span> folow
+  </button>
+</div>
+
+<p>Product barcode : <%=@product.barcode%></p>
+<p>Last update:      <%=@product.updated_on%></p>
