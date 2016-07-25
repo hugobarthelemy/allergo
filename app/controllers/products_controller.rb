@@ -42,7 +42,7 @@ class ProductsController < ApplicationController
     @score_two = @product.reviews.where(score: 2).count
     @reviews = @product.reviews.order(updated_at: :desc)
 
-    allergy_matches?
+    allergens_in_product
 
     authorize @product
   end
@@ -62,21 +62,27 @@ class ProductsController < ApplicationController
   def destroy
   end
 
-  def allergy_matches?
+  def allergens_in_product
     matching_allergens = []
-    @product.significant_ingredients.each do |significant_ingredient|
-      significant_ingredient.allergen_ingredients.each do |product_ingredient_allergen|
-        current_user.allergies.each do |user_allergy|
-          user_allergy.ingredients.each do |user_ingredient_allergen|
-            if user_ingredient_allergen == product_ingredient_allergen
-              puts product_ingredient_allergen
-              matching_allergens << product_ingredient_allergen
-            end
-          end
-        end
-      end
+    user_ingredient_allergen_array = []
+    product_allergen_array = []
+    @product.allergen_ingredients.each do |product_allergen| #extracts all allergens contained in the product
+      product_allergen_array << product_allergen
     end
-    puts matching_allergens
+      current_user.allergies.each do |user_allergy|
+        # user_allergy.ingredients.each do |user_ingredient_allergen|
+        #   user_ingredient_allergen_array << user_ingredient_allergen
+        # end
+        user_ingredient_allergen_array << user_ingredient_allergen
+      end
+
+
+    matching_allergens = user_ingredient_allergen_array.map do |allergen|
+      product_allergen_array.include?(allergen)
+    end
+    p matching_allergens
+    p "uuu"
+    raise
   end
 
 
