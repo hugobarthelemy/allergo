@@ -9,9 +9,9 @@ when "development"
   User.destroy_all
   # products and product_components destroyed for test seeding
   # this is not an update of the db!
-  Product.destroy_all
+  # Product.destroy_all
   # ProductComponent.destroy_all
-  Ingredient.destroy_all ## not destroyed between test seedings ?
+  # Ingredient.destroy_all ## not destroyed between test seedings ?
 
   Allergy.destroy_all
 
@@ -29,9 +29,9 @@ when "development"
 
     CSV.foreach(filepath_codes, csv_options) do |row|
 
-      product = Openfoodfacts::Product.get(row['code'])
+      product = Openfoodfacts::Product.get(row['code'], locale: 'fr')
       if product
-        product.fetch
+        product.foreachetch
         Product.create_from_api(product) # creates a product and creates ingredients if new
       end
     end
