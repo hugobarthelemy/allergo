@@ -10,3 +10,11 @@ public/assets
 /config/application.yml
 /config/initializer/algoliasearch.rb
 
+/db/en.openfoodfacts.org.products.csv
+/db/fr.openfoodfacts.org.products.csv
+/db/sample.csv
+/db/sample_codes.csv
+/db/db_template.csv
+/db/codes.csv
+/db/small_sample.csv
+/db/modified_dates.csv
