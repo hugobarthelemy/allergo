@@ -3,8 +3,8 @@
 
 require 'csv'
 
-case Rails.env
-when "development"
+# case Rails.env
+# when "development"
   # development specific seeding code
   User.destroy_all
   # products and product_components destroyed for test seeding
@@ -28,11 +28,12 @@ when "development"
     filepath_codes = Rails.root.join("db").join('sample_real_codes.csv').to_s
 
     CSV.foreach(filepath_codes, csv_options) do |row|
-
-      product = Openfoodfacts::Product.get(row['code'], locale: 'fr')
-      if product
-        product.foreachetch
-        Product.create_from_api(product) # creates a product and creates ingredients if new
+      if Product.find_by(barcode: row['code']).nil?
+        product = Openfoodfacts::Product.get(row['code'])
+        if product
+          product.foreachetch
+          Product.create_from_api(product) # creates a product and creates ingredients if new
+        end
       end
     end
 
@@ -49,17 +50,44 @@ when "development"
 
   # Definition des allergènes de chaque Allergy
 
-  allergie_ingredient = AllergyIngredient.new(allergy_id: milk_allergy.id)
-  allergie_ingredient[:ingredient_id] = Ingredient.where(name: "milk")
-  allergie_ingredient.save
+  # MILK ALLERGY #
+  contains_milk_fr = Ingredient.where('fr_name ~* :name', name: 'lait')
+  contains_milk_fr.each do |milky|
+    allergen = Ingredient.find_by(fr_name: milky)
+    AllergyIngredient.create(allergy_id: milk_allergy.id, ingredient_id: allergen)
+  end
 
-  allergie_ingredient = AllergyIngredient.new(allergy_id: gluten_allergy.id)
-  allergie_ingredient[:ingredient_id] = Ingredient.where(name: "gluten")
-  allergie_ingredient.save
+  contains_milk_en = Ingredient.where('en_name ~* :name', name: 'milk')
+  contains_milk_en.each do |milky|
+    allergen = Ingredient.find_by(en_name: milky)
+    AllergyIngredient.create(allergy_id: milk_allergy.id, ingredient_id: allergen)
+  end
 
-  allergie_ingredient = AllergyIngredient.new(allergy_id: peanuts_allergy.id)
-  allergie_ingredient[:ingredient_id] = Ingredient.where(name: "peanuts")
-  allergie_ingredient.save
+
+  allergen = Ingredient.find_by(en_name: "lactoserum")
+  AllergyIngredient.create(allergy_id: milk_allergy.id, ingredient_id: allergen)
+
+  allergen = Ingredient.find_by(fr_name: "lactoserum")
+  AllergyIngredient.create(allergy_id: milk_allergy.id, ingredient_id: allergen)
+
+
+  # GLUTEN ALLERGENS #
+  allergen = Ingredient.find_by(en_name: "gluten")
+  AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen)
+
+  allergen = Ingredient.find_by(fr_name: "gluten")
+  AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen)
+
+  # PEANUTS ALLERGENS #
+  allergen = Ingredient.find_by(en_name: "peanuts")
+  AllergyIngredient.create(allergy_id: peanuts_allergy.id, ingredient_id: allergen)
+
+  allergen = Ingredient.find_by(fr_name: "peanuts")
+  AllergyIngredient.create(allergy_id: peanuts_allergy.id, ingredient_id: allergen)
+
+  ## TODO ### in japanese
+
+
 
   # création des users
 
@@ -187,13 +215,14 @@ when "development"
 ##############################################################################
 
 
-when "production"
-  laura = User.new(email: "laura@pedroni.com",
-    first_name: "Laura",
-    last_name: "Pedroni",
-    phone_number: "",
-    password: "123456",
-    email_contact: "laura@pedroni.com",
-    picture: "http://www.kdbuzz.com/images/garnier_electrochoc.jpg")
-  laura.save!
-end
+# when "production"
+#   laura = User.new(email: "laura@pedroni.com",
+#     first_name: "Laura",
+#     last_name: "Pedroni",
+#     phone_number: "",
+#     password: "123456",
+#     email_contact: "laura@pedroni.com",
+#     picture: "http://www.kdbuzz.com/images/garnier_electrochoc.jpg")
+#   laura.save!
+# else
+# end
