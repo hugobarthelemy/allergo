@@ -1,5 +1,7 @@
 <div class="scss-reviews-card-mobile">
-  <h3>Allergy Reviews</h3>
+  <div class="text-center">
+    <h3>Allergy Reviews</h3>
+  </div>
   <div class="inlinelist text-center">
     <li>
       <ol class="ol-first"><i class="fa fa-smile-o" aria-hidden="true"></i> <%= @score_zero %></ol>
@@ -7,12 +9,22 @@
       <ol><i class="fa fa-frown-o" aria-hidden="true"></i> <%= @score_two %></ol>
     </li>
   </div>
-  <% reviews.each do |review|%>
-    <div class="review-card">
-      <%= render 'shared/review_card', review: review %>
+  <div class="container">
+    <div class="row">
+
+        <% reviews.each do |review|%>
+        <div class="col-sm-5">
+          <div class="review-card">
+            <%= render 'shared/review_card', review: review %>
+          </div>
+        </div>
+        <%end%>
     </div>
-  <%end%>
-  <div class="text-center">
-    <%= link_to "New review", new_product_review_path(@product), class: "btn btn-primary" %>
+    <div class="row">
+        <div class="text-center">
+          <%= link_to "New review", new_product_review_path(@product), class: "btn btn-primary" %>
+        </div>
+
+    </div>
   </div>
 </div>
