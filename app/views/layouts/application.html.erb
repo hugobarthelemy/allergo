@@ -13,6 +13,7 @@
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
     <%= yield %>
+    <script src="//cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
     <%= javascript_include_tag 'application' %>
     <%= yield(:after_js)%>
   </body>
