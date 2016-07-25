@@ -23,6 +23,9 @@
 .navbar-wagon-brand img {
   width: 55px;
 }
+.navbar-wagon-brand-mobile img {
+  width: 40px;
+}
 
 /* Navbar right section (with form, links, button) */
 .navbar-wagon-right {
@@ -128,4 +131,7 @@
   transform: rotate(45deg);
   border-left: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
+}
+.avatar-navbar-mobile img {
+  width: 40px;
 }
