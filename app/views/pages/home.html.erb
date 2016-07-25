@@ -30,16 +30,24 @@
   <div class="row">
     <div class="col-xs-12">
       <div class="text-center home-title">
-        <h4>Or enter its barcode below</h4>
+        <h4>Or enter the product name below</h4>
       </div>
     </div>
   </div>
 
+  <form action="<%= products_path %>" class="form-inline text-center" method="get">
+    <input type="text" class="navbar-wagon-search-input" name="product" placeholder="Search by product">
+    <button type="submit" class="btn btn-info">
+        Go
+    </button>
+
+  </form>
+
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
       <form action="<%= root_path %>" method="get" id="send" class="form-inline text-center">
-        <input class="form-control" type="text" id="result" name="scanresult" placeholder="ean-13">
-        <button type="submit" class="btn btn-info">
+        <input class="form-control" type="hidden" id="result" name="scanresult" placeholder="ean-13">
+        <button type="submit" class="btn btn-info" style="display: none;">
             Go
         </button>
       </form>
@@ -47,3 +55,5 @@
     </div>
   </div>
 </div>
+
+

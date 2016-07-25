@@ -1,9 +1,13 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :untrack, :track]
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: [:index]
 
   def index
     @products = policy_scope(Product)
+    if params[:product]
+      @product_search = params[:product].downcase
+      @result = @products.select { |product| product.name.downcase.include?(@product_search) }
+    end
   end
 
   def new

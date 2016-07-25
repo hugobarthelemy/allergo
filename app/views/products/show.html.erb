@@ -25,9 +25,25 @@
 
       <h3>Ingredients</h3>
 
-      <%@product.ingredients.each do |ingredient|%>
-        <p><%=ingredient.fr_name%></p>
+      <%@product.significant_ingredients.each do |sig_ingredient|%>
+        <% ingredient = Ingredient.find(sig_ingredient.ingredient_id) %>
+        <p>
+          <%= ingredient.fr_name unless nil %>
+          <%= ingredient.en_name unless nil %>
+          <%= ingredient.ja_name unless nil %>
+        </p>
       <%end%>
+
+      <h3>Traces</h3>
+
+      <% @product.trace_ingredients.each do |trace| %>
+        <% trace_ingredient = Ingredient.find(trace.ingredient_id) %>
+        <p>
+          <%= trace_ingredient.fr_name unless nil %>
+          <%= trace_ingredient.en_name unless nil %>
+          <%= trace_ingredient.ja_name unless nil %>
+        </p>
+      <% end %>
 
       <h3>Allergies</h3>
 
@@ -57,4 +73,8 @@
       </div>
     </div>
   </div>
+</div>
+<!-- footer si mobile -->
+<div class="hidden-sm hidden-lg hidden-xl footer">
+<%= render 'shared/footer_mobile' %>
 </div>
