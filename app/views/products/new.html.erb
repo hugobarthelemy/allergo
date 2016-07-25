@@ -3,7 +3,21 @@
 
 <% content_for :after_js do %>
   <script>
+
     $(document).ready(function() {
+      // Add ingredient tags
+      $(".btn-ingredient").on('click',function(event){
+        console.log("clicked");
+        var ingredient_name = $("#ingredient_name").val();
+        $('#ingredient-name-display-field').append('<li>'+ingredient_name+'</li>');
+        $('#ingredient-name-display-field').addClass("ingredient-tag");
+      });
+
+      // Algolia
+
+      var ingredient_id_list = "";
+      var ingredient_id = "";
+
         var client = algoliasearch('<%= ENV['ALGOLIASEARCH_APPLICATION_ID'] %>', '<%= ENV['ALGOLIASEARCH_API_KEY_SEARCH'] %>');
         var template = Hogan.compile('<div class="hit-auto-complete">' +
             '<div class="fr_name">{{{_highlightResult.fr_name.value}}}</div>' +
@@ -19,8 +33,16 @@
         }).on('autocomplete:selected', function(event, suggestion) {
           console.log('onselected', suggestion);
           console.log(suggestion.fr_name);
-          $('#ingredient_list').val(suggestion.objectID);
+          ingredient_id = (suggestion.objectID).toString();
+          $(".btn-ingredient").on('click',function(event){
+            // POURQUOI???
+            console.log("ingredient_list_before: "+ingredient_id_list)
+            ingredient_id_list = ingredient_id_list + "," + ingredient_id;
+            console.log("ingredient_list_after: "+ingredient_id_list)
+            // console.log(ingredient_id);
 
+              $('#ingredient_list').val(ingredient_id_list);
+          });
             //TODO
             //Create a hidden field tag to send the id
             //Store the ids in an array to pass to create product
@@ -36,6 +58,8 @@
 
 
       });
+
+
   </script>
 <% end %>
 

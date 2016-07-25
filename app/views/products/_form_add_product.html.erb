@@ -2,32 +2,14 @@
   <%= f.input :name, label: "Product's name" %>
 
   <input id="ingredient_name" name="ingredient[fr_name]" type="text" />
-  <p class="btn-ingredient"><i class="fa fa-plus-circle" aria-hidden="true"></i>
-</p>
+  <p class="btn-ingredient"><i class="fa fa-plus-circle" aria-hidden="true"></i></p>
   <%= hidden_field_tag :ingredients_list, "", id: "ingredient_list" %>
-
-
+  <%= f.submit "Create the product", class: 'submit-btn' %>
 <% end %>
-<ul id="ingredient-name-display-field">
-</ul>
+
+
+<ul id="ingredient-name-display-field"></ul>
 
 <p id="field-id"></p>
-
-<%= content_for(:after_js) do%>
-  <script>
-
-  $(document).ready(function(){
-    $(".btn-ingredient").on('click',function(event){
-      console.log("clicked");
-      var ingredient_name = $("#ingredient_name").val();
-      $('#ingredient-name-display-field').append('<li>'+ingredient_name+'</li>');
-      $('#ingredient-name-display-field').addClass("ingredient-tag");
-    });
-  });
-
-
-
-  </script>
-<% end%>
 
 
