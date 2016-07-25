@@ -34,7 +34,7 @@ class Product < ActiveRecord::Base
 
     p_name = product_api.product_name
     p_updated_on = product_api.last_edit_dates_tags.first.to_date
-
+    img_url = product_api.image_url
     manufacturer = product_api.brands
     # manufacturer = product.brands_tags
     # manufacturer = manufacturer.join(',') unless manufacturer.nil?
@@ -50,7 +50,8 @@ class Product < ActiveRecord::Base
       name: p_name,
       updated_on: p_updated_on,
       manufacturer: manufacturer,
-      category: categories
+      category: categories,
+      img_url: img_url
     )
     # new_product.save!
     new_product.save!
