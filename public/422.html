@@ -58,10 +58,11 @@
   <!-- This file lives in public/422.html -->
   <div class="dialog">
     <div>
-      <h1>The change you wanted was rejected.</h1>
-      <p>Maybe you tried to change something you didn't have access to.</p>
+      <h1>Oops, the change you wanted was rejected.</h1>
+      <p>Maybe you tried to change something you didn't have access to, or maybe a pokemon jammed the connection </p>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
+    <p>The force is still with you, try again from the home page</p>
+    <%= link_to "Homepage", "https://allergo.herokuapp.com", class: "btn btn-primary" %>
   </div>
 </body>
 </html>
