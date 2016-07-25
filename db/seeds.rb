@@ -50,42 +50,44 @@ require 'csv'
 
   # Definition des allergènes de chaque Allergy
 
+
   # MILK ALLERGY #
   contains_milk_fr = Ingredient.where('fr_name ~* :name', name: 'lait')
-  contains_milk_fr.each do |milky|
-    allergen = Ingredient.find_by(fr_name: milky)
-    AllergyIngredient.create(allergy_id: milk_allergy.id, ingredient_id: allergen)
+  contains_milk_fr.each do |allergen|
+    # allergen = Ingredient.find_by(fr_name: milky)
+    AllergyIngredient.create(allergy_id: milk_allergy.id, ingredient_id: allergen.id)
   end
 
   contains_milk_en = Ingredient.where('en_name ~* :name', name: 'milk')
-  contains_milk_en.each do |milky|
-    allergen = Ingredient.find_by(en_name: milky)
-    AllergyIngredient.create(allergy_id: milk_allergy.id, ingredient_id: allergen)
+  contains_milk_en.each do |allergen|
+    # allergen = Ingredient.find_by(en_name: milky)
+    AllergyIngredient.create(allergy_id: milk_allergy.id, ingredient_id: allergen.id)
   end
 
 
-  allergen = Ingredient.find_by(en_name: "lactoserum")
-  AllergyIngredient.create(allergy_id: milk_allergy.id, ingredient_id: allergen)
+  # allergen = Ingredient.find_by(en_name: "lactoserum")
+  # AllergyIngredient.create(allergy_id: milk_allergy.id, ingredient_id: allergen)
 
-  allergen = Ingredient.find_by(fr_name: "lactoserum")
-  AllergyIngredient.create(allergy_id: milk_allergy.id, ingredient_id: allergen)
+  # allergen = Ingredient.find_by(fr_name: "lactoserum")
+  # AllergyIngredient.create(allergy_id: milk_allergy.id, ingredient_id: allergen)
 
 
-  # GLUTEN ALLERGENS #
-  allergen = Ingredient.find_by(en_name: "gluten")
-  AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen)
+  # # GLUTEN ALLERGENS #
+  # allergen = Ingredient.find_by(en_name: "gluten")
+  # AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen)
 
-  allergen = Ingredient.find_by(fr_name: "gluten")
-  AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen)
+  # allergen = Ingredient.find_by(fr_name: "gluten")
+  # AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen)
 
-  # PEANUTS ALLERGENS #
-  allergen = Ingredient.find_by(en_name: "peanuts")
-  AllergyIngredient.create(allergy_id: peanuts_allergy.id, ingredient_id: allergen)
+  # # PEANUTS ALLERGENS #
+  # allergen = Ingredient.find_by(en_name: "peanuts")
+  # AllergyIngredient.create(allergy_id: peanuts_allergy.id, ingredient_id: allergen)
 
-  allergen = Ingredient.find_by(fr_name: "peanuts")
-  AllergyIngredient.create(allergy_id: peanuts_allergy.id, ingredient_id: allergen)
+  # allergen = Ingredient.find_by(fr_name: "peanuts")
+  # AllergyIngredient.create(allergy_id: peanuts_allergy.id, ingredient_id: allergen)
 
   ## TODO ### in japanese
+
 
 
 

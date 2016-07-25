@@ -5,6 +5,15 @@
 <div class="text-center avatar-product">
   <%= image_tag "nutella-pot-1kg.jpg" %>
 </div>
+
+<!-- Match? -->
+<% if @product_eatable == true %>
+  <p>You can eat me, you lucky!</p>
+<%else%>
+  <p>Do NOT eat me!</p>
+<%end%>
+
+
 <!-- allergies logo -->
 <div class="picto-allergies">
   <%= image_tag "picto_allergies/crustacean_shellfish_picto.png" %>
