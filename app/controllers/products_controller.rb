@@ -17,7 +17,6 @@ class ProductsController < ApplicationController
   end
 
   def create
-    raise
     @product = Product.new(product_params)
     @product.save
     authorize @product
@@ -43,10 +42,7 @@ class ProductsController < ApplicationController
     @score_two = @product.reviews.where(score: 2).count
     @reviews = @product.reviews.order(updated_at: :desc)
 
-    @allergens_in_product = allergens_in_product
-
-    @product_eatable = true if !(@allergens_in_product.empty?)
-
+    @product_eatable = true if allergens_in_product.empty?
 
     authorize @product
   end
