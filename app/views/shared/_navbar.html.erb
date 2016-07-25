@@ -1,9 +1,13 @@
 <div class="navbar-wagon">
   <!-- Logo -->
-  <a href="/" class="navbar-wagon-brand">
+    <!-- no mobile -->
+  <a href="/" class="navbar-wagon-brand hidden-xs hidden-sm">
     <%= image_tag "logo.png" %>
   </a>
-
+    <!-- mobile -->
+  <a href="/" class="navbar-wagon-brand-mobile hidden-md hidden-lg">
+    <%= image_tag "logo.png" %>
+  </a>
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
@@ -46,7 +50,7 @@
     <% if user_signed_in? %>
       <div class="navbar-wagon-item">
         <div class="dropdown">
-          <img src= <%=current_user.picture%> class="avatar avatar-navbar-mobile" id="navbar-wagon-menu" data-toggle="dropdown">
+          <img src= <%=current_user.picture%> class="avatar-navbar-mobile" id="navbar-wagon-menu" data-toggle="dropdown">
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
               <%= link_to user_path(current_user) do %>
