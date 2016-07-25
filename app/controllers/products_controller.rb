@@ -75,13 +75,15 @@ class ProductsController < ApplicationController
       end
     end
 
-
     matching_allergens = user_ingredient_allergen_array.select do |allergen|
       product_allergen_array.include?(allergen)
     end
     return matching_allergens
   end
 
+  # TESTS = 10_000
+  # Benchmark.bmbm do |results|
+  # end
 
   private
 

@@ -1,7 +1,7 @@
 class Product < ActiveRecord::Base
   include PgSearch
   pg_search_scope :search_by_manufacturer_and_name,
-                  :against => [:manufacturer, :name]
+                  :against => [:manufacturer, :name, :barcode]
                   #:ignoring => :accents
                   #:using => :trigram
 
