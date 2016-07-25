@@ -71,7 +71,7 @@ class ProductsController < ApplicationController
     return product_allergen_array
   end
 
-  def all_allergens_user
+  def all_significative_allergens_user
     user_ingredient_allergen_array = []
     current_user.allergies.each do |user_allergy|
       user_allergy.ingredients.each do |user_ingredient_allergen|
@@ -83,7 +83,7 @@ class ProductsController < ApplicationController
 
   def significative_allergens_matching_product_and_users
     matching_allergens = []
-    matching_allergens = all_allergens_user.select do |allergen|
+    matching_allergens = all_significative_allergens_user.select do |allergen|
       all_significative_allergens_in_product.include?(allergen)
     end
     return matching_allergens
