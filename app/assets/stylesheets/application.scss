@@ -9,12 +9,13 @@
 @import "font-awesome";
 
 // Your CSS
-@import "layout/index";
+@import "layout/*";
 @import "components/index";
 @import "pages/index";
 @import "vendor/index";
-@import "products";
+@import "products/*";
 @import "product/show";
+
 
 .block-red {
   border: 1px solid red;

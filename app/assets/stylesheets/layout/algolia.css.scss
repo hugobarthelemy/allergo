@@ -1,0 +1,81 @@
+
+.content {
+  margin-top: 30px;
+}
+
+.search-terms {
+  text-align: center;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.hit-auto-complete {
+  em {
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  .manufacturer {
+    font-size: 0.9em;
+  }
+
+  // .company {
+  //   text-align: right;
+  //   font-size: 0.8em;
+  //   color: #999;
+  // }
+}
+
+.hit-instant-search {
+  border: 1px solid #EFEFEF;
+  margin-bottom: 10px;
+  padding: 10px 20px;
+
+  em {
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  .fr_name {
+
+    font-size: 20px;
+  }
+
+  .created_at {
+    float: right;
+    color: green;
+    font-size: 0.6em;
+  }
+
+  // .company {
+  //   float: right;
+  //   color: #999;
+  // }
+}
+
+.algolia-autocomplete {
+  width: 100%;
+}
+.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+  width: 100%;
+}
+.algolia-autocomplete .aa-hint {
+  color: #999;
+}
+.algolia-autocomplete .aa-dropdown-menu {
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #999;
+  border-top: none;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+  cursor: pointer;
+  padding: 5px 4px;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+  background-color: #B2D7FF;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+  font-weight: bold;
+  font-style: normal;
+}

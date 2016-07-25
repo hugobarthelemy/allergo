@@ -23,11 +23,10 @@ gem 'autoprefixer-rails'
 gem 'pundit'
 gem 'openfoodfacts'
 
-
-
 #search:
 gem 'pg_search'
 gem "algoliasearch-rails"
+gem 'hogan_assets'
 
 #Add fields to form
 gem "cocoon"
