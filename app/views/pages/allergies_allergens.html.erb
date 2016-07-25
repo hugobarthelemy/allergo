@@ -7,6 +7,15 @@
       <div class="col-xs-8">
         <!-- TODO : les ingredients correspondant -->
         <p>Les ingredients correspondant à l'allergie</p>
+        <% allergens = AllergyIngredient.where(allergy_id: allergy.id) %>
+        <% allergens_names = [] %>
+        <% allergens.each { |allergen| allergens_names << Ingredient.find(allergen.ingredient_id).any_name } %>
+        <% allergens_names.uniq! %>
+        <ul>
+          <% allergens_names.each do |allergen_name| %>
+           <li><%= allergen_name %></li>
+          <% end %>
+        </ul>
       </div>
     </div>
   <% end %>
