@@ -1,7 +1,7 @@
 .tabs {
   background: #53443F;
   display: flex;
-  padding: 10px 10px 0 10px
+  padding: 10px 100px 0 100px;
 }
 .tabs a {
   color: white;
@@ -14,7 +14,7 @@
 .tabs h3 {
   font-size: 17px;
   font-weight: bold;
-  margin-top: 0;
+  margin: 0;
 }
 .tabs p {
   opacity: 0.5;
@@ -22,7 +22,7 @@
 }
 .tab {
   background: #756A66;
-  flex: 0 0 25%;
+  flex: 1 1 auto;
   text-align: center;
   padding: 20px 0;
 }
@@ -33,30 +33,13 @@
   border-radius: 0 10px 0 0;
 }
 .tab.active {
-  background: rgb(255,0,255);
+  background: white;
   color: black;
 }
-.picto img {
-  width: 45px;
-  display: block;
-
+.tab-content {
+  padding-top: 50px;
 }
-.block-btn {
-  height: 55px;
-  background: rgb(253,253,253);
+.tab-content p {
+  font-size: 30px;
+  font-weight: bold;
 }
-.block-btn img {
-  padding: 10px;
-}
-.flexbox {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-.flex-item {
-  flex: 0 0 auto;
-}
-
-
