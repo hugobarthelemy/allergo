@@ -37,10 +37,17 @@ class ProductsController < ApplicationController
   end
 
   def show
+    product_eatable = false
     @score_zero = @product.reviews.where(score: 0).count
     @score_one = @product.reviews.where(score: 1).count
     @score_two = @product.reviews.where(score: 2).count
     @reviews = @product.reviews.order(updated_at: :desc)
+
+    @allergens_in_product = allergens_in_product
+
+    @product_eatable = true if !(@allergens_in_product.empty?)
+
+
     authorize @product
   end
 
@@ -53,10 +60,30 @@ class ProductsController < ApplicationController
 
       # after update
       MailProductAlertJob.perform_later(@product.id)
-      ### TODO ### redirect
+      ### DO ### redirect
   end
 
   def destroy
+  end
+
+  def allergens_in_product
+    matching_allergens = []
+    user_ingredient_allergen_array = []
+    product_allergen_array = []
+    @product.allergen_ingredients.each do |product_allergen| #extracts all allergens contained in the product
+      product_allergen_array << product_allergen.ingredient
+    end
+    current_user.allergies.each do |user_allergy|
+      user_allergy.ingredients.each do |user_ingredient_allergen|
+        user_ingredient_allergen_array << user_ingredient_allergen
+      end
+    end
+
+
+    matching_allergens = user_ingredient_allergen_array.select do |allergen|
+      product_allergen_array.include?(allergen)
+    end
+    return matching_allergens
   end
 
 
