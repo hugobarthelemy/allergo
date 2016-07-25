@@ -26,4 +26,15 @@ class User < ActiveRecord::Base
       user.token_expiry = Time.at(auth.credentials.expires_at)
     end
   end
+
+  def profile_pict
+    # self.avatar = nil if self.picture ==""
+    # default_pict = "avatardefault.jpg"
+    # self.avatar || self.picture || default_pict
+    if self.picture
+      self.picture
+    else
+      "avatardefault.jpg"
+    end
+  end
 end
