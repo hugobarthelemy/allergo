@@ -2,4 +2,6 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require cocoon
+//= require algolia/v3/algoliasearch.min
+//= require hogan
 //= require_tree .
