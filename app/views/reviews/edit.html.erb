@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
 
-      <h3 class="text-center review-title">Leave a review for <%= @product.name %></h3>
+      <h3 class="text-center review-title">Edit your review for <%= @product.name %></h3>
        <%= simple_form_for @review, url: product_review_path(@product, @review) do |m| %>
 
         <label for="cbox1" class="input-label-title">How did you feel after eating this product?</label><br>
