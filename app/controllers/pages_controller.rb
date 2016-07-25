@@ -27,4 +27,9 @@ class PagesController < ApplicationController
   def reviews_show_mobile
     @product = Product.find(params[:id])
   end
+
+  def favorites
+    @user = current_user
+    @favorites = @user.products.all
+  end
 end
