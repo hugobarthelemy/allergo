@@ -1,0 +1,13 @@
+<h1 class="text-center fav-title">You are tracking the following products</h1>
+
+<div class="container">
+  <div class="row">
+    <% if @favorites %>
+      <% @favorites.each do |result| %>
+        <div class="col-xs-12 col-sm-4">
+          <%= render 'shared/product_card', prod: result %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

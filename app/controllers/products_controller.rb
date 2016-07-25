@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
     @products = policy_scope(Product)
     if params[:product]
       @product_search = params[:product].downcase
-      @result = @products.select { |product| product.name.downcase.include?(@product_search) }
+      @result = @products.where(name: @product_search)
     end
   end
 

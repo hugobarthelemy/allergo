@@ -2,67 +2,33 @@
 <div class="hidden-xs">
   <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-        <div class="text-center">
-          <h1><%=@product.name%></h1>
-
-          <h2><%=@product.manufacturer%></h2>
-          <div class="product-actions">
-            <%= link_to '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-            '.html_safe, edit_product_path(@product), {class: "edit"} %>
-
-
-            <!-- Returns true if the product is tracked by the user, false if it is untracked -->
-            <% product_tracked_by_user = !(@product.tracked_products.find_by_user_id(current_user.id).nil?) %>
-            <% if product_tracked_by_user  %>
-              <%= link_to "Untrack", product_untrack_path(@product), method: :delete, class: "untrack-btn" %>
-            <% else %>
-              <%= link_to "Track", product_track_path(@product), method: :post , class: "track-btn"%>
-            <% end %>
-          </div>
-        </div>
-
-        <p><%=@product.barcode%></p>
-        <p>Last update: <%=@product.updated_on%></p>
+      <div class="col-sm-8 col-sm-offset-2">
+<!-- partial product -->
+        <%= render 'product_show', product: @product %>
+      </div>
+    </div>
 <!-- partial ingredients -->
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-4">
         <%= render 'ingredients_show', product: @product %>
-
+      </div>
+    </div>
 <!-- partial reviews -->
+    <div class="row">
+      <div class="col-sm-4">
         <%= render 'reviews_show', reviews: @reviews %>
       </div>
     </div>
   </div>
 </div>
-<!-- footer si mobile -->
+<!-- mobile -->
 <div class="mobile-box hidden-sm hidden-lg hidden-md">
   <a href="/" class="logo-shazam hidden-sm hidden-lg hidden-md">
     <%= image_tag "logo-shazam.png" %>
   </a>
   <!-- product card -->
   <div class="product-card-mobile">
-    <div class="mobile-show-title-h1 text-center">
-      <h1><%=@product.name%></h1>
-    </div>
-    <div class="text-center avatar-product">
-      <%= image_tag "nutella-pot-1kg.jpg" %>
-    </div>
-    <!-- allergies logo -->
-    <div class="picto-allergies">
-      <%= image_tag "picto_allergies/crustacean_shellfish_picto.png" %>
-      <%= image_tag "picto_allergies/eggs-picto.png" %>
-      <%= image_tag "picto_allergies/fish_picto.png" %>
-      <%= image_tag "picto_allergies/milk_picto.png" %>
-      <%= image_tag "picto_allergies/peanuts_picto.png" %>
-      <%= image_tag "picto_allergies/soybeans_picto.png" %>
-      <%= image_tag "picto_allergies/tree_nuts_picto.png" %>
-      <%= image_tag "picto_allergies/wheat_picto.png" %>
-      </div>
-    <!-- btn star -->
-    <div class="folow-btn">
-      <button type="button" class="btn btn-default btn-sm">
-        <span class="glyphicon glyphicon-star" aria-hidden="true"></span> folow
-      </button>
-    </div>
+    <%= render 'product_show', product: @product %>
   </div>
   <div class="ingredient-card-mobile hide">
     <%= render 'ingredients_show', product: @product %>
