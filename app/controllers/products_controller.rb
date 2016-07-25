@@ -63,17 +63,20 @@ class ProductsController < ApplicationController
   end
 
   def allergy_matches?
-    product.alergene.ingredient
+    matching_allergens = []
     @product.significant_ingredients.each do |significant_ingredient|
-      significant_ingredient.allergenes.each do |product_allergene|
+      significant_ingredient.allergen_ingredients.each do |product_ingredient_allergen|
         current_user.allergies.each do |user_allergy|
-          if user_allergy == product_allergene
-            puts product_allergy
-            returns true
+          user_allergy.ingredients.each do |user_ingredient_allergen|
+            if user_ingredient_allergen == product_ingredient_allergen
+              puts product_ingredient_allergen
+              matching_allergens << product_ingredient_allergen
+            end
           end
         end
       end
     end
+    puts matching_allergens
   end
 
 

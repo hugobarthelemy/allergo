@@ -20,7 +20,7 @@
     </p>
   <% end %>
 
-  <h3>Allergies</h3>
+  <h3>Allergens</h3>
   <% @product.ingredients.each do |ingredient|%>
     <% ingredient.allergies.each do |allergy| %>
       <p><%=allergy.name%></p>
