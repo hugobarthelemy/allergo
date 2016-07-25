@@ -10,6 +10,7 @@ class Ingredient < ActiveRecord::Base
     attribute :fr_name, :en_name
 
     attributesToIndex ['fr_name', 'en_name']
+  end
 
   def self.create_from_api(ingredient_name, lang)
     case lang
