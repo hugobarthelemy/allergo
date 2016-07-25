@@ -1,0 +1,54 @@
+.footer{
+    position:fixed;
+    height:50px;
+    background-color:red;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    margin-bottom:0px;
+}
+
+body{
+    margin-bottom:50px;
+    background-color: rgb(253,253,253);
+}
+.logo-shazam img {
+  position:fixed;
+  padding-left: 30px;
+  padding-top: 10px;
+  width: 70px;
+}
+.mobile-box {
+  position: relative;
+}
+.mobile-show-title-h1 {
+  padding-top: 40px;
+}
+.avatar-product img {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+}
+.folow-btn {
+  padding-top: 20px;
+  padding-left: 40px;
+}
+.picto-allergies {
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-top: 20px;
+}
+.picto-allergies img {
+  width: 45px;
+  padding: 5px;
+}
+.scss-ingredients-card-mobile {
+  padding-top: 30px;
+  padding-right: 35px;
+  padding-left: 35px;
+}
+.scss-reviews-card-mobile {
+  padding-top: 30px;
+  padding-right: 35px;
+  padding-left: 35px;
+}

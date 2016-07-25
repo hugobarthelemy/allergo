@@ -4,13 +4,14 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
 
+
   resources :products do
     resources :ingredients, only: [:new, :create, :index]
 
     # resources :tracked_products, only: [:new, :create]
 
     resources :tracked_products, only: [:new, :create]
-    resources :reviews, only: [:new, :create]
+    resources :reviews, only: [:new, :create, :edit, :update]
 
     delete "/untrack", to: "products#untrack"
     post "/track", to: "products#track"

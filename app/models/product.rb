@@ -1,7 +1,7 @@
 class Product < ActiveRecord::Base
   include PgSearch
-  pg_search_scope :search_by_brand_and_title,
-                  :against => [:manufacturer, :category]
+  pg_search_scope :search_by_manufacturer_and_name,
+                  :against => [:manufacturer, :name]
                   #:ignoring => :accents
                   #:using => :trigram
 
@@ -16,6 +16,14 @@ class Product < ActiveRecord::Base
   has_many :tracked_products, dependent: :destroy
 
   has_many :ingredients, through: :product_components
+
+  include AlgoliaSearch
+
+  algoliasearch do
+    attribute :name, :manufacturer
+
+    attributesToIndex ['name', 'manufacturer']
+  end
 
   accepts_nested_attributes_for :ingredients, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :reviews

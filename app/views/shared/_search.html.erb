@@ -7,7 +7,7 @@
 </form>
 
 <% searched_words = params[:searched_words] %>
-<% @products = Product.search_by_brand_and_title(searched_words) %>
+<% @products = Product.search_by_manufacturer_and_name(searched_words) %>
 
 <% @products.each do |product| %>
   <%= link_to product_path(product) do%>
@@ -16,3 +16,9 @@
     </div>
   <%end%>
 <%end%>
+
+<p id="product-infos"></p>
+
+
+
+

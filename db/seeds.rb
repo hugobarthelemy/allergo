@@ -16,9 +16,6 @@ when "development"
   GetProductsFromCsvService.create_products_from_codes('sample_real_codes.csv')
 
 
-
-
-
   # seed des tables d'allergies
 
   milk_allergy = Allergy.new(name: :milk)
