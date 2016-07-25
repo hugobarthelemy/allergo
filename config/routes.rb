@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     # resources :tracked_products, only: [:new, :create]
 
     resources :tracked_products, only: [:new, :create]
-    resources :reviews, only: [:new, :create]
+    resources :reviews, only: [:new, :create, :edit, :update]
 
     delete "/untrack", to: "products#untrack"
     post "/track", to: "products#track"
