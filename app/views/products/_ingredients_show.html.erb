@@ -1,30 +1,34 @@
 <div class="scss-ingredients-card-mobile">
   <h3>Ingredients</h3>
-  <%product.significant_ingredients.each do |sig_ingredient|%>
-    <% ingredient = Ingredient.find(sig_ingredient.ingredient_id) %>
-    <p>
-      <%= ingredient.fr_name unless nil %>
-      <%= ingredient.en_name unless nil %>
-      <%= ingredient.ja_name unless nil %>
-    </p>
+  <% significant_ingredients_names = [] %>
+  <% @product.significant_ingredients.each do |sig_ingredient|%>
+    <% significant_ingredients_names << sig_ingredient.ingredient.any_name %>
+  <% end %>
+  <% significant_ingredients_names.uniq! %>
+  <% significant_ingredients_names.each do |ingredient_name| %>
+    <%= "<p>#{ingredient_name}</p>".html_safe unless ingredient_name.nil? %>
   <%end%>
 
   <h3>Traces</h3>
+  <% trace_ingredients_names = [] %>
   <% @product.trace_ingredients.each do |trace| %>
-    <% trace_ingredient = Ingredient.find(trace.ingredient_id) %>
-    <p>
-      <%= trace_ingredient.fr_name unless nil %>
-      <%= trace_ingredient.en_name unless nil %>
-      <%= trace_ingredient.ja_name unless nil %>
-    </p>
+    <% trace_ingredients_names << trace.ingredient.any_name %>
+  <% end %>
+  <% trace_ingredients_names.uniq! %>
+  <% trace_ingredients_names.each do |trace_name| %>
+      <%= "<p>#{trace_name}</p>".html_safe unless trace_name.nil? %>
   <% end %>
 
   <h3>Allergens</h3>
-  <% @product.ingredients.each do |ingredient|%>
-    <% ingredient.allergies.each do |allergy| %>
-      <p><%=allergy.name%></p>
-    <%end%>
+  <% allergen_ingredients_names = [] %>
+  <% @product.allergen_ingredients.each do |allergen| %>
+    <% allergen_ingredients_names << allergen.ingredient.any_name %>
+  <% end %>
+  <% allergen_ingredients_names.uniq! %>
+  <% allergen_ingredients_names.each do |allergen_name|%>
+    <%= "<p>#{allergen_name}</p>".html_safe unless allergen_name.nil? %>
   <%end%>
+
   <div class="product-actions">
     <%= link_to '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'.html_safe, edit_product_path(@product), {class: "edit"} %>
   </div>
