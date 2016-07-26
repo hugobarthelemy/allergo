@@ -14,6 +14,10 @@
     }
 }
 
+#scan-icon {
+  transition: all 400ms;
+}
+
 #scan-icon:hover {
   transform: scale(0.9);
 }

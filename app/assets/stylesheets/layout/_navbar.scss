@@ -1,13 +1,18 @@
 /* Main class */
 .navbar-wagon {
   box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
-  background: white;
+  background: rgba(243,156,18,1.0);
   transition: all 0.3s ease;
   display: flex;
   height: 70px;
   padding: 0px 30px;
   align-items: center;
   justify-content: space-between;
+}
+@media screen and (max-width: 992px) {
+  .navbar-wagon {
+    height: 50px;
+  }
 }
 
 /* Optional class to fix the navbar on top */
@@ -19,12 +24,27 @@
   width: 100%;
 }
 
+/*Navbar Title*/
+
+.navbar-title {
+}
+
 /* Navbar logo */
 .navbar-wagon-brand img {
-  width: 55px;
+  width: 42px;
+  transition: all 400ms;
 }
+.navbar-wagon-brand img:hover {
+  transform: scale(0.9);
+}
+
+
 .navbar-wagon-brand-mobile img {
-  width: 40px;
+  width: 30px;
+  transition: all 400ms;
+}
+.navbar-wagon-brand-mobile img:hover {
+  transform: scale(0.9);
 }
 
 /* Navbar right section (with form, links, button) */
@@ -38,12 +58,12 @@
 .navbar-wagon-item {
   flex: 0 1 auto;
   cursor: pointer;
-  padding: 0 20px;
+  padding: 0 0px;
 }
 
 /* Navbar standard link */
 .navbar-wagon-link {
-  color: #616668;
+  color: white;
   font-size: 14px;
 }
 .navbar-wagon-link:hover {
@@ -112,9 +132,9 @@
   transition: color 0.3s ease;
   font-weight: lighter !important;
   color: #999999 !important;
-  font-size: 15px !important;
+  font-size: 20px !important;
   line-height: 22px !important;
-  padding: 10px 20px;
+  padding: 18px 20px;
 }
 .navbar-wagon-dropdown-menu li > a:hover {
   background: transparent !important;
