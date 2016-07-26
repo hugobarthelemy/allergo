@@ -1,10 +1,21 @@
-
 <div class="container">
 
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
       <div class="text-center home-title">
-        <h2>Press to scan your product</h2>
+        <% if user_signed_in? %>
+          <h3>Hi <%= current_user.first_name %>!</h3>
+        <% else %>
+          <h3> Welcome!</h3>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <div class="text-center home-title">
+        <h4>Press to scan your product</h4>
       </div>
     </div>
   </div>
