@@ -78,28 +78,33 @@ class ProductsController < ApplicationController
   end
 
   def allergens_in_product
-    @matching_allergy = "nok"
-    @matching_intolerance = "nok"
+    matching_allergy = "nok"
+    matching_intolerance = "nok"
     user_allergens = []
     user_traces = []
-    product_allergens = []
+    product_significant_ingredients = []
     product_traces = []
 
 
-    @product.allergen_ingredients.each do |product_allergen| #extracts all allergens contained in the product
-      product_allergens << product_allergen.ingredient
+    @product.significant_ingredients.each do |significant_ingredient| #extracts all allergens contained in the product
+      product_significant_ingredients << significant_ingredient.ingredient
     end
+
+    @product.allergen_ingredients.each do |allergens|
+      product_significant_ingredients << allergens.ingredient
+    end
+    product_significant_ingredients.uniq!
 
     @product.trace_ingredients.each do |product_trace| #extracts all allergens contained in the product
       product_traces << product_trace.ingredient
     end
 
     if current_user.nil?
-      @matching_allergy = "not logged"
-      @matching_intolerance = "not logged"
+      matching_allergy = "not logged"
+      matching_intolerance = "not logged"
     elsif current_user.real_allergies.first.nil? && current_user.intolerances.first.nil?
-      @matching_allergy = "empty allergy profile"
-      @matching_intolerance = "empty allergy profile"
+      matching_allergy = "empty allergy profile"
+      matching_intolerance = "empty allergy profile"
     else
       current_user.real_allergies.each do |real_allergy|
         real_allergy.allergy.ingredients.each do |allergy_ingredient|
@@ -114,8 +119,8 @@ class ProductsController < ApplicationController
       end
     end
 
-    allergens_matching_allergy = (user_allergens & product_allergens)
-    allergens_matching_intolerance = (user_traces & product_allergens)
+    allergens_matching_allergy = (user_allergens & product_significant_ingredients)
+    allergens_matching_intolerance = (user_traces & product_significant_ingredients)
     traces_matching_allergy = (user_allergens & product_traces)
 
     traces_matching_intolerance = (user_traces & product_traces)
@@ -123,20 +128,20 @@ class ProductsController < ApplicationController
     if allergens_matching_allergy.blank? && traces_matching_allergy.blank? && allergens_matching_intolerance.blank?
       # TEST : allergène en qte significative correspondant au profil allergique
       # TEST : allergène en qte de trace correspondant au profil allergique
-      @matching_allergy = "ok"
-      # @matching_intolerance = "ok"
+      matching_allergy = "ok"
+      # matching_intolerance = "ok"
       if traces_matching_intolerance.blank?
         # TEST : allergène en qte de trace correspondant au profil d'intollerent
-        @matching_intolerance = "ok"
+        matching_intolerance = "ok"
       else # allergène en qte de trace correspondant au profil d'intollerent
-        @matching_intolerance = "alert"
+        matching_intolerance = "alert"
       end
     end
 
-    if @matching_intolerance == "nok" || @matching_allergy == "nok"
+    if matching_intolerance == "nok" || matching_allergy == "nok"
       matching_allergy_or_intolerance = "nok"
-    elsif @matching_intolerance == "alert"
-      matching_allergy_or_intolerance = @matching_intolerance
+    elsif matching_intolerance == "alert"
+      matching_allergy_or_intolerance = matching_intolerance
     else
       matching_allergy_or_intolerance = "ok"
     end
@@ -162,7 +167,7 @@ class ProductsController < ApplicationController
     allergies_activated_by_traces.uniq!
 
     allergens_not_in_user_allergy = (
-      product_allergens + product_traces - allergens_matching_allergy - allergens_matching_intolerance
+      product_significant_ingredients + product_traces - allergens_matching_allergy - allergens_matching_intolerance
     )
     allergies_in_product_not_in_user = []
     allergens_not_in_user_allergy.each do |ingredient|
