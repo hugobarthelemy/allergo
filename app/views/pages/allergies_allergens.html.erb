@@ -1,10 +1,10 @@
 <div class="container">
-  <% @Allergies.each do |allergy| %>
+  <% @allergies.each do |allergy| %>
     <div class="row">
-      <div class="col-xs-4">
-        <%= allergy.name %>
+      <div class="col-xs-4 col-md-3">
+        Allergies: <br>  <%= allergy.name %>
       </div>
-      <div class="col-xs-8">
+      <div class="col-xs-8 col-md-6">
         <!-- TODO : les ingredients correspondant -->
         <p>Les ingredients correspondant à l'allergie</p>
         <% allergens = AllergyIngredient.where(allergy_id: allergy.id) %>
@@ -19,4 +19,19 @@
       </div>
     </div>
   <% end %>
+  <div class="row">
+      <div class="col-xs-4 col-md-3" style="border: solid black;">
+        All allergens in DB: <br>
+        <% allergens_names = [] %>
+        <% @allergens.each do |allergy_component| %>
+          <% allergens_names << Ingredient.find(allergy_component.ingredient_id).any_name %>
+        <% end %>
+        <% allergens_names.uniq! %>
+        <ul>
+          <% allergens_names.each do |allergen_name| %>
+           <li><%= allergen_name %></li>
+          <% end %>
+        </ul>
+      </div>
+  </div>
 </div>
