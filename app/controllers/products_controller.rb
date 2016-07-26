@@ -59,6 +59,7 @@ class ProductsController < ApplicationController
     # # @allergens_matching_intolerance
     # # @traces_matching_intolerance
 
+    @picto_for_allergies_match_with_profil = picto_for_allergies_match_with_profil
     authorize @product
   end
 
@@ -218,5 +219,20 @@ class ProductsController < ApplicationController
     else
       @product = Product.find(params[:product_id])
     end
+  end
+
+  def picto_for_allergies_match_with_profil
+    # TODO
+    # fonction array_allergies_match
+    # return un string <%= image_tag "picto_allergies/...png" %><%= image_tag "picto_allergies/...png" %>
+  end
+  def picto_for_allergies_no_match_with_profil
+    # TODO
+  end
+  def picto_for_traces_match_with_profil
+    # TODO
+  end
+  def picto_for_traces_no_match_with_profil
+    # TODO
   end
 end

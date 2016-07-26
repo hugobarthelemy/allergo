@@ -27,7 +27,29 @@ TEST matching allergy:<%= @matching_allergy %>
   <%= image_tag "picto_allergies/soybeans_picto.png" %>
   <%= image_tag "picto_allergies/tree_nuts_picto.png" %>
   <%= image_tag "picto_allergies/wheat_picto.png" %>
+</div>
+<!-- picto intelligent -->
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+<!-- qte significative d'allergène qui match avec le profil -->
+qte significative d'allergène qui match avec le profil
+      <%= @picto_for_allergies_match_with_profil %>
+    </div>
+    <div class="col-xs-6">
+<!-- qte significative d'allergène qui ne match pas avec le profil -->
+qte significative d'allergène qui ne match pas avec le profil
+    </div>
+    <div class="col-xs-6">
+<!-- trace d'allergène qui match avec le profil -->
+trace d'allergène qui match avec le profil
+    </div>
+    <div class="col-xs-6">
+<!-- trace d'allergène qui ne match pas avec le profil -->
+trace d'allergène qui ne match pas avec le profil
+    </div>
   </div>
+</div>
 <!-- btn star -->
 <!-- Returns true if the product is tracked by the user, false if it is untracked -->
 <div class="folow-btn">
