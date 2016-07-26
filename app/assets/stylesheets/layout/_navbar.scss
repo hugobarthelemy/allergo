@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: space-between;
 }
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 992px) {
   .navbar-wagon {
     height: 50px;
   }
@@ -31,10 +31,10 @@
 
 /* Navbar logo */
 .navbar-wagon-brand img {
-  width: 55px;
+  width: 42px;
 }
 .navbar-wagon-brand-mobile img {
-  width: 40px;
+  width: 30px;
 }
 
 /* Navbar right section (with form, links, button) */
