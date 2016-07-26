@@ -46,9 +46,15 @@ class ProductsController < ApplicationController
 
     @matching_allergy = allergens_in_product
     # returns :
-    # # @matching_allergy => "nok" / "ok"
-    # # @matching_intolerance => "nok" / "ok" / "alert"
-    # # @allergens_matching_allergy => array of ingredients
+    # matching_results = {
+    #   matching_allergy_or_intolerance:  => "nok" / "ok" / "alert",
+    #   allergens_matching_allergy:  => array of ingredients,
+    #   traces_matching_allergy: traces_matching_allergy,
+    #   allergens_matching_intolerance: allergens_matching_intolerance,
+    #   traces_matching_intolerance: traces_matching_intolerance
+    # }
+    # # @matching_intolerance
+    # # @allergens_matching_allergy
     # # @traces_matching_allergy
     # # @allergens_matching_intolerance
     # # @traces_matching_intolerance
@@ -108,30 +114,91 @@ class ProductsController < ApplicationController
       end
     end
 
-    @allergens_matching_allergy = (user_allergens & product_allergens)
-    @traces_matching_allergy = (user_allergens & product_traces)
-    if @allergens_matching_allergy.blank? && @traces_matching_allergy.blank?
+    allergens_matching_allergy = (user_allergens & product_allergens)
+    allergens_matching_intolerance = (user_traces & product_allergens)
+    traces_matching_allergy = (user_allergens & product_traces)
+
+    traces_matching_intolerance = (user_traces & product_traces)
+
+    if allergens_matching_allergy.blank? && traces_matching_allergy.blank? && allergens_matching_intolerance.blank?
       # TEST : allergène en qte significative correspondant au profil allergique
       # TEST : allergène en qte de trace correspondant au profil allergique
       @matching_allergy = "ok"
-      @matching_intolerance = "ok"
+      # @matching_intolerance = "ok"
+      if traces_matching_intolerance.blank?
+        # TEST : allergène en qte de trace correspondant au profil d'intollerent
+        @matching_intolerance = "ok"
+      else # allergène en qte de trace correspondant au profil d'intollerent
+        @matching_intolerance = "alert"
+      end
     end
 
-    @allergens_matching_intolerance = (user_traces & product_allergens)
-    if @allergens_matching_intolerance.blank?
-      # TEST : allergène en qte significative correspondant au profil d'intollerent
-      @matching_intolerance = "ok"
+    if @matching_intolerance == "nok" || @matching_allergy == "nok"
+      matching_allergy_or_intolerance = "nok"
+    elsif @matching_intolerance == "alert"
+      matching_allergy_or_intolerance = @matching_intolerance
+    else
+      matching_allergy_or_intolerance = "ok"
     end
 
-    @traces_matching_intolerance = (user_traces & product_traces)
-    if @traces_matching_intolerance.blank?
-      # TEST : allergène en qte de trace correspondant au profil d'intollerent
-      @matching_intolerance = "ok"
-    else # allergène en qte de trace correspondant au profil d'intollerent
-      @matching_intolerance = "alert"
-    end
+########## allergies arrays ###########
 
-  return @matching_allergy
+    allergens_matching_allergy_or_intolerance = allergens_matching_allergy + allergens_matching_intolerance
+
+    allergies_or_intolerance_activated_by_allergens = []
+    allergens_matching_allergy_or_intolerance.each do |ingredient|
+      ingredient.allergies.each do |allergy|
+        allergies_or_intolerance_activated_by_allergens << allergy.name
+      end
+    end
+    allergies_or_intolerance_activated_by_allergens.uniq!
+
+    allergies_activated_by_traces = []
+    traces_matching_allergy.each do |ingredient|
+      ingredient.allergies.each do |allergy|
+        allergies_activated_by_traces << allergy.name
+      end
+    end
+    allergies_activated_by_traces.uniq!
+
+    allergens_not_in_user_allergy = (
+      product_allergens + product_traces - allergens_matching_allergy - allergens_matching_intolerance
+    )
+    allergies_in_product_not_in_user = []
+    allergens_not_in_user_allergy.each do |ingredient|
+      ingredient.allergies.each do |allergy|
+        allergies_in_product_not_in_user << allergy.name
+      end
+    end
+    allergies_in_product_not_in_user.uniq!
+
+    intolerances_activated_by_traces = []
+    traces_matching_intolerance.each do |ingredient|
+      ingredient.allergies.each do |intolerance|
+        intolerances_activated_by_traces << intolerance.name # case "alert"
+      end
+    end
+    intolerances_activated_by_traces.uniq! # case "alert"
+
+    intolerances_not_in_user = (
+      product_traces - traces_matching_intolerance - traces_matching_allergy
+    )
+    intolerances_in_product_not_in_user = []
+    intolerances_not_in_user.each do |ingredient|
+      ingredient.allergies.each do |intolerance|
+        intolerances_in_product_not_in_user << intolerance.name
+      end
+    end
+    intolerances_in_product_not_in_user.uniq!
+
+
+  matching_results = {
+    matching_allergy_or_intolerance: matching_allergy_or_intolerance,
+    allergies_or_intolerance_activated_by_allergens: allergies_or_intolerance_activated_by_allergens,
+    allergies_activated_by_traces: allergies_activated_by_traces,
+    allergies_in_product_not_in_user: allergies_in_product_not_in_user,
+    intolerances_activated_by_traces: intolerances_activated_by_traces
+  }
   end
 
 
