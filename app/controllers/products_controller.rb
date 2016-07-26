@@ -44,6 +44,18 @@ class ProductsController < ApplicationController
 
     @product_eatable = true if allergens_in_product.empty?
 
+    # nok : allergène correspondant au profil allerg
+      # allergène en qte significative correspondant au profil allergique
+      # allergène en qte de trace correspondant au profil allergique
+      # allergène en qte significative correspondant au profil d'intollerent
+    # alert :
+      # allergène en qte de trace correspondant au profil d'intollerent
+    # ok :
+      # le reste mais logé
+    # nolog :
+      # le profil n'est pas logé
+    @matching_allergens = "nok"
+
     authorize @product
   end
 
