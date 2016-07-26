@@ -45,4 +45,40 @@
 </div>
 
 
+<%= content_for(:after_js) do%>
+  <script>
+    // passer la carte en rouge -> NOK
+    $(document).ready(function(){
+      var match = "<%= @matching_allergens %>";
+
+      if (match == "nok") {
+      // couleur fond de carte
+          $(".js-background-color").removeClass("ok");
+          $(".js-background-color").removeClass("alert");
+          $(".product-card-mobile").addClass("nok");
+      }
+
+        // couleur du footer
+      // passer la carte en orange -> ALERT
+
+      else if (match == "alert") {
+        // couleur fond de carte
+        // couleur du footer
+      }
+
+      // passer la carte en rouge -> OK
+
+      else if (match == "ok") {
+        // couleur fond de carte
+        // couleur du footer
+      }
+
+      else {
+
+      }
+    });
+  </script>
+<% end %>
+
+
 
