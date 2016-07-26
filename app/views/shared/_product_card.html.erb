@@ -1,13 +1,21 @@
 <div class="card card-hover">
 
-  <div class="card-category">Allergies Icons</div>
-  <div class="card-description">
-    <h2><%= prod.name %></h2>
-    <p><%= prod.manufacturer %></p>
+  <div class="card-container-left">
+    <div class="card-category">Allergies Icons</div>
+    <div class="card-description">
+      <h2><%= prod.name %></h2>
+      <p><%= prod.manufacturer %></p>
+    </div>
   </div>
-  <div class="card-product_pic">
-      <%= image_tag prod.img_url %>
+
+
+  <div class="card-container-right">
+    <div class="card-product_pic">
+
+    </div>
   </div>
+
+
   <%= link_to product_path(prod.id) do %>
     <div class="card-link"></div>
   <% end %>

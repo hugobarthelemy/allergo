@@ -14,18 +14,34 @@
 //   right: 10px;
 //   top: 30px;
 // }
+.card-container-left {
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  border: 2px solid green;
+}
+.card-container-right {
+  position: absolute;
+  height: 100%;
+  width: 47%;
+  left: 53%;
+  border: 2px solid red;
+}
+
 .card-product_pic {
   position: absolute;
-  right: 21px;
-  top: 13px;
-  height: 140px;
-  width: 130px;
+  border: solid 2px blue;
+  height: 90%;
+  width: 90%;
+  top: 5%;
+  // img {
+  //   height: 100%;
+  //   width: 100%;
+  //   border-radius: 5px;
+  // }
 }
-.card-product_pic img {
-  height: 100%;
-  width: 100%;
-  border-radius: 5px;
-}
+
+
 .card-category {
   position: absolute;
   top: 10px;
