@@ -15,6 +15,12 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# fonts
+config.assets.enabled = true
+config.assets.paths << Rails.root.join("app", "assets", "fonts")
+
+
+
 module Allergo
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
