@@ -1,47 +1,48 @@
-<!-- Not for mobile -->
-<div class="hidden-xs">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-8 col-sm-offset-2">
-<!-- partial product -->
-        <%= render 'product_show', product: @product %>
+<div class="js-background-color nok">
+  <!-- Not for mobile -->
+  <div class="hidden-xs">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+  <!-- partial product -->
+          <%= render 'product_show', product: @product %>
+        </div>
+      </div>
+  <!-- partial ingredients -->
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+          <%= render 'ingredients_show', product: @product %>
+        </div>
+      </div>
+  <!-- partial reviews -->
+      <div class="row">
+        <div class="col-sm-12">
+          <%= render 'reviews_show', reviews: @reviews %>
+        </div>
       </div>
     </div>
-<!-- partial ingredients -->
-    <div class="row">
-      <div class="col-sm-8 col-sm-offset-2">
-        <%= render 'ingredients_show', product: @product %>
-      </div>
+  </div>
+  <!-- mobile -->
+  <div class="mobile-box hidden-sm hidden-lg hidden-md">
+    <a href="/" class="logo-shazam hidden-sm hidden-lg hidden-md">
+      <%= image_tag "logo-shazam.png" %>
+    </a>
+    <!-- product card -->
+    <div class="product-card-mobile">
+      <%= render 'product_show', product: @product %>
     </div>
-<!-- partial reviews -->
-    <div class="row">
-      <div class="col-sm-12">
-        <%= render 'reviews_show', reviews: @reviews %>
-      </div>
+    <div class="ingredient-card-mobile hide">
+      <%= render 'ingredients_show', product: @product %>
     </div>
+    <div class="reviews-card-mobile hide">
+      <%= render 'reviews_show', reviews: @reviews %>
+    </div>
+    <div class="footer">
+      <%= render 'shared/footer_mobile' %>
+    </div>
+
   </div>
 </div>
-<!-- mobile -->
-<div class="mobile-box hidden-sm hidden-lg hidden-md">
-  <a href="/" class="logo-shazam hidden-sm hidden-lg hidden-md">
-    <%= image_tag "logo-shazam.png" %>
-  </a>
-  <!-- product card -->
-  <div class="product-card-mobile">
-    <%= render 'product_show', product: @product %>
-  </div>
-  <div class="ingredient-card-mobile hide">
-    <%= render 'ingredients_show', product: @product %>
-  </div>
-  <div class="reviews-card-mobile hide">
-    <%= render 'reviews_show', reviews: @reviews %>
-  </div>
-  <div class="footer">
-    <%= render 'shared/footer_mobile' %>
-  </div>
-
-</div>
-
 
 
 
