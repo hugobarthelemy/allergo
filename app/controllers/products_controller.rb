@@ -59,7 +59,11 @@ class ProductsController < ApplicationController
     # # @allergens_matching_intolerance
     # # @traces_matching_intolerance
 
-    @picto_for_allergies_match_with_profil = picto_for_allergies_match_with_profil
+    @pictos_for_allergies_match_with_profil = pictos_for_allergies_match_with_profil
+    @pictos_for_allergies_no_match_with_profil = pictos_for_allergies_no_match_with_profil
+    @pictos_for_traces_match_with_profil = pictos_for_traces_match_with_profil
+    @pictos_for_traces_no_match_with_profil = pictos_for_traces_no_match_with_profil
+    @pictos_alert_for_trace_for_intolerant_profil = pictos_alert_for_trace_for_intolerant_profil
     authorize @product
   end
 
@@ -203,7 +207,8 @@ class ProductsController < ApplicationController
     allergies_or_intolerance_activated_by_allergens: allergies_or_intolerance_activated_by_allergens,
     allergies_activated_by_traces: allergies_activated_by_traces,
     allergies_in_product_not_in_user: allergies_in_product_not_in_user,
-    intolerances_activated_by_traces: intolerances_activated_by_traces
+    intolerances_activated_by_traces: intolerances_activated_by_traces,
+    intolerances_in_product_not_in_user: intolerances_in_product_not_in_user
   }
   end
 
@@ -226,18 +231,89 @@ class ProductsController < ApplicationController
     end
   end
 
-  def picto_for_allergies_match_with_profil
-    # TODO
-    # fonction array_allergies_match
+  def pictos_for_allergies_match_with_profil
+    pictos_for_allergies_match_with_profil = []
+    allergies_match_with_profil = allergens_in_product[:allergies_or_intolerance_activated_by_allergens]
+    allergies_match_with_profil.each do |allergy_match_with_profil|
+      case allergy_match_with_profil
+      when 'milk'
+        pictos_for_allergies_match_with_profil << "picto_allergies/milk_picto.png"
+      when 'gluten'
+        pictos_for_allergies_match_with_profil << "picto_allergies/gluten_picto.png"
+      when 'peanuts'
+        pictos_for_allergies_match_with_profil << "picto_allergies/peanuts_picto.png"
+      else
+      end
+    end
+    return pictos_for_allergies_match_with_profil
     # return un string <%= image_tag "picto_allergies/...png" %><%= image_tag "picto_allergies/...png" %>
   end
-  def picto_for_allergies_no_match_with_profil
-    # TODO
+
+  def pictos_for_allergies_no_match_with_profil
+    pictos_for_allergies_no_match_with_profil = []
+    allergies_no_match_with_profil = allergens_in_product[:allergies_in_product_not_in_user]
+    allergies_no_match_with_profil.each do |allergy_no_match_with_profil|
+      case allergy_no_match_with_profil
+      when 'milk'
+        pictos_for_allergies_no_match_with_profil << "picto_allergies/milk_picto.png"
+      when 'gluten'
+        pictos_for_allergies_no_match_with_profil << "picto_allergies/gluten_picto.png"
+      when 'peanuts'
+        pictos_for_allergies_no_match_with_profil << "picto_allergies/peanuts_picto.png"
+      else
+      end
+    end
+    return pictos_for_allergies_no_match_with_profil
   end
-  def picto_for_traces_match_with_profil
-    # TODO
+
+  def pictos_for_traces_match_with_profil
+    pictos_for_traces_match_with_profil = []
+    traces_match_with_profil = allergens_in_product[:allergies_activated_by_traces]
+    traces_match_with_profil.each do |trace_match_with_profil|
+      case trace_match_with_profil
+      when 'milk'
+        pictos_for_traces_match_with_profil << "picto_allergies/milk_picto.png"
+      when 'gluten'
+        pictos_for_traces_match_with_profil << "picto_allergies/gluten_picto.png"
+      when 'peanuts'
+        pictos_for_traces_match_with_profil << "picto_allergies/peanuts_picto.png"
+      else
+      end
+    end
+    return pictos_for_traces_match_with_profil
   end
-  def picto_for_traces_no_match_with_profil
-    # TODO
+
+  def pictos_for_traces_no_match_with_profil
+    pictos_for_traces_no_match_with_profil = []
+    traces_no_match_with_profil = allergens_in_product[:intolerances_in_product_not_in_user]
+    traces_no_match_with_profil.each do |trace_no_match_with_profil|
+      case trace_no_match_with_profil
+      when 'milk'
+        pictos_for_traces_no_match_with_profil << "picto_allergies/milk_picto.png"
+      when 'gluten'
+        pictos_for_traces_no_match_with_profil << "picto_allergies/gluten_picto.png"
+      when 'peanuts'
+        pictos_for_traces_no_match_with_profil << "picto_allergies/peanuts_picto.png"
+      else
+      end
+    end
+    return pictos_for_traces_no_match_with_profil
+  end
+
+  def pictos_alert_for_trace_for_intolerant_profil
+    pictos_alert_for_trace_for_intolerant_profil = []
+    traces_for_intolerant_profil = allergens_in_product[:intolerances_activated_by_traces]
+    traces_for_intolerant_profil.each do |trace_for_intolerant_profil|
+      case trace_for_intolerant_profil
+      when 'milk'
+        pictos_alert_for_trace_for_intolerant_profil << "picto_allergies/milk_picto.png"
+      when 'gluten'
+        pictos_alert_for_trace_for_intolerant_profil << "picto_allergies/gluten_picto.png"
+      when 'peanuts'
+        pictos_alert_for_trace_for_intolerant_profil << "picto_allergies/peanuts_picto.png"
+      else
+      end
+    end
+    return pictos_alert_for_trace_for_intolerant_profil
   end
 end
