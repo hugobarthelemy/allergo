@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @user = User.find(current_user)
     authorize @user
     @user.update(user_params)
-    render :show
+    redirect_to user_path(@user)
   end
 
   private

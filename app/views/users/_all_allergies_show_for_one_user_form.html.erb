@@ -1,20 +1,17 @@
 <% all_allergies = Level.where(user_id: current_user.id) %>
+
 <% all_allergies.each do |allergy| %>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-offset-4 col-sm-1">
-        <%= Allergy.find(allergy[:allergy_id]).name %>
-        :
-      </div>
-      <div class="col-xs-12 col-sm-1">
-        <%= allergy.allergy_level %>
-      </div>
-      <div class="col-xs-12 col-sm-1 text-center">
-        <%= link_to "Edit", edit_user_allergy_path(current_user, allergy), {class: "btn btn-primary"} %>
-      </div>
-      <div class="col-xs-12 col-sm-2 text-center">
-      <p><%= link_to "Cancel my allergy", user_allergy_path(current_user, allergy), method: :delete %></p>
-      </div>
+  <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
+    <div class="allergy-card">
+      <span class="allergy-name"><%= Allergy.find(allergy[:allergy_id]).name.upcase %>: </span>
+
+      <% if allergy.allergy_level == 2 %>
+        <span class="allergy-level">Strong Allergy</span>
+      <% elsif allergy.allergy_level == 1 %>
+        <span class="allergy-level">Intolerance</span>
+      <% end %>
+
+      <%= link_to "Delete", user_allergy_path(current_user, allergy), method: :delete, class: "btn btn-danger btn-sm" %>
     </div>
   </div>
 <% end %>

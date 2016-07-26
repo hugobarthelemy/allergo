@@ -1,47 +1,72 @@
 <div class="container">
-  <div class="row text-center">
-    <%= image_tag @user.profile_pict, class: "avatar-large" %>
-    <h1>Your allergies</h1>
-  </div>
-</div>
 
-  <%= render 'all_allergies_show_for_one_user_form' %>
-  <class class="text-center">
-  <br>
-<div class="container">
-  <div class="row text-center">
-    <div class="col-sm-6 col-sm-offset-3">
-      <div class="new_allergy">
-
+<!-- User Pic and Title -->
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="text-center">
+        <div class="profile-picture">
+          <%= image_tag @user.profile_pict, class: "avatar-large" %>
+        </div>
+        <h1 class="profile-title">Your Allergies</h1>
       </div>
-      <%= link_to "Add an allergy", "#", {class: "btn btn-primary js-add-form-level-in-user-show"} %></class>
     </div>
   </div>
-</div>
 
-<div class="container">
-  <div class="row text-center">
-    <div class="col-sm-6 col-sm-offset-3">
 
-        <h1>Your profil</h1>
-        <p>First name <%= @user.first_name%></p>
-        <br><p>Last name <%= @user.last_name%></p>
-        <br><p><%= @user.provider%> mail <%= @user.email%></p>
-        <br><p>Phone number <%= @user.phone_number%></p>
-        <br><p>Email contact : <%= @user.email_contact%></p>
-      <%= link_to "Edit", edit_user_path, {class: "btn btn-primary"} %>
-<!-- edit_user_path, -->
+<!-- User Allergies List -->
+  <div class="row">
+      <%= render 'all_allergies_show_for_one_user_form' %>
+  </div>
 
+<!-- Add an Allergy -->
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <div class="text-center">
+        <div class="new_allergy">
+
+        </div>
+        <div class="new-allergy-btn">
+          <%= link_to "Add an allergy", "#", {class: "btn btn-info btn-sm js-add-form-level-in-user-show"} %>
+        </div>
+      </div>
     </div>
   </div>
+
+  <hr class="allergy-hr">
+
+<!-- User Profile Info -->
+  <div class="row">
+
+    <h1 class="profile-title text-center">Your Profile Info</h1>
+
+    <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4">
+      <div class="profile-user-info">
+        <p><span class="bold">First name: </span><%= @user.first_name%></p>
+        <p><span class="bold">Last name: </span><%= @user.last_name%></p>
+        <p><span class="bold">Phone number: </span><%= @user.phone_number%></p>
+        <p><span class="bold">Contact Email: </span><%= @user.email%></p>
+
+        <div class="new-allergy-btn text-center">
+          <%= link_to "Edit", edit_user_path, {class: "btn btn-info btn-sm"} %>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 
 <!-- JS du add allergy -->
 <% content_for(:after_js) do %>
   <script>
+    $(".new-allergy-btn").on( "click", function() {
+      $(this).hide();
+    });
     $(".js-add-form-level-in-user-show").on( "click", function( event ) {
       $(".new_allergy").append("<%= j (render 'allergies/allergy_form', level: @level).html_safe %>")
+    });
+    $(".new-allergy-save").on( "click", function() {
+      $(".new-allergy-btn").show();
     });
   </script>
 <% end %>
