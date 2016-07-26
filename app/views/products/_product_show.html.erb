@@ -5,6 +5,10 @@
 <div class="text-center avatar-product">
   <%= image_tag @product.img_url %>
 </div>
+<div class="text-center avatar-alert">
+  <%= image_tag "product_card/orange_alerte.png" %>
+</div>
+
 
 <!-- Match? -->
 <% if @product_eatable == true %>
@@ -34,19 +38,37 @@ TEST matching allergy:<%= @matching_allergy %>
     <div class="col-xs-6">
 <!-- qte significative d'allergène qui match avec le profil -->
 qte significative d'allergène qui match avec le profil
-      <%= @picto_for_allergies_match_with_profil %>
+      <% @pictos_for_allergies_match_with_profil.each do |picto_for_allergies_match_with_profil| %>
+        <div class="pictos_for_allergies_match_with_profil picto-allergies"><%= image_tag(picto_for_allergies_match_with_profil) %></div>
+      <% end %>
     </div>
     <div class="col-xs-6">
 <!-- qte significative d'allergène qui ne match pas avec le profil -->
 qte significative d'allergène qui ne match pas avec le profil
+      <% @pictos_for_allergies_no_match_with_profil.each do |picto_for_allergies_no_match_with_profil| %>
+        <div class="pictos_for_allergies_no_match_with_profil picto-allergies"><%= image_tag(picto_for_allergies_no_match_with_profil) %></div>
+      <% end %>
     </div>
     <div class="col-xs-6">
 <!-- trace d'allergène qui match avec le profil -->
 trace d'allergène qui match avec le profil
+      <% @pictos_for_traces_match_with_profil.each do |picto_for_traces_match_with_profil| %>
+        <div class="pictos_for_traces_match_with_profil picto-allergies"><%= image_tag(picto_for_traces_match_with_profil) %></div>
+      <% end %>
     </div>
     <div class="col-xs-6">
 <!-- trace d'allergène qui ne match pas avec le profil -->
 trace d'allergène qui ne match pas avec le profil
+      <% @pictos_for_traces_no_match_with_profil.each do |picto_for_traces_no_match_with_profil| %>
+        <div class="pictos_for_traces_no_match_with_profil picto-allergies"><%= image_tag(picto_for_traces_match_with_profil) %></div>
+      <% end %>
+    </div>
+    <div class="col-xs-6">
+<!-- trace d'allergène qui qui match avec le profil d'intolerent -->
+trace d'allergène qui ne match pas avec le profil
+      <% @pictos_alert_for_trace_for_intolerant_profil.each do |picto_alert_for_trace_for_intolerant_profil| %>
+        <div class="pictos_alert_for_trace_for_intolerant_profil picto-allergies"><%= image_tag(picto_alert_for_trace_for_intolerant_profil) %></div>
+      <% end %>
     </div>
   </div>
 </div>

@@ -38,10 +38,24 @@ background-color: orange;
 .mobile-show-title-h1 {
   padding-top: 40px;
 }
+.avatar-product {
+  position: relative;
+}
 .avatar-product img {
   border-radius: 50%;
   width: 200px;
   height: 200px;
+}
+.avatar-alert {
+  position: absolute;
+  background-color: white;
+  top: 30px;
+  right: 30px;
+  border-radius: 50%;
+}
+.avatar-alert img {
+  width: 50px;
+  height: 50px;
 }
 .folow-btn {
   padding-top: 20px;
@@ -66,6 +80,20 @@ background-color: orange;
   padding-right: 35px;
   padding-left: 35px;
 }
-
+.pictos_for_allergies_match_with_profil {
+  border: 5px solid red;
+}
+.pictos_for_allergies_no_match_with_profil {
+  // TODO ?
+}
+.pictos_for_traces_match_with_profil {
+  border: 5px solid red;
+}
+.pictos_for_traces_no_match_with_profil {
+  //TODO ?
+}
+.pictos_alert_for_trace_for_intolerant_profil {
+  border: 5px solid orange;
+}
 
 
