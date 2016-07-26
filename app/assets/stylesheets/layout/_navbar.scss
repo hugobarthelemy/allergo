@@ -32,9 +32,19 @@
 /* Navbar logo */
 .navbar-wagon-brand img {
   width: 42px;
+  transition: all 400ms;
 }
+.navbar-wagon-brand img:hover {
+  transform: scale(0.9);
+}
+
+
 .navbar-wagon-brand-mobile img {
   width: 30px;
+  transition: all 400ms;
+}
+.navbar-wagon-brand-mobile img:hover {
+  transform: scale(0.9);
 }
 
 /* Navbar right section (with form, links, button) */

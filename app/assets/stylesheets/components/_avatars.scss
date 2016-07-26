@@ -1,7 +1,12 @@
 .avatar {
   width: 52px;
   border-radius: 50%;
+  transition: all 400ms;
 }
+.avatar:hover {
+  transform: scale(0.9);
+}
+
 .avatar-large {
   width: 50px;
   border-radius: 50%;
@@ -21,4 +26,8 @@
 .avatar-navbar-mobile {
   width: 35px;
   border-radius: 50%;
+  transition: all 400ms;
+}
+.avatar-navbar-mobile:hover {
+  transform: scale(0.9);
 }
