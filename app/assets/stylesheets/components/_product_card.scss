@@ -1,9 +1,13 @@
 .card {
   height: 175px;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  // text-shadow: 0 1px 3px rgba(0,0,0,0.6);
   background-size: cover !important;
-  color: white;
+  color: #333333;
   position: relative;
+  background-color: #f3f3f3;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px #888888;
+  margin-bottom: 30px;
 }
 // .card-user {
 //   position: absolute;
@@ -12,8 +16,15 @@
 // }
 .card-product_pic {
   position: absolute;
-  right: 50px;
-  top: 60px;
+  right: 21px;
+  top: 13px;
+  height: 140px;
+  width: 130px;
+}
+.card-product_pic img {
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
 }
 .card-category {
   position: absolute;

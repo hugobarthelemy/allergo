@@ -1,4 +1,4 @@
-<div class="card card-hover" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(); border: solid 5px white; box-shadow: 1px 1px 5px #888888; margin-bottom: 30px;">
+<div class="card card-hover">
 
   <div class="card-category">Allergies Icons</div>
   <div class="card-description">
@@ -6,11 +6,12 @@
     <p><%= prod.manufacturer %></p>
   </div>
   <div class="card-product_pic">
-      <p>Product pic</p>
+      <%= image_tag prod.img_url %>
   </div>
   <%= link_to product_path(prod.id) do %>
     <div class="card-link"></div>
   <% end %>
+
 </div>
 
 
