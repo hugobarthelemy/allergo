@@ -1,2 +1,35 @@
-<h1>Products#edit</h1>
-<p>Find me in app/views/products/edit.html.erb</p>
+<!-- Not for mobile -->
+<div class="hidden-xs">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+<!-- partial product -->
+        <%= render 'product_edit', product: @product %>
+      </div>
+    </div>
+<!-- partial ingredients -->
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <%= render 'ingredients_edit', product: @product %>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- mobile -->
+<div class="mobile-box hidden-sm hidden-lg hidden-md">
+  <a href="/" class="logo-shazam hidden-sm hidden-lg hidden-md">
+    <%= image_tag "logo-shazam.png" %>
+  </a>
+  <!-- product card -->
+  <div class="product-card-mobile">
+    <%= render 'product_show', product: @product %>
+  </div>
+  <div class="ingredient-card-mobile hide">
+    <%= render 'ingredients_show', product: @product %>
+  </div>
+
+  <div class="footer">
+    <%= render 'shared/footer_mobile' %>
+  </div>
+
+</div>

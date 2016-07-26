@@ -1,0 +1,74 @@
+<div class="scss-ingredients-card-mobile">
+  <h3>Ingredients</h3>
+
+  <div class="row" style="margin-bottom: 20px;">
+    <p><strong>Add a new ingredient to <%= @product.name %></strong></p>
+    <%= simple_form_for @product do |f| %>
+      <%= f.error_notification %>
+      <% en_ingredients = [] %>
+      <% fr_ingredients = [] %>
+      <% Ingredient.all.each do |ing| %>
+        <% en_ingredients << ing unless ing.en_name.blank? %>
+        <% fr_ingredients << ing unless ing.fr_name.blank? %>
+      <% end %>
+      <% en_ingredients = en_ingredients.sort_by(&:en_name) %>
+      <% fr_ingredients = fr_ingredients.sort_by(&:fr_name) %>
+
+      <%= f.simple_fields_for :product_components do |m| %>
+        <%= m.input :ingredient_id, collection: en_ingredients.sort, label_method: :en_name, value_method: :id, label: "ingredient name in English" %>
+      or
+        <%= m.input :ingredient_id, collection: fr_ingredients.sort, label_method: :fr_name, value_method: :id, label: "nom d'ingredient en français" %>
+      <% end %>
+
+      <%= f.button :submit, class: "btn btn-primary btn-xs", value: "Add ingredient" %>
+    <% end %>
+
+
+  </div>
+
+  <!-- Display ingredients with remove button -->
+  <% significant_ingredients = [] %>
+  <% @product.significant_ingredients.each do |sig_ingredient|%>
+    <% significant_ingredients << sig_ingredient.ingredient %>
+  <% end %>
+  <% significant_ingredients.uniq! %>
+  <% significant_ingredients.each do |ingredient| %>
+    <% if ingredient.any_name %>
+      <div class="row">
+        <div class="col-sm-1" style="margin-right:10px;">
+          <%= link_to "remove", product_ingredient_path(@product.id, ingredient.id), method: :delete, class: "btn btn-danger btn-xs"  %>
+        </div>
+        <div class="col-sm-7">
+        <%= "<p>#{ingredient.any_name}</p>".html_safe %>
+        </div>
+      </div>
+    <%end%>
+  <%end%>
+  <!-- Display ingredients with remove button -->
+
+  <h3>Traces</h3>
+  <% trace_ingredients_names = [] %>
+  <% @product.trace_ingredients.each do |trace| %>
+    <% trace_ingredients_names << trace.ingredient.any_name %>
+  <% end %>
+  <% trace_ingredients_names.uniq! %>
+  <% trace_ingredients_names.each do |trace_name| %>
+      <%= "<p>#{trace_name}</p>".html_safe unless trace_name.nil? %>
+  <% end %>
+
+  <h3>Allergens</h3>
+  <% allergen_ingredients_names = [] %>
+  <% @product.allergen_ingredients.each do |allergen| %>
+    <% allergen_ingredients_names << allergen.ingredient.any_name %>
+  <% end %>
+  <% allergen_ingredients_names.uniq! %>
+  <% allergen_ingredients_names.each do |allergen_name|%>
+    <%= "<p>#{allergen_name}</p>".html_safe unless allergen_name.nil? %>
+  <%end%>
+
+  <div class="product-actions">
+    <%= link_to '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'.html_safe, edit_product_path(@product), {class: "edit"} %>
+  </div>
+</div>
+
+

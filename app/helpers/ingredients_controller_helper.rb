@@ -1,0 +1,2 @@
+module IngredientsControllerHelper
+end

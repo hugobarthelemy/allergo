@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
 
   resources :products do
-    resources :ingredients, only: [:new, :create, :index]
+    resources :ingredients, only: [:index, :new, :create, :edit, :update,  :destroy]
 
     # resources :tracked_products, only: [:new, :create]
 
