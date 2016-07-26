@@ -11,17 +11,20 @@ body{
     margin-bottom:50px;
     background-color: rgb(253,253,253);
 }
-.js-background-color {
-  .nok {
-  background-color: red;
-  }
-  .ok {
-  background-color: green;
-  }
-  .alert {
-  background-color: orange;
-  }
+.nok {
+background-color: red;
 }
+.ok {
+background-color: green;
+}
+.alert {
+background-color: orange;
+}
+.js-background-color {
+  height: 100%;
+  min-height: 650px;
+}
+
 
 .logo-shazam img {
   position:fixed;
