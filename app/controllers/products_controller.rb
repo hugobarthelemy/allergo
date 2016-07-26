@@ -64,7 +64,9 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    @ingredient = Ingredient.new()
     authorize @product
+
   end
 
   def update
