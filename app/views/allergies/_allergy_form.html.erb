@@ -1,7 +1,7 @@
 <%= simple_form_for level, url: user_allergies_path(current_user, level) do |m| %>
   <%= m.association :allergy, include_blank: false %>
-  <%= m.input :allergy_level, collection: 1..2, include_blank: false %>
-  <%= m.submit %>
+  <%= m.input :allergy_level, :collection => Level::LEVELS, include_blank: false %>
+  <%= m.submit 'Save', class:"btn btn-info btn-sm new-allergy-save"%>
 <% end %>
 
 

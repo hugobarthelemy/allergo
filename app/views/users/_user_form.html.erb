@@ -4,7 +4,9 @@
   <%= f.input :last_name %>
   <%= f.input :email_contact %>
   <%= f.input :phone_number %>
-  <%= f.button :submit %>
+  <div class="new-allergy-btn">
+    <%= f.button :submit, "Update", class: "btn btn-info" %>
+  </div>
 <% end %>
 
 
