@@ -82,16 +82,26 @@ require 'csv'
   allergen = Ingredient.find_or_create_by(en_name: "lactoserum")
   AllergyIngredient.create(allergy_id: milk_allergy.id, ingredient_id: allergen.id)
 
-  allergen = Ingredient.find_by(fr_name: "lactoserum")
-  AllergyIngredient.create(allergy_id: milk_allergy.id, ingredient_id: allergen.id) unless allergen.id.nil?
+  allergen = Ingredient.find_or_create_by(fr_name: "lactoserum")
+  AllergyIngredient.create(allergy_id: milk_allergy.id, ingredient_id: allergen.id)
 
 
   # GLUTEN ALLERGENS #
-  allergen = Ingredient.find_or_create_by(en_name: "gluten")
-  AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen.id)
 
-  allergen = Ingredient.find_by(fr_name: "gluten")
-  AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen.id) unless allergen.id.nil?
+  Ingredient.find_or_create_by(en_name: "gluten")
+  Ingredient.find_or_create_by(fr_name: "gluten")
+
+  contains_gluten_en = Ingredient.where('en_name ~* :name', name: 'gluten')
+  contains_gluten_en.each do |allergen|
+    # allergen = Ingredient.find_or_create_by(en_name: "wheat")
+    AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen.id)
+  end
+
+  contains_gluten_fr = Ingredient.where('fr_name ~* :name', name: 'gluten')
+  contains_gluten_fr.each do |allergen|
+    # allergen = Ingredient.find_or_create_by(fr_name: "blé")
+    AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen.id)
+  end
 
   contains_gluten_en = Ingredient.where('en_name ~* :name', name: 'wheat')
   contains_gluten_en.each do |allergen|
