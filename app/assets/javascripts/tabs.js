@@ -1,5 +1,4 @@
 $(function(){
-  console.log("taaaaabbbbbsss");
 // click sur le btn ingredient du footer mobile
   $(".js-ingredient-tab").on("click", function(){
     console.log("click")
