@@ -16,10 +16,16 @@
 
   <div class="container">
     <div class="row">
-     <% @products.each do |result| %>
-      <div class="col-xs-12 col-sm-4">
-        <%= render 'shared/product_card', prod: result %>
-      </div>
+
+    <% unless @products.empty? %>
+      <% @products.each do |result| %>
+        <div class="col-xs-12 col-sm-4">
+          <%= render 'shared/product_card', prod: result %>
+        </div>
+      <% end %>
+    <% else %>
+      <p>Your product could not be found.</p>
+      <p>Try another one.</p>
     <% end %>
     </div>
   </div>
