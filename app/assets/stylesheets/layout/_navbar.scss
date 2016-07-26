@@ -1,13 +1,18 @@
 /* Main class */
 .navbar-wagon {
   box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
-  background: white;
+  background: rgba(243,156,18,1.0);
   transition: all 0.3s ease;
   display: flex;
   height: 70px;
   padding: 0px 30px;
   align-items: center;
   justify-content: space-between;
+}
+@media screen and (max-width: 640px) {
+  .navbar-wagon {
+    height: 50px;
+  }
 }
 
 /* Optional class to fix the navbar on top */
@@ -38,7 +43,7 @@
 .navbar-wagon-item {
   flex: 0 1 auto;
   cursor: pointer;
-  padding: 0 20px;
+  padding: 0 0px;
 }
 
 /* Navbar standard link */
