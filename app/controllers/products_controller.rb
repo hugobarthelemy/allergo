@@ -124,7 +124,7 @@ class ProductsController < ApplicationController
     traces_matching_allergy = (user_allergens & product_traces)
 
     traces_matching_intolerance = (user_traces & product_traces)
-    binding.pry
+
     if allergens_matching_allergy.blank? && traces_matching_allergy.blank? && allergens_matching_intolerance.blank?
       # TEST : allergène en qte significative correspondant au profil allergique
       # TEST : allergène en qte de trace correspondant au profil allergique
