@@ -1,21 +1,7 @@
-
-
 <div class="container">
   <div class="row text-center">
-    <div class="col-sm-6 col-sm-offset-3">
-        <%= image_tag @user.profile_pict, class: "avatar-large" %>
-        <h1>Show your profil</h1>
-        <p>First name <%= @user.first_name%></p>
-        <br><p>Last name <%= @user.last_name%></p>
-        <br><p><%= @user.provider%> mail <%= @user.email%></p>
-        <br><p>Phone number <%= @user.phone_number%></p>
-        <br><p>Email contact : <%= @user.email_contact%></p>
-      <%= link_to "Edit", edit_user_path, {class: "btn btn-primary"} %>
-<!-- edit_user_path, -->
-      <h1>Your allergies</h1>
-
-
-    </div>
+    <%= image_tag @user.profile_pict, class: "avatar-large" %>
+    <h1>Your allergies</h1>
   </div>
 </div>
 
@@ -32,6 +18,25 @@
     </div>
   </div>
 </div>
+
+<div class="container">
+  <div class="row text-center">
+    <div class="col-sm-6 col-sm-offset-3">
+
+        <h1>Your profil</h1>
+        <p>First name <%= @user.first_name%></p>
+        <br><p>Last name <%= @user.last_name%></p>
+        <br><p><%= @user.provider%> mail <%= @user.email%></p>
+        <br><p>Phone number <%= @user.phone_number%></p>
+        <br><p>Email contact : <%= @user.email_contact%></p>
+      <%= link_to "Edit", edit_user_path, {class: "btn btn-primary"} %>
+<!-- edit_user_path, -->
+
+    </div>
+  </div>
+</div>
+
+
 <!-- JS du add allergy -->
 <% content_for(:after_js) do %>
   <script>
