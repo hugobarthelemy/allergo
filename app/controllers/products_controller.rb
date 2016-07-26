@@ -42,19 +42,16 @@ class ProductsController < ApplicationController
     @score_two = @product.reviews.where(score: 2).count
     @reviews = @product.reviews.order(updated_at: :desc)
 
-    @product_eatable = true if allergens_in_product.empty?
+    # @product_eatable = true if allergens_in_product.empty?
 
-    # nok : allergène correspondant au profil allerg
-      # allergène en qte significative correspondant au profil allergique
-      # allergène en qte de trace correspondant au profil allergique
-      # allergène en qte significative correspondant au profil d'intollerent
-    # alert :
-      # allergène en qte de trace correspondant au profil d'intollerent
-    # ok :
-      # le reste mais logé
-    # nolog :
-      # le profil n'est pas logé
-    @matching_allergens = "nok"
+    @matching_allergy = allergens_in_product
+    # returns :
+    # # @matching_allergy => "nok" / "ok"
+    # # @matching_intolerance => "nok" / "ok" / "alert"
+    # # @allergens_matching_allergy => array of ingredients
+    # # @traces_matching_allergy
+    # # @allergens_matching_intolerance
+    # # @traces_matching_intolerance
 
     authorize @product
   end
@@ -75,23 +72,66 @@ class ProductsController < ApplicationController
   end
 
   def allergens_in_product
-    matching_allergens = []
-    user_ingredient_allergen_array = []
-    product_allergen_array = []
+    @matching_allergy = "nok"
+    @matching_intolerance = "nok"
+    user_allergens = []
+    user_traces = []
+    product_allergens = []
+    product_traces = []
+
+
     @product.allergen_ingredients.each do |product_allergen| #extracts all allergens contained in the product
-      product_allergen_array << product_allergen.ingredient
+      product_allergens << product_allergen.ingredient
     end
-    current_user.allergies.each do |user_allergy|
-      user_allergy.ingredients.each do |user_ingredient_allergen|
-        user_ingredient_allergen_array << user_ingredient_allergen
+
+    @product.trace_ingredients.each do |product_trace| #extracts all allergens contained in the product
+      product_traces << product_trace.ingredient
+    end
+
+    if current_user.nil?
+      @matching_allergy = "not logged"
+      @matching_intolerance = "not logged"
+    elsif current_user.real_allergies.first.nil? && current_user.intolerances.first.nil?
+      @matching_allergy = "empty allergy profile"
+      @matching_intolerance = "empty allergy profile"
+    else
+      current_user.real_allergies.each do |real_allergy|
+        real_allergy.allergy.ingredients.each do |allergy_ingredient|
+          user_allergens << allergy_ingredient
+        end
+      end
+
+      current_user.intolerances.each do |intolerance|
+        intolerance.allergy.ingredients.each do |intolerance_ingredient|
+          user_traces << intolerance_ingredient
+        end
       end
     end
 
-
-    matching_allergens = user_ingredient_allergen_array.select do |allergen|
-      product_allergen_array.include?(allergen)
+    @allergens_matching_allergy = (user_allergens & product_allergens)
+    @traces_matching_allergy = (user_allergens & product_traces)
+    if @allergens_matching_allergy.blank? && @traces_matching_allergy.blank?
+      # TEST : allergène en qte significative correspondant au profil allergique
+      # TEST : allergène en qte de trace correspondant au profil allergique
+      @matching_allergy = "ok"
+      @matching_intolerance = "ok"
     end
-    return matching_allergens
+
+    @allergens_matching_intolerance = (user_traces & product_allergens)
+    if @allergens_matching_intolerance.blank?
+      # TEST : allergène en qte significative correspondant au profil d'intollerent
+      @matching_intolerance = "ok"
+    end
+
+    @traces_matching_intolerance = (user_traces & product_traces)
+    if @traces_matching_intolerance.blank?
+      # TEST : allergène en qte de trace correspondant au profil d'intollerent
+      @matching_intolerance = "ok"
+    else # allergène en qte de trace correspondant au profil d'intollerent
+      @matching_intolerance = "alert"
+    end
+
+  return @matching_allergy
   end
 
 

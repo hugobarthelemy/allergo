@@ -11,6 +11,11 @@ class User < ActiveRecord::Base
   has_many :tracked_products, dependent: :destroy
 
   has_many :allergies, through: :levels
+  has_many :real_allergies, -> { where "allergy_level = 2" },
+    class_name: "Level"
+  has_many :intolerances, -> { where "allergy_level = 1" },
+    class_name: "Level"
+
   has_many :products, through: :tracked_products
 
   def self.find_for_facebook_oauth(auth)
