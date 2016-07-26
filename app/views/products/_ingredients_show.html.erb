@@ -1,12 +1,12 @@
 <div class="scss-ingredients-card-mobile">
   <h3>Ingredients</h3>
-  <%product.significant_ingredients.each do |sig_ingredient|%>
-    <% ingredient = Ingredient.find(sig_ingredient.ingredient_id) %>
-    <p>
-      <%= ingredient.fr_name unless nil %>
-      <%= ingredient.en_name unless nil %>
-      <%= ingredient.ja_name unless nil %>
-    </p>
+  <% significant_ingredients_names = [] %>
+  <% @product.significant_ingredients.each do |sig_ingredient|%>
+    <% significant_ingredients_names << sig_ingredient.ingredient.any_name %>
+  <% end %>
+  <% significant_ingredients_names.uniq! %>
+  <% significant_ingredients_names.each do |ingredient_name| %>
+    <%= "<p>#{ingredient_name}</p>".html_safe unless ingredient_name.nil? %>
   <%end%>
 
   <h3>Traces</h3>
