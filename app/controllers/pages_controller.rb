@@ -22,8 +22,8 @@ class PagesController < ApplicationController
   end
 
   def allergies_allergens
-    @Allergies = Allergy.all
-    @Allergens = AllergyIngredient.all
+    @allergies = Allergy.all
+    @allergens = AllergyIngredient.all
   end
 
   def favorites

@@ -82,23 +82,100 @@ require 'csv'
   allergen = Ingredient.find_or_create_by(en_name: "lactoserum")
   AllergyIngredient.create(allergy_id: milk_allergy.id, ingredient_id: allergen.id)
 
-  allergen = Ingredient.find_by(fr_name: "lactoserum")
-  AllergyIngredient.create(allergy_id: milk_allergy.id, ingredient_id: allergen.id) unless allergen.id.nil?
+  allergen = Ingredient.find_or_create_by(fr_name: "lactoserum")
+  AllergyIngredient.create(allergy_id: milk_allergy.id, ingredient_id: allergen.id)
 
 
   # GLUTEN ALLERGENS #
-  allergen = Ingredient.find_or_create_by(en_name: "gluten")
-  AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen.id)
 
-  allergen = Ingredient.find_by(fr_name: "gluten")
-  AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen.id) unless allergen.id.nil?
+  Ingredient.find_or_create_by(en_name: "gluten")
+  Ingredient.find_or_create_by(fr_name: "gluten")
+
+  contains_gluten_en = Ingredient.where('en_name ~* :name', name: 'gluten')
+  contains_gluten_en.each do |allergen|
+    # allergen = Ingredient.find_or_create_by(en_name: "wheat")
+    AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen.id)
+  end
+
+  contains_gluten_fr = Ingredient.where('fr_name ~* :name', name: 'gluten')
+  contains_gluten_fr.each do |allergen|
+    # allergen = Ingredient.find_or_create_by(fr_name: "blé")
+    AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen.id)
+  end
+
+  contains_gluten_en = Ingredient.where('en_name ~* :name', name: 'wheat')
+  contains_gluten_en.each do |allergen|
+    # allergen = Ingredient.find_or_create_by(en_name: "wheat")
+    AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen.id)
+  end
+
+  contains_gluten_fr = Ingredient.where('fr_name ~* :name', name: 'blé')
+  contains_gluten_fr.each do |allergen|
+    # allergen = Ingredient.find_or_create_by(fr_name: "blé")
+    AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen.id)
+  end
+
+  contains_gluten_en = Ingredient.where('en_name ~* :name', name: 'rye')
+  contains_gluten_en.each do |allergen|
+    # allergen = Ingredient.find_or_create_by(en_name: "wheat")
+    AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen.id)
+  end
+
+  contains_gluten_fr = Ingredient.where('fr_name ~* :name', name: 'seigle')
+  contains_gluten_fr.each do |allergen|
+    # allergen = Ingredient.find_or_create_by(fr_name: "blé")
+    AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen.id)
+  end
+
+  contains_gluten_en = Ingredient.where('en_name ~* :name', name: 'barley')
+  contains_gluten_en.each do |allergen|
+    # allergen = Ingredient.find_or_create_by(en_name: "wheat")
+    AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen.id)
+  end
+
+  contains_gluten_fr = Ingredient.where('fr_name ~* :name', name: 'orge')
+  contains_gluten_fr.each do |allergen|
+    # allergen = Ingredient.find_or_create_by(fr_name: "blé")
+    AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen.id)
+  end
+
+  contains_gluten_en = Ingredient.where('en_name ~* :name', name: 'malt')
+  contains_gluten_en.each do |allergen|
+    # allergen = Ingredient.find_or_create_by(en_name: "wheat")
+    AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen.id)
+  end
+
+  contains_gluten_fr = Ingredient.where('fr_name ~* :name', name: 'malt')
+  contains_gluten_fr.each do |allergen|
+    # allergen = Ingredient.find_or_create_by(fr_name: "blé")
+    AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen.id)
+  end
+
+  contains_gluten_en = Ingredient.where('en_name ~* :name', name: "brewers yeast")
+  contains_gluten_en.each do |allergen|
+    # allergen = Ingredient.find_or_create_by(en_name: "wheat")
+    AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen.id)
+  end
+
+  contains_gluten_fr = Ingredient.where('fr_name ~* :name', name: 'levure de biere')
+  contains_gluten_fr.each do |allergen|
+    # allergen = Ingredient.find_or_create_by(fr_name: "blé")
+    AllergyIngredient.create(allergy_id: gluten_allergy.id, ingredient_id: allergen.id)
+  end
+
 
   # PEANUTS ALLERGENS #
-  allergen = Ingredient.find_or_create_by(en_name: "peanuts")
-  AllergyIngredient.create(allergy_id: peanuts_allergy.id, ingredient_id: allergen.id)
+  contains_peanuts_en = Ingredient.where('en_name ~* :name', name: 'peanut')
+  contains_peanuts_en.each do |allergen|
+    # allergen = Ingredient.find_or_create_by(en_name: "wheat")
+    AllergyIngredient.create(allergy_id: peanuts_allergy.id, ingredient_id: allergen.id)
+  end
 
-  allergen = Ingredient.find_or_create_by(fr_name: "cacahuetes")
-  AllergyIngredient.create(allergy_id: peanuts_allergy.id, ingredient_id: allergen.id)
+  contains_cacahuete_fr = Ingredient.where('fr_name ~* :name', name: 'cacahuete')
+  contains_cacahuete_fr.each do |allergen|
+    # allergen = Ingredient.find_or_create_by(fr_name: "blé")
+    AllergyIngredient.create(allergy_id: peanuts_allergy.id, ingredient_id: allergen.id)
+  end
 
   ## TODO ### in japanese
 
