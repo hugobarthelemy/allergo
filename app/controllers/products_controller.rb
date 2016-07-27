@@ -69,8 +69,18 @@ class ProductsController < ApplicationController
 
   def edit
     @ingredient = Ingredient.new()
-    authorize @product
 
+    @en_ingredients = []
+    @fr_ingredients = []
+    Ingredient.all.each do |ing|
+      @en_ingredients << ing unless ing.en_name.blank?
+      @fr_ingredients << ing unless ing.fr_name.blank?
+    end
+
+    @en_ingredients = @en_ingredients.sort_by{|ingredient| ingredient.en_name}
+    @fr_ingredients = @fr_ingredients.sort_by{|ingredient| ingredient.fr_name}
+
+    authorize @product
   end
 
   def update
