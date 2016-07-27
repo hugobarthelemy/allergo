@@ -2,7 +2,10 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
-  root to: 'pages#home'
+  root to: 'pages#landing'
+
+  get 'pages/home'
+  get 'pages/landing'
 
 
   resources :products do
