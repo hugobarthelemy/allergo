@@ -1,7 +1,44 @@
 <div class="card card-hover">
 
   <div class="card-container-left">
-    <div class="card-category">Allergies Icons</div>
+    <div class="card-category">
+      <% prod = Product.find(257) %>
+      <% all_ingredients_id = [] %>
+      <% prod.product_components.each do |product_component| %>
+        <% all_ingredients_id << Ingredient.find(product_component.ingredient_id) %>
+      <% end %>
+
+      <% all_allergies_ingredients_id = [] %>
+      <% all_ingredients_id.each do |ingredient_id| %>
+        <% all_allergies_ingredients_id << Ingredient.find(ingredient_id.id).allergy_ingredients %>
+      <% end %>
+
+      <% all_allergies_ingredients_id.each do |allergy_id| %>
+        <% case Allergy.find(allergy_id.to_a[0].allergy_id).name %>
+        <% when "milk" %>
+          <%= image_tag ("picto_allergies/milk_picto.png"), class: "allergy-icon" %>
+        <% when "crustacean" %>
+          <%= image_tag ("picto_allergies/crustacean_shellfish_picto.png"), class: "allergy-icon" %>
+        <% when "eggs" %>
+          <%= image_tag ("picto_allergies/eggs-picto.png"), class: "allergy-icon" %>
+        <% when "fish" %>
+          <%= image_tag ("picto_allergies/fish_picto.png"), class: "allergy-icon" %>
+        <% when "peanuts" %>
+          <%= image_tag ("picto_allergies/peanuts_picto.png"), class: "allergy-icon" %>
+        <% when "soybeans" %>
+          <%= image_tag ("picto_allergies/soybeans_picto.png"), class: "allergy-icon" %>
+        <% when "tree nuts" %>
+          <%= image_tag ("picto_allergies/tree_nuts_picto.png"), class: "allergy-icon" %>
+        <% when "gluten" %>
+          <%= image_tag ("picto_allergies/wheat_picto.png"), class: "allergy-icon" %>
+        <% else %>
+          <span>'Unknow icon'</span>
+        <% end %>
+      <% end %>
+
+
+    </div>
+
     <div class="card-description">
       <div class="card-product-name">
         <h2><%= prod.name %></h2>
@@ -27,3 +64,19 @@
 </div>
 
 
+
+
+
+<!-- all_ingredients_id = all_product_components.product_id
+all_allergies_id_of_product = []
+all_ingredients_id.each do |ingredient_id|
+  all_allergies_id_of_product << Ingredient.find(ingredient_id).allergy_ingredients.allergy_id
+end
+all_names_of_allergies_in_product = []
+all_allergies_id_of_product.each |allergy_id|
+  all_names_of_allergies_in_product << Allergy.find(allergy_id).name
+end
+all_names_of_allergies_in_product.each |name_of_allergies_in_product|
+  name_of_allergies_in_product
+end
+ -->
