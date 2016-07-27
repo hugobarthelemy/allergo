@@ -8,12 +8,21 @@
 }
 
 .product-top{
+  margin:auto;
+  width: 280px;
+  position: relative;
+  padding-bottom:32px;
 
   .folow-btn {
-
-
+    position: absolute;
+    right: 10px;
   }
 }
+
+.product-bottom{
+
+}
+
 
 .nok {
 background-color: $pink-light;
@@ -35,27 +44,29 @@ background-color: $white;
 }
 
 
-.picto-allergies {
-  padding-left: 35px;
-  padding-right: 35px;
-  padding-top: 20px;
-}
+// .picto-allergies {
+//   padding-left: 35px;
+//   padding-right: 35px;
+//   padding-top: 20px;
+// }
 .picto-allergies img {
   width: 45px;
   padding: 5px;
 }
+
 .scss-ingredients-card-mobile {
-  padding-top: 30px;
-  padding-right: 35px;
-  padding-left: 35px;
+  // padding-top: 30px;
+  // padding-right: 35px;
+  // padding-left: 35px;
 }
 .scss-reviews-card-mobile {
   padding-top: 30px;
   padding-right: 35px;
   padding-left: 35px;
 }
-.pictos_for_allergies_match_with_profil {
-  border: 5px solid red;
+.pictos_match_with_profil {
+  border-radius:50%;
+  border: 1px solid red;
 }
 .pictos_for_allergies_no_match_with_profil {
   // TODO ?

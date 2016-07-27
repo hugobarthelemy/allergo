@@ -1,4 +1,7 @@
-<div class="scss-ingredients-card-mobile">
+<div class="scss-ingredients-card-mobile padding-top-bottom-mobile">
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
   <h3>Ingredients</h3>
   <% significant_ingredients_names = [] %>
   <% @product.significant_ingredients.each do |sig_ingredient|%>
@@ -31,5 +34,8 @@
 
   <div class="product-actions">
     <%= link_to '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'.html_safe, edit_product_path(@product), {class: "edit"} %>
+  </div>
+  </div>
+  </div>
   </div>
 </div>
