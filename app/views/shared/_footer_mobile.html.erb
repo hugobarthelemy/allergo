@@ -1,15 +1,41 @@
 <div class="col-xs-12 col-sm-6 col-md-4">
   <div class="row">
+  <% product_eatable = @matching_allergy[:matching_allergy_or_intolerance] %>
   <!-- TODO : mettre les bons liens -->
     <div class="col-xs-4 block-btn flexbox js-product-tab active" >
-      <div class="picto flex-item"><%= image_tag "picto_product_card/product-logo-green.png" %></div>
+      <div class="picto flex-item">
+        <% if product_eatable == "ok" %>
+          <%= image_tag "footer/product-logo-green.png" %>
+        <% elsif product_eatable == "nok" %>
+          <%= image_tag "footer/product-logo-red.png" %>
+        <% else %>
+          <%= image_tag "footer/product-logo-black.png" %>
+        <%end%>
+      </div>
     </div>
     <div class="col-xs-4 block-btn flexbox js-ingredient-tab">
-      <div class="picto"><%= image_tag "picto_product_card/ingredient-logo-green.png" %></div>
+      <div class="picto">
+        <% if product_eatable == "ok" %>
+          <%= image_tag "footer/ingredient-logo-green.png" %>
+        <% elsif @product_eatable == "nok" %>
+          <%= image_tag "footer/ingredient-logo-red.png" %>
+        <% else %>
+          <%= image_tag "footer/ingredient-logo-black.png" %>
+        <%end%>
+      </div>
     </div>
     <div class="col-xs-4 block-btn flexbox js-reviews-tab">
-      <div class="picto"><%= image_tag "picto_product_card/review-logo-green.png" %></div>
+      <div class="picto">
+        <% if product_eatable == "ok" %>
+          <%= image_tag "footer/review-logo-green.png" %>
+        <% elsif @product_eatable == "nok" %>
+          <%= image_tag "footer/review-logo-red.png" %>
+        <% else %>
+          <%= image_tag "footer/review-logo-black.png" %>
+        <%end%>
+      </div>
     </div>
   </div>
 </div>
+
 
