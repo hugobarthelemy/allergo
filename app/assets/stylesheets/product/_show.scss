@@ -9,16 +9,31 @@
 
 body{
     margin-bottom:50px;
-    background-color: rgb(253,253,253);
+    background-color: $pink-light;
+
+    font-family: $font-content-light;
+    font-size: $base-size;
+
+    h1{
+      font-size: $base-size-title;
+    }
+
+    h2{
+      font-size: $base-size-title;
+    }
+
+    h3{
+      font-size: $base-size-title;
+    }
 }
 .nok {
-background-color: red;
+background-color: $pink-light;
 }
 .ok {
-background-color: green;
+background-color: $blue-light;
 }
 .alert {
-background-color: orange;
+background-color: $white;
 }
 .js-background-color {
   height: 100%;
@@ -48,7 +63,7 @@ background-color: orange;
 }
 .avatar-alert {
   position: absolute;
-  background-color: white;
+  background-color: $white;
   top: 30px;
   right: 30px;
   border-radius: 50%;

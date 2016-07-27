@@ -3,8 +3,8 @@
  * ------------------------------------- */
 // Google fonts
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
-$base-font: "Open Sans", "Helvetica", "sans-serif";
-$header-font: "Raleway", "Helvetica", "sans-serif";
+// $base-font: "Open Sans", "Helvetica", "sans-serif";
+// $header-font: "Raleway", "Helvetica", "sans-serif";
 
 //Local fonts (uncomment following lines)
 @font-face {
@@ -12,22 +12,40 @@ $header-font: "Raleway", "Helvetica", "sans-serif";
   src: font-url("/assets/fonts/FuturaStd-Light.otf");
   src: font-url("/assets/fonts/FuturaStd-Light.otf?#iefix") format("truetype");
 }
-$content-font: "Futura Std Light";
 
 @font-face {
-  font-family: "Futura Std Medium";
-  src: font-url("/assets/fonts/FuturaStd-Medium.otf");
-  src: font-url("/assets/fonts/FuturaStd-Medium.otf?#iefix") format("truetype");
+  font-family: 'FuturaStd-Light';
+  src: url('FuturaStd-Light.eot');
+  src: url('FuturaStd-Light.eot?#iefix') format('embedded-opentype'),
+    url('FuturaStd-Light.woff2') format('woff2'),
+    url('FuturaStd-Light.woff') format('woff'),
+    url('FuturaStd-Light.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
-$content-font: "Futura Std Medium";
+
+$font-content-light: "FuturaStd-Light";
+
+@font-face {
+  font-family: 'FuturaStd-Medium';
+  src: url('FuturaStd-Medium.eot');
+  src: url('FuturaStd-Medium.eot?#iefix') format('embedded-opentype'),
+    url('FuturaStd-Medium.woff2') format('woff2'),
+    url('FuturaStd-Medium.woff') format('woff'),
+    url('FuturaStd-Medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+$font-content-medium: "FuturaStd-Medium";
 
 // Font-size and line-height
 // content text
-$base-size: 8px;
+$base-size: 12px;
 $base-height: 1.4;
 
 // titles (h1,h2,h3)
-$base-size-title: 10px;
+$base-size-title: 18px;
 $base-height-title: 1.4;
 
 $yellow: #ef533b;
