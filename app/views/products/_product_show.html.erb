@@ -6,9 +6,15 @@
   <div class="text-center avatar-product">
     <%= image_tag @product.img_url %>
   </div>
-
+<% product_eatable = @matching_allergy[:matching_allergy_or_intolerance] %>
   <div class="text-center avatar-alert">
-    <%= image_tag "product_card/orange_alerte.png" %>
+    <% if product_eatable == "ok" %>
+      <%= image_tag "product_card/green_check.png" %>
+    <% elsif @product_eatable == "nok" %>
+      <%= image_tag "product_card/orange_alerte.png" %>
+    <% else %>
+      <%= image_tag "product_card/red_cross.png" %>
+    <%end%>
   </div>
 
 
