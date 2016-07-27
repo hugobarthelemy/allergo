@@ -3,14 +3,14 @@
   <div class="hidden-xs">
     <div class="container">
       <div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
+        <div class="col-sm-10 col-sm-offset-1">
   <!-- partial product -->
           <%= render 'product_show', product: @product %>
         </div>
       </div>
   <!-- partial ingredients -->
       <div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
+        <div class="col-sm-10 col-sm-offset-1">
           <%= render 'ingredients_show', product: @product %>
         </div>
       </div>
@@ -38,10 +38,11 @@
     </div>
     <div class="footer">
       <%= render 'shared/footer_mobile' %>
-    </div>
 
+    </div>
   </div>
 </div>
+
 
 
 <%= content_for(:after_js) do%>

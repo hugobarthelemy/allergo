@@ -1,5 +1,5 @@
-<div class="product-top block-red">
-  <div class="mobile-show-title-h1 text-center">
+<div class="product-top">
+  <div class="padding-top-bottom-mobile text-center">
     <h1><%=@product.name%></h1>
   </div>
 
@@ -11,88 +11,79 @@
     <%= image_tag "product_card/orange_alerte.png" %>
   </div>
 
-  <!-- Match? -->
-  <% if @product_eatable == true %>
-    <p>You can eat me, you lucky!</p>
-  <%else%>
-    <p>Do NOT eat me!</p>
-  <%end%>
 
   <!-- Returns true if the product is tracked by the user, false if it is untracked -->
-  <div class="folow-btn">
-    <% product_tracked_by_user = !(@product.tracked_products.find_by_user_id(current_user.id).nil?) %>
-    <% if product_tracked_by_user %>
-      <%= link_to "Unfollow", product_untrack_path(@product), method: :delete, class: "btn btn-classic" %>
-    <% else %>
-      <%= link_to "Follow", product_track_path(@product), method: :post , class: "btn-classic btn"%>
-    <% end %>
-  </div>
-</div>
-
-<div class="product-bottom">
-  <h2>ALLERGENS IN THE PRODUCT</h2>
-  <h3>Significant amount</h3>
-  <!-- allergies logo -->
-
-  <div class="picto-allergies">
-    <%= image_tag "picto_allergies/crustacean_shellfish_picto_no.png" %>
-    <%= image_tag "picto_allergies/eggs_picto_no.png" %>
-    <%= image_tag "picto_allergies/fish_picto_no.png" %>
-    <%= image_tag "picto_allergies/milk_picto_no.png" %>
-    <%= image_tag "picto_allergies/peanuts_picto_no.png" %>
-    <%= image_tag "picto_allergies/soybeans_picto_no.png" %>
-    <%= image_tag "picto_allergies/tree_nuts_picto_no.png" %>
-    <%= image_tag "picto_allergies/wheat_picto_no.png" %>
-  </div>
-
-  <!-- picto intelligent -->
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-6">
-  <!-- qte significative d'allergène qui match avec le profil -->
-  qte significative d'allergène qui match avec le profil
-        <% @pictos_for_allergies_match_with_profil.each do |picto_for_allergies_match_with_profil| %>
-          <div class="pictos_for_allergies_match_with_profil picto-allergies"><%= image_tag(picto_for_allergies_match_with_profil) %></div>
-        <% end %>
-      </div>
-      <div class="col-xs-6">
-  <!-- qte significative d'allergène qui ne match pas avec le profil -->
-  qte significative d'allergène qui ne match pas avec le profil
-        <% @pictos_for_allergies_no_match_with_profil.each do |picto_for_allergies_no_match_with_profil| %>
-          <div class="pictos_for_allergies_no_match_with_profil picto-allergies"><%= image_tag(picto_for_allergies_no_match_with_profil) %></div>
-        <% end %>
-      </div>
-      <div class="col-xs-6">
-      <h3>Traces</h3>
-  <!-- trace d'allergène qui match avec le profil -->
-  trace d'allergène qui match avec le profil
-        <% @pictos_for_traces_match_with_profil.each do |picto_for_traces_match_with_profil| %>
-          <div class="pictos_for_traces_match_with_profil picto-allergies"><%= image_tag(picto_for_traces_match_with_profil) %></div>
-        <% end %>
-      </div>
-      <div class="col-xs-6">
-  <!-- trace d'allergène qui ne match pas avec le profil -->
-  trace d'allergène qui ne match pas avec le profil
-        <% @pictos_for_traces_no_match_with_profil.each do |picto_for_traces_no_match_with_profil| %>
-          <div class="pictos_for_traces_no_match_with_profil picto-allergies"><%= image_tag(picto_for_traces_match_with_profil) %></div>
-        <% end %>
-      </div>
-      <div class="col-xs-6">
-  <!-- trace d'allergène qui qui match avec le profil d'intolerent -->
-  trace d'allergène qui ne match pas avec le profil
-        <% @pictos_alert_for_trace_for_intolerant_profil.each do |picto_alert_for_trace_for_intolerant_profil| %>
-          <div class="pictos_alert_for_trace_for_intolerant_profil picto-allergies"><%= image_tag(picto_alert_for_trace_for_intolerant_profil) %></div>
-        <% end %>
-      </div>
+  <!-- <div class="follow-btn-block"> -->
+    <div class="folow-btn">
+      <% product_tracked_by_user = !(@product.tracked_products.find_by_user_id(current_user.id).nil?) %>
+      <% if product_tracked_by_user %>
+        <%= link_to "Unfollow", product_untrack_path(@product), method: :delete, class: "btn btn-classic" %>
+      <% else %>
+        <%= link_to "Follow", product_track_path(@product), method: :post , class: "btn-classic btn"%>
+      <% end %>
     </div>
   </div>
 
-  <div class="folow-btn">
-    <h2><%=@product.manufacturer%></h2>
-    <p>Product barcode:  <%=@product.barcode%></p>
-    <p>Last update:      <%=@product.updated_on%></p>
+
+<div class="product-bottom">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2>ALLERGENS IN THE PRODUCT</h2>
+        <h3>Significant amount</h3>
+    </div>
+  </div>
+  <!-- picto intelligent -->
+
+    <div class="row">
+      <div class="col-xs-12">
+  <!-- qte significative d'allergène qui match avec le profil -->
+        <p class="picto-allergies">
+          <% @pictos_for_allergies_match_with_profil.each do |picto_for_allergies_match_with_profil| %>
+            <span class="picto-allergies" ><%= image_tag(picto_for_allergies_match_with_profil, class: "pictos_match_with_profil") %>
+            </span>
+          <% end %>
+  <!-- qte significative d'allergène qui ne match pas avec le profil -->
+        <% @pictos_for_allergies_no_match_with_profil.each do |picto_for_allergies_no_match_with_profil| %>
+          <div class="pictos_for_allergies_no_match_with_profil picto-allergies"><%= image_tag(picto_for_allergies_no_match_with_profil) %>
+          </div>
+        <% end %>
+    </div>
   </div>
 
+  <div class="row">
+    <div class="col-xs-12">
+      <h3>Traces</h3>
+      <p class="picto-allergies">
+  <!-- trace d'allergène qui match avec le profil -->
+        <% @pictos_for_traces_match_with_profil.each do |picto_for_traces_match_with_profil| %>
+          <div class="picto-allergies"><%= image_tag(picto_for_traces_match_with_profil) %></div>
+        <% end %>
+
+  <!-- trace d'allergène qui ne match pas avec le profil -->
+        <% @pictos_for_traces_no_match_with_profil.each do |picto_for_traces_no_match_with_profil| %>
+          <span class="pictos_for_traces_no_match_with_profil picto-allergies"><%= image_tag(picto_for_traces_match_with_profil, class: "pictos_match_with_profil") %>
+          </span>
+        <% end %>
+      </p>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 ">
+        <div class="info-product">
+          <h2><%=@product.manufacturer%></h2>
+          <p>Product barcode:  <%=@product.barcode%></p>
+          <p>Last update:      <%=@product.updated_on%></p>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+</div>
 </div>
 
 <!-- <div class="folow-btn">
