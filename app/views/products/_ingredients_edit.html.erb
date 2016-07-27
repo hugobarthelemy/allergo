@@ -37,11 +37,11 @@
   <% significant_ingredients.uniq! %>
   <% significant_ingredients.each do |ingredient| %>
     <% if ingredient.any_name %>
-      <div class="row">
-        <div class="col-sm-1" style="margin-right:10px;">
+      <div class="row ligne-ingredient-remve">
+        <div class="col-xs-4" style="margin-right:10px;">
           <%= link_to "remove", product_ingredient_path(@product.id, ingredient.id, amount: 2), method: :delete, class: "btn btn-danger btn-xs"  %>
         </div>
-        <div class="col-sm-7">
+        <div class="col-sm-8">
         <%= "<p>#{ingredient.any_name}</p>".html_safe %>
         </div>
       </div>
@@ -87,12 +87,12 @@
   <% trace_ingredients.uniq! %>
   <% trace_ingredients.each do |trace| %>
     <% if trace.any_name %>
-      <div class="row">
-        <div class="col-sm-1" style="margin-right:10px;">
+      <div class="row ligne-ingredient-remve">
+        <div class="col-sm-4" style="margin-right:10px;">
 
           <%= link_to "remove", product_ingredient_path(@product.id, trace.id, amount: 1), method: :delete, class: "btn btn-danger btn-xs"  %>
         </div>
-        <div class="col-sm-7">
+        <div class="col-sm-8">
         <%= "<p>#{trace.any_name}</p>".html_safe %>
         </div>
       </div>
