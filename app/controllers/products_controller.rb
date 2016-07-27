@@ -104,8 +104,6 @@ class ProductsController < ApplicationController
 
   end
 
-  def destroy
-  end
 
   def allergens_in_product
     matching_allergy = "nok"
