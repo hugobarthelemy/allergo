@@ -68,6 +68,8 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    authorize @product
+
     @ingredient = Ingredient.new()
 
     @en_ingredients = []
@@ -80,7 +82,7 @@ class ProductsController < ApplicationController
     @en_ingredients = @en_ingredients.sort_by{|ingredient| ingredient.en_name}
     @fr_ingredients = @fr_ingredients.sort_by{|ingredient| ingredient.fr_name}
 
-    authorize @product
+
   end
 
   def update
