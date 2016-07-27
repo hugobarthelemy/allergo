@@ -62,7 +62,12 @@
 
 
       <div class="landing-btn">
-        <%= link_to "GOT IT", pages_home_path, :class => "btn btn-primary btn-lg" %>
+        <% if current_user %>
+          <%= link_to "Edit Profile", user_path(current_user),:class => "btn btn-primary btn-lg" %>
+        <% else %>
+          <%= link_to "Create Profile", new_user_registration_path,:class => "btn btn-primary btn-lg" %>
+        <% end %>
+        <%= link_to "Explore", pages_home_path, :class => "btn btn-primary btn-lg" %>
       </div>
 
     </div>
