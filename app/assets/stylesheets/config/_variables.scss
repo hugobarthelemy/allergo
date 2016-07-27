@@ -3,8 +3,8 @@
  * ------------------------------------- */
 // Google fonts
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
-// $base-font: "Open Sans", "Helvetica", "sans-serif";
-// $header-font: "Raleway", "Helvetica", "sans-serif";
+$base-font: "Open Sans", "Helvetica", "sans-serif";
+$header-font: "Open Sans", "Helvetica", "sans-serif";
 
 //Local fonts (uncomment following lines)
 @font-face {
@@ -24,7 +24,7 @@
   font-style: normal;
 }
 
-$font-content-light: "FuturaStd-Light";
+$font-light: "FuturaStd-Light";
 
 @font-face {
   font-family: 'FuturaStd-Medium';
@@ -37,7 +37,12 @@ $font-content-light: "FuturaStd-Light";
   font-style: normal;
 }
 
-$font-content-medium: "FuturaStd-Medium";
+$font-medium: "FuturaStd-Medium";
+
+
+
+
+$font-main-title: 'Fjalla One', sans-serif;
 
 // Font-size and line-height
 // content text
@@ -45,7 +50,7 @@ $base-size: 12px;
 $base-height: 1.4;
 
 // titles (h1,h2,h3)
-$base-size-title: 18px;
+$base-size-title: 15px;
 $base-height-title: 1.4;
 
 $yellow: #ef533b;
@@ -75,3 +80,5 @@ $white: #f7f8f7;
 // $gray:         lighten(#000, 33.5%); // #555
 // $gray-light:   lighten(#000, 46.7%); // #777
 // $gray-lighter: lighten(#000, 93.5%); // #eee
+
+

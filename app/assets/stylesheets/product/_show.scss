@@ -7,25 +7,14 @@
     margin-bottom:0px;
 }
 
-body{
-    margin-bottom:50px;
-    background-color: $pink-light;
+.product-top{
 
-    font-family: $font-content-light;
-    font-size: $base-size;
+  .folow-btn {
 
-    h1{
-      font-size: $base-size-title;
-    }
 
-    h2{
-      font-size: $base-size-title;
-    }
-
-    h3{
-      font-size: $base-size-title;
-    }
+  }
 }
+
 .nok {
 background-color: $pink-light;
 }
@@ -41,41 +30,11 @@ background-color: $white;
 }
 
 
-.logo-shazam img {
-  position:fixed;
-  padding-left: 30px;
-  padding-top: 10px;
-  width: 70px;
-}
 .mobile-box {
   position: relative;
 }
-.mobile-show-title-h1 {
-  padding-top: 40px;
-}
-.avatar-product {
-  position: relative;
-}
-.avatar-product img {
-  border-radius: 50%;
-  width: 200px;
-  height: 200px;
-}
-.avatar-alert {
-  position: absolute;
-  background-color: $white;
-  top: 30px;
-  right: 30px;
-  border-radius: 50%;
-}
-.avatar-alert img {
-  width: 50px;
-  height: 50px;
-}
-.folow-btn {
-  padding-top: 20px;
-  padding-left: 40px;
-}
+
+
 .picto-allergies {
   padding-left: 35px;
   padding-right: 35px;
