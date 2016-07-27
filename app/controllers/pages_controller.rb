@@ -21,6 +21,10 @@ class PagesController < ApplicationController
     end
   end
 
+  def landing
+
+  end
+
   def allergies_allergens
     @allergies = Allergy.all
     @allergens = AllergyIngredient.all

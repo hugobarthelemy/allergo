@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
 
+  get 'pages/landing'
+
 
   resources :products do
     resources :ingredients, only: [:index, :new, :create, :edit, :update,  :destroy]

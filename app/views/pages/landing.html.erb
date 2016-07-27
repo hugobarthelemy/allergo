@@ -1,0 +1,69 @@
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('http://unsplash.it/1200/800');">
+  <div class="container">
+    <div class="banner-content">
+
+      <div class="landing-title">
+        <h1>Allergo Scan</h1>
+      </div>
+
+      <div class="landing-claim">
+        <p>Master your food allergies, bit into life</p>
+      </div>
+
+      <div class="row">
+
+        <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
+          <div class="landing-step" id="step1">
+            <h3>Step 1</h3>
+            <p>Scan a product or search by product name</p>
+            <span id="step-btn1">next</span>
+          </div>
+        </div>
+
+        <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
+          <div class="landing-step" id="step2">
+            <h3>Step 2</h3>
+            <p>Check the product's allergens and ingredients</p>
+            <span id="step-btn2">next</span>
+          </div>
+        </div>
+
+        <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
+          <div class="landing-step" id="step3">
+            <h3>Final Step</h3>
+            <p>Create a profile to get customized recommendations and alerts on products you follow.</p>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="landing-btn">
+        <a class="btn btn-primary btn-lg">GOT IT</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<%= content_for(:after_js) do%>
+  <script>
+    $(document).ready(function(){
+
+      $( "#step-btn1" ).click(function() {
+        console.log("Start step 1")
+        $( "#step1" ).hide();
+        $( "#step2" ).show();
+        console.log("Finish step 1")
+      });
+
+      $( "#step-btn2" ).click(function() {
+        console.log("Start step 2")
+        $( "#step2" ).hide();
+        $( "#step3" ).show();
+        console.log("Finish step 2")
+      });
+
+    });
+  </script>
+<% end %>
