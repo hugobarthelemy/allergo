@@ -34,9 +34,6 @@ module Allergo
     config.active_record.raise_in_transactional_callbacks = true
     config.active_job.queue_adapter = :sidekiq
 
-    # fonts
-    config.assets.enabled = true
-    config.assets.paths << Rails.root.join("app", "assets", "fonts")
   end
 end
 

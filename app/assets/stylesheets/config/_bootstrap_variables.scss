@@ -3,17 +3,17 @@
  * (see http://getbootstrap.com/customize/#less-variables)
  * ------------------------------------- */
 
-// General style
-// $font-family-sans-serif:  $base-font;
-// $body-bg:                 white;
-// $font-size-base:          $base-size;
-// $line-height-base:        $base-height;
-// $headings-font-family:    $header-font;
+//General style
+$font-family-sans-serif:  $base-font;
+$body-bg:                 white;
+$font-size-base:          $base-size;
+$line-height-base:        $base-height;
+$headings-font-family:    $header-font;
 
 // Semantic color scheme
 $brand-primary:   $blue;
 $brand-success:   $green;
-$brand-info:      $yellow;
+$brand-info:      $red;
 $brand-danger:    $red;
 $brand-warning:   $orange;
 
@@ -21,3 +21,5 @@ $brand-warning:   $orange;
 $border-radius-base:  2px;
 $border-radius-large: 2px;
 $border-radius-small: 2px;
+
+
