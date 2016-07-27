@@ -69,7 +69,7 @@ class ProductsController < ApplicationController
 
   def edit
     authorize @product
-
+    @matching_allergy = allergens_in_product
     @ingredient = Ingredient.new()
 
     @en_ingredients = []
