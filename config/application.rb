@@ -16,8 +16,8 @@ require "sprockets/railtie"
 Bundler.require(*Rails.groups)
 
 # fonts
-config.assets.enabled = true
-config.assets.paths << Rails.root.join("app", "assets", "fonts")
+# config.assets.enabled = true
+# config.assets.paths << Rails.root.join("app", "assets", "fonts")
 
 
 
@@ -40,3 +40,6 @@ module Allergo
     config.active_job.queue_adapter = :sidekiq
   end
 end
+
+# Initialize default meta tags.
+DEFAULT_META = YAML.load_file(Rails.root.join('config/meta.yml'))
