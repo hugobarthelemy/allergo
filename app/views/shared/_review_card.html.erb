@@ -1,23 +1,29 @@
-<span class="review-user"><%= review.user.first_name %> <%= review.user.last_name %></span><span class="review-date"> - <%= review.updated_at.strftime(format='%Y/%m/%d') %></span>
+<div class="text-center">
+  <p class="review-date"><%= review.updated_at.strftime(format='%Y/%m/%d') %></p>
+</div>
 
-<div class="inlinelist review-cards-allergy-list">
-  <li class="">
-    <% review.user.allergies.each do |allergy| %>
-      <ol><%= render 'shared/partial_reviewcards_icons', allergy: allergy %></ol>
-    <% end %>
-  </li>
+<div class="review-user-info">
+  <p class="review-user"><%= review.user.first_name %> <%= review.user.last_name %></p>
+
+  <div class="inlinelist review-cards-allergy-list">
+    <li class="review-user-allergens">
+      <% review.user.allergies.each do |allergy| %>
+        <ol><%= render 'shared/partial_reviewcards_icons', allergy: allergy %></ol>
+      <% end %>
+    </li>
+  </div>
 </div>
 
 <div class="review-content">
   <% if review.score == 0 %>
-      <p> Feedback: <i class="fa fa-smile-o" aria-hidden="true"></i></p>
+      <p> Felt: <i class="fa fa-smile-o" aria-hidden="true"></i></p>
   <% elsif review.score == 1 %>
-      <p> Feedback: <i class="fa fa-meh-o" aria-hidden="true"></i></p>
+      <p> Felt: <i class="fa fa-meh-o" aria-hidden="true"></i></p>
   <% else %>
-      <p> Feedback: <i class="fa fa-frown-o" aria-hidden="true"></i></p>
+      <p> Felt: <i class="fa fa-frown-o" aria-hidden="true"></i></p>
   <% end %>
 
-  <p><b>Message:</b> <%=review.content%></p>
+  <p><strong>Message:</strong> <%=review.content%></p>
 </div>
 
 
