@@ -28,6 +28,7 @@
     <!-- product card -->
     <div class="product-card-mobile">
       <%= render 'product_show', product: @product %>
+      <%= @matching_allergy[:matching_allergy_or_intolerance] %>
     </div>
     <div class="ingredient-card-mobile hide">
       <%= render 'ingredients_show', product: @product %>
