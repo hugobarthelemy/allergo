@@ -1,9 +1,9 @@
 <p><%= review.user.first_name %> <%= review.user.last_name %> - <%= review.updated_at.strftime(format='%Y/%m/%d') %></p>
 
-<div class="inlinelist">
-  <li>
+<div class="inlinelist review-cards-allergy-list">
+  <li class="">
     <% review.user.allergies.each do |allergy| %>
-      <ol><%= allergy.name %></ol>
+      <ol><%= render 'shared/partial_reviewcards_icons', allergy: allergy %></ol>
     <% end %>
   </li>
 </div>
@@ -16,6 +16,6 @@
     <p> Feedback: <i class="fa fa-frown-o" aria-hidden="true"></i></p>
 <% end %>
 
-<p>Content: <%=review.content%></p>
+<p>Message: <%=review.content%></p>
 
 

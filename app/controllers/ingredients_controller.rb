@@ -1,18 +1,18 @@
 class IngredientsController < ApplicationController
   before_action :set_product, only: [:edit, :destroy]
   before_action :set_ingredient, only: [:edit, :destroy]
+  skip_after_action :verify_authorized, only: [:destroy]
 
   def destroy
-    authorize @product
     product_ingredient = ProductComponent.where(
                             ingredient_id: @ingredient.id,
-                            product_id: @product.id
+                            product_id: @product.id,
+                            amount: params[:amount]
                           )
+    product_ingredient.first.destroy
+    redirect_to edit_product_path(@product)
 
-    product_ingredient.destroy_all
-    redirect_to edit_product_path(@product.id)
   end
-end
 
 private
 
@@ -31,3 +31,4 @@ private
   def set_ingredient
     @ingredient = Ingredient.find(params[:id])
   end
+end

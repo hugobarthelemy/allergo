@@ -1,0 +1,8 @@
+<% if current_user && current_user.allergies.empty? %>
+  <%= link_to user_path(current_user), "style" => "text-decoration: none" do %>
+    <div class="alert alert-info alert-dismissible" role="alert">
+      <span>Add allergies to your profile for optimal recommendation.</span>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+  <% end %>
+<% end %>

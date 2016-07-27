@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :untrack, :track]
+  before_action :set_product, only: [:show, :edit, :update, :untrack, :track]
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
@@ -68,21 +68,44 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @ingredient = Ingredient.new()
     authorize @product
+
+    @ingredient = Ingredient.new()
+
+    @en_ingredients = []
+    @fr_ingredients = []
+    Ingredient.all.each do |ing|
+      @en_ingredients << ing unless ing.en_name.blank?
+      @fr_ingredients << ing unless ing.fr_name.blank?
+    end
+
+    @en_ingredients = @en_ingredients.sort_by{|ingredient| ingredient.en_name}
+    @fr_ingredients = @fr_ingredients.sort_by{|ingredient| ingredient.fr_name}
+
 
   end
 
   def update
 
+      ingredient_id = params[:product][:product_components][:ingredient_id]
+      # ingredient = Ingredient.find(ingredient_id)
+      product_component = ProductComponent.new(
+        ingredient_id: ingredient_id,
+        product_id: @product.id,
+        amount: params[:product][:amount]
+      )
+      authorize @product
+      if product_component.save
+        redirect_to edit_product_path
+        # after update
+        MailProductAlertJob.perform_later(@product.id)
+        ### DO ### redirect
+      else
+        render :edit
+      end
 
-      # after update
-      MailProductAlertJob.perform_later(@product.id)
-      ### DO ### redirect
   end
 
-  def destroy
-  end
 
   def allergens_in_product
     matching_allergy = "nok"
