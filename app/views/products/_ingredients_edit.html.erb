@@ -8,6 +8,16 @@
 
       <%= f.simple_fields_for :product_components do |m| %>
         <%= m.input :ingredient_id, collection: @en_ingredients, label_method: :en_name, value_method: :id, label: "ingredient name in English" %>
+        <%= f.input :amount, as: :hidden, input_html: {value: 2} %>
+      <% end %>
+
+
+      <%= f.button :submit, class: "btn btn-primary btn-xs", value: "Add ingredient" %>
+    <% end %>
+    <%= simple_form_for @product do |f| %>
+      <%= f.error_notification %>
+
+      <%= f.simple_fields_for :product_components do |m| %>
         <%= m.input :ingredient_id, collection: @fr_ingredients, label_method: :fr_name, value_method: :id, label: "nom d'ingredient en français" %>
         <%= f.input :amount, as: :hidden, input_html: {value: 2} %>
       <% end %>
@@ -47,6 +57,16 @@
 
       <%= f.simple_fields_for :product_components do |m| %>
         <%= m.input :ingredient_id, collection: @en_ingredients, label_method: :en_name, value_method: :id, label: "ingredient name in English" %>
+        <%= f.input :amount, as: :hidden, input_html: {value: 1} %>
+      <% end %>
+
+
+      <%= f.button :submit, class: "btn btn-primary btn-xs", value: "Add trace" %>
+    <% end %>
+    <%= simple_form_for @product do |f| %>
+      <%= f.error_notification %>
+
+      <%= f.simple_fields_for :product_components do |m| %>
         <%= m.input :ingredient_id, collection: @fr_ingredients, label_method: :fr_name, value_method: :id, label: "nom d'ingredient en français" %>
         <%= f.input :amount, as: :hidden, input_html: {value: 1} %>
       <% end %>

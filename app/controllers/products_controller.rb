@@ -84,7 +84,7 @@ class ProductsController < ApplicationController
   end
 
   def update
-      raise
+
       ingredient_id = params[:product][:product_components][:ingredient_id]
       # ingredient = Ingredient.find(ingredient_id)
       product_component = ProductComponent.new(
@@ -94,13 +94,14 @@ class ProductsController < ApplicationController
       )
       authorize @product
       if product_component.save
-        redirect_to product_path
+        redirect_to edit_product_path
+        # after update
+        MailProductAlertJob.perform_later(@product.id)
+        ### DO ### redirect
       else
         render :edit
       end
-      # after update
-      MailProductAlertJob.perform_later(@product.id)
-      ### DO ### redirect
+
   end
 
   def destroy

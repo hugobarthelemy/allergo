@@ -12,8 +12,10 @@ class IngredientsController < ApplicationController
 
     product_ingredient.first.destroy
 
-    redirect_to edit_product_path(@product.id)
     authorize @product
+
+    redirect_to edit_product_path(@product.id)
+
   end
 
 private
