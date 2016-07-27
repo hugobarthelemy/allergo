@@ -1,6 +1,13 @@
 // Place all the styles related to the Reviews controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.review-card {
+  // border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: #FFFFFF;
+}
 
 .review-title {
   padding-bottom: 30px;
@@ -16,6 +23,17 @@
   padding-left: 10px;
 }
 
+
+// CARDS
+.review-user {
+  font-size: 15px;
+  font-style: italic;
+}
+.review-date {
+  font-size: 10px;
+  font-style: italic;
+}
+
 .review-cards-allergy-list {
   li {
     padding-top: 2px;
@@ -25,7 +43,13 @@
     padding-right: 10px;
   }
   img {
-    width: 10px;
+    width: 25px;
+  }
+}
+
+.review-content {
+  p {
+    font-size: 20px;
   }
 }
 
