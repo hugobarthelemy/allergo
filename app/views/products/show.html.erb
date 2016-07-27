@@ -25,25 +25,24 @@
   <!-- mobile -->
   <div class="mobile-box hidden-sm hidden-lg hidden-md">
 
-  <div class="row">
-    <div class="col-xs-10 col-xs-offset-1">
-      <!-- product card -->
-      <div class="product-card-mobile">
-        <%= render 'product_show', product: @product %>
-      </div>
-      <div class="ingredient-card-mobile hide">
-        <%= render 'ingredients_show', product: @product %>
-      </div>
-      <div class="reviews-card-mobile hide">
-        <%= render 'reviews_show', reviews: @reviews %>
-      </div>
-      <div class="footer">
-        <%= render 'shared/footer_mobile' %>
-      </div>
+    <!-- product card -->
+    <div class="product-card-mobile">
+      <%= render 'product_show', product: @product %>
+      <%= @matching_allergy[:matching_allergy_or_intolerance] %>
+    </div>
+    <div class="ingredient-card-mobile hide">
+      <%= render 'ingredients_show', product: @product %>
+    </div>
+    <div class="reviews-card-mobile hide">
+      <%= render 'reviews_show', reviews: @reviews %>
+    </div>
+    <div class="footer">
+      <%= render 'shared/footer_mobile' %>
+
     </div>
   </div>
-  </div>
 </div>
+
 
 
 <%= content_for(:after_js) do%>
