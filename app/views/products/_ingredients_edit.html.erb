@@ -9,7 +9,9 @@
       <%= f.simple_fields_for :product_components do |m| %>
         <%= m.input :ingredient_id, collection: @en_ingredients, label_method: :en_name, value_method: :id, label: "ingredient name in English" %>
         <%= m.input :ingredient_id, collection: @fr_ingredients, label_method: :fr_name, value_method: :id, label: "nom d'ingredient en français" %>
+        <%= f.input :amount, as: :hidden, input_html: {value: 2} %>
       <% end %>
+
 
       <%= f.button :submit, class: "btn btn-primary btn-xs", value: "Add ingredient" %>
     <% end %>
@@ -27,7 +29,7 @@
     <% if ingredient.any_name %>
       <div class="row">
         <div class="col-sm-1" style="margin-right:10px;">
-          <%= link_to "remove", product_ingredient_path(@product.id, ingredient.id), method: :delete, class: "btn btn-danger btn-xs"  %>
+          <%= link_to "remove", product_ingredient_path(@product.id, ingredient.id, amount: 2), method: :delete, class: "btn btn-danger btn-xs"  %>
         </div>
         <div class="col-sm-7">
         <%= "<p>#{ingredient.any_name}</p>".html_safe %>
@@ -38,14 +40,45 @@
   <!-- Display ingredients with remove button -->
 
   <h3>Traces</h3>
-  <% trace_ingredients_names = [] %>
+  <div class="row" style="margin-bottom: 20px;">
+    <p><strong>Add a new trace to <%= @product.name %> in either English or French</strong></p>
+    <%= simple_form_for @product do |f| %>
+      <%= f.error_notification %>
+
+      <%= f.simple_fields_for :product_components do |m| %>
+        <%= m.input :ingredient_id, collection: @en_ingredients, label_method: :en_name, value_method: :id, label: "ingredient name in English" %>
+        <%= m.input :ingredient_id, collection: @fr_ingredients, label_method: :fr_name, value_method: :id, label: "nom d'ingredient en français" %>
+        <%= f.input :amount, as: :hidden, input_html: {value: 1} %>
+      <% end %>
+
+
+      <%= f.button :submit, class: "btn btn-primary btn-xs", value: "Add trace" %>
+    <% end %>
+  </div>
+
+
+
+  <!-- Display traces with remove button -->
+
+  <% trace_ingredients = [] %>
   <% @product.trace_ingredients.each do |trace| %>
-    <% trace_ingredients_names << trace.ingredient.any_name %>
+    <% trace_ingredients << trace.ingredient %>
   <% end %>
-  <% trace_ingredients_names.uniq! %>
-  <% trace_ingredients_names.each do |trace_name| %>
-      <%= "<p>#{trace_name}</p>".html_safe unless trace_name.nil? %>
+  <% trace_ingredients.uniq! %>
+  <% trace_ingredients.each do |trace| %>
+    <% if trace.any_name %>
+      <div class="row">
+        <div class="col-sm-1" style="margin-right:10px;">
+
+          <%= link_to "remove", product_ingredient_path(@product.id, trace.id, amount: 1), method: :delete, class: "btn btn-danger btn-xs"  %>
+        </div>
+        <div class="col-sm-7">
+        <%= "<p>#{trace.any_name}</p>".html_safe %>
+        </div>
+      </div>
+    <%end%>
   <% end %>
+  <!-- Display traces with remove button -->
 
   <h3>Allergens</h3>
   <% allergen_ingredients_names = [] %>

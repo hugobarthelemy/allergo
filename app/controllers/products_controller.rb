@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :untrack, :track]
+  before_action :set_product, only: [:show, :edit, :update, :untrack, :track]
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
@@ -84,8 +84,20 @@ class ProductsController < ApplicationController
   end
 
   def update
-
-
+      raise
+      ingredient_id = params[:product][:product_components][:ingredient_id]
+      # ingredient = Ingredient.find(ingredient_id)
+      product_component = ProductComponent.new(
+        ingredient_id: ingredient_id,
+        product_id: @product.id,
+        amount: params[:product][:amount]
+      )
+      authorize @product
+      if product_component.save
+        redirect_to product_path
+      else
+        render :edit
+      end
       # after update
       MailProductAlertJob.perform_later(@product.id)
       ### DO ### redirect
