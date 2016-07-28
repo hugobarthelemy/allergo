@@ -1,8 +1,13 @@
 <div class="card card-hover">
 
   <div class="card-container-left">
+
+    <div class="card-product-name">
+      <h2><%= prod.name %></h2>
+    </div>
+
     <div class="card-category">
-      <span>Allergens: </span>
+      <p>Allergens: </p>
       <% all_allergen = [] %>
       <% prod.allergen_ingredients.each do |allergen| %>
         <% all_allergen << Ingredient.find(allergen.ingredient_id) %>
@@ -40,9 +45,7 @@
     </div>
 
     <div class="card-description">
-      <div class="card-product-name">
-        <h2><%= prod.name %></h2>
-      </div>
+
       <div class="card-product-manufacturer">
         <p><%= prod.manufacturer %></p>
       </div>
