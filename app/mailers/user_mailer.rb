@@ -12,7 +12,7 @@ class UserMailer < ApplicationMailer
     @changed_ingredients_name = Ingredient.find(ingredient_id).any_name
     @action = action
 
-    @destination_email = "hugopoubelle@gmail.com"
+    @destination_email = "barthelemyhugo@gmail.com"
     @user_name = "Hugo Barthelemy"
     # @user_name = "#{@user.first_name} #{@user.last_name}"
 
