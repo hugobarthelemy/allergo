@@ -1,3 +1,14 @@
+<% product_eatable = @matching_allergy[:matching_allergy_or_intolerance] %>
+
+<div class="product-show" style="background-color:
+  <% if product_eatable == "ok" %>
+    $blue-light; color:#69646D;" class="color-text"
+  <% elsif product_eatable == "nok" %>
+    #FF6C72; color:#F9FAFA;" class="color-text"
+  <% else %>
+    $blue-light; color:#69646D;" class="color-text"
+  <%end%>
+>
 <div class="scss-reviews-card-mobile">
   <div class="text-center review-page-title">
     <h1>Allergy Reviews for <%= @product.name %></h1>
@@ -28,3 +39,11 @@
     </div>
   </div>
 </div>
+</div>
+
+<% content_for(:after_js) do %>
+  <script>
+
+    $(".product-show").addClass("color-text")
+  </script>
+<% end -%>

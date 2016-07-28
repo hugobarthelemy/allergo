@@ -26,6 +26,27 @@
   padding-left: 15px;
 }
 
+.highlight-allergens{
+  border-radius: 5px;
+  display: inline-block;
+  padding: 0px 26px;
+  // #FF7C81
+}
+
+.product-show{
+  height: vh;
+  color: $white;
+
+
+  h1{
+    color: $violet;
+  }
+}
+
+.color-text{
+  color:$violet;
+  background-color:
+}
 
 .nok {
 background-color: $pink-light;
@@ -53,9 +74,10 @@ background-color: $blue-light;
 //   padding-top: 20px;
 // }
 .picto-allergies img {
-  width: 45px;
-  padding: 5px;
+  width: 54px;
+  // padding: 5px;
 }
+
 
 .scss-ingredients-card-mobile {
   // padding-top: 30px;
@@ -69,19 +91,37 @@ background-color: $blue-light;
 }
 .pictos_match_with_profil {
   border-radius:50%;
-  border: 5px solid $red;
+  border: 4px solid $red;
+
 }
 .pictos_for_allergies_no_match_with_profil {
   // TODO ?
+
 }
 .pictos_for_traces_match_with_profil {
-  border: 5px solid red;
+  border: 4px solid red;
 }
 .pictos_for_traces_no_match_with_profil {
   //TODO ?
 }
 .pictos_alert_for_trace_for_intolerant_profil {
-  border: 5px solid orange;
+  border: 4px solid orange;
+}
+
+
+
+.pictos_for_allergies_no_match_with_profil img{
+  // TODO ?
+  width: 49px;
+}
+.pictos_for_traces_match_with_profil img{
+  width: 49px;
+}
+.pictos_for_traces_no_match_with_profil img{
+  width: 49px;
+}
+.pictos_alert_for_trace_for_intolerant_profil img{
+  width: 49px;
 }
 
 
