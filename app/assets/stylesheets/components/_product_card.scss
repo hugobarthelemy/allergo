@@ -45,25 +45,26 @@
   position: absolute;
   // border: solid 1px yellow;
   width: 100%;
-  height: 20%;
+  height: 40%;
+  top: 40%;
   font-size: 10px;
   text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
 }
 
 .card-product-name {
   position: absolute;
   // border: solid 1px purple;
-  height: 60%;
+  height: 40%;
   width: 100%;
-  top: 20%;
+  // top: 20%;
   display: flex;
-  align-items: center;
+  // align-items: center;
   justify-content: center;
   h2 {
-    font-size: 100%;
+    font-size: 23px;
     font-weight: bolder;
   }
 }
@@ -74,6 +75,7 @@
   height: 20%;
   width: 100%;
   top: 80%;
+  padding-top: 5px;
   p {
   font-size: 100%;
   }
@@ -91,7 +93,7 @@
   opacity: 0.1;
 }
 .allergy-icon {
-  width: 10px;
+  width: 35px;
   padding-left: 0px;
 }
 
