@@ -37,58 +37,46 @@
       <div class="col-xs-12">
         <h2>ALLERGENS IN THE PRODUCT</h2>
         <h3>Significant amount</h3>
-    </div>
-  </div>
-  <!-- picto intelligent -->
 
-    <div class="row">
-      <div class="col-xs-12">
-  <!-- qte significative d'allergène qui match avec le profil -->
-        <p><div class="picto-allergies">
-          <% @pictos_for_allergies_match_with_profil.each do |picto_for_allergies_match_with_profil| %>
-            <span class="picto-allergies" ><%= image_tag(picto_for_allergies_match_with_profil, class: "pictos_match_with_profil") %>
-            </span>
-          <% end %>
-  <!-- qte significative d'allergène qui ne match pas avec le profil -->
-        <% @pictos_for_allergies_no_match_with_profil.each do |picto_for_allergies_no_match_with_profil| %>
-          <div class="pictos_for_allergies_no_match_with_profil picto-allergies"><%= image_tag(picto_for_allergies_no_match_with_profil) %>
+
+              <p><div class="picto-allergies">
+                <% @pictos_for_allergies_match_with_profil.each do |picto_for_allergies_match_with_profil| %>
+                  <span class="picto-allergies" ><%= image_tag(picto_for_allergies_match_with_profil, class: "pictos_match_with_profil") %>
+                  </span>
+                <% end %>
+        <!-- qte significative d'allergène qui ne match pas avec le profil -->
+              <% @pictos_for_allergies_no_match_with_profil.each do |picto_for_allergies_no_match_with_profil| %>
+                <div class="pictos_for_allergies_no_match_with_profil picto-allergies"><%= image_tag(picto_for_allergies_no_match_with_profil) %>
+                </div>
+              <% end %><p>
           </div>
-        <% end %><p>
+
+
+            <div class="traces">
+              <h3>Traces</h3>
+              <p class="picto-allergies">
+          <!-- trace d'allergène qui match avec le profil -->
+                <% @pictos_for_traces_match_with_profil.each do |picto_for_traces_match_with_profil| %>
+                  <div class="picto-allergies"><%= image_tag(picto_for_traces_match_with_profil) %></div>
+                <% end %>
+
+          <!-- trace d'allergène qui ne match pas avec le profil -->
+                <% @pictos_for_traces_no_match_with_profil.each do |picto_for_traces_no_match_with_profil| %>
+                  <span class="pictos_for_traces_no_match_with_profil picto-allergies"><%= image_tag(picto_for_traces_match_with_profil, class: "pictos_match_with_profil") %>
+                  </span>
+                <% end %>
+              </p>
+
+              </div>
+
+              <div class="info-product">
+                <h2><%=@product.manufacturer%></h2>
+                <p>Product barcode:  <%=@product.barcode%></p>
+                <p>Last update:      <%=@product.updated_on%></p>
+              </div>
     </div>
+
   </div>
-
-  <div class="row">
-    <div class="col-xs-12">
-      <h3>Traces</h3>
-      <p class="picto-allergies">
-  <!-- trace d'allergène qui match avec le profil -->
-        <% @pictos_for_traces_match_with_profil.each do |picto_for_traces_match_with_profil| %>
-          <div class="picto-allergies"><%= image_tag(picto_for_traces_match_with_profil) %></div>
-        <% end %>
-
-  <!-- trace d'allergène qui ne match pas avec le profil -->
-        <% @pictos_for_traces_no_match_with_profil.each do |picto_for_traces_no_match_with_profil| %>
-          <span class="pictos_for_traces_no_match_with_profil picto-allergies"><%= image_tag(picto_for_traces_match_with_profil, class: "pictos_match_with_profil") %>
-          </span>
-        <% end %>
-      </p>
-
-      </div>
-
-    </div>
-
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="info-product">
-          <h2><%=@product.manufacturer%></h2>
-          <p>Product barcode:  <%=@product.barcode%></p>
-          <p>Last update:      <%=@product.updated_on%></p>
-        </div>
-      </div>
-    </div>
-</div>
-
-
 </div>
 </div>
 

@@ -46,11 +46,13 @@ $font-main-title: 'Fjalla One', sans-serif;
 
 // Font-size and line-height
 // content text
-$base-size: 12px;
+$base-size: 14px;
 $base-height: 1.4;
 
-// titles (h1,h2,h3)
-$base-size-title: 15px;
+// titles (h1)
+$base-size-main-title: 20px;
+// titles (h2,h3)
+$base-size-title: 16px;
 $base-height-title: 1.4;
 
 $yellow: #ef533b;
