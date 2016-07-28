@@ -200,9 +200,9 @@ class ProductsController < ApplicationController
       product_significant_ingredients + product_traces - allergens_matching_allergy - allergens_matching_intolerance
     )
     allergies_in_product_not_in_user = []
-    if allergens_not_in_user_allergy != NilClass
+    if allergens_not_in_user_allergy != nil
       allergens_not_in_user_allergy.each do |ingredient|
-        if ingredient.allergies != NilClass
+        if ingredient.allergies != nil
           ingredient.allergies.each do |allergy|
             allergies_in_product_not_in_user << allergy.name
           end
