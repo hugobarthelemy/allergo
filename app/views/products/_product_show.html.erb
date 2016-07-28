@@ -36,7 +36,14 @@
     <div class="row">
       <div class="col-xs-12">
         <h2>ALLERGENS IN THE PRODUCT</h2>
-        <h3>Significant amount</h3>
+
+        <% no_matching_allergies = !(@pictos_for_allergies_match_with_profil).empty? %>
+
+        <% no_allergies = !(@pictos_for_allergies_no_match_with_profil).empty? %>
+
+        <% if (no_allergies || no_matching_allergies)%>
+            <h3>Significant amount</h3>
+        <% end %>
 
 
               <p><div class="picto-allergies">
@@ -46,18 +53,29 @@
                 <% end %>
         <!-- qte significative d'allergène qui ne match pas avec le profil -->
               <% @pictos_for_allergies_no_match_with_profil.each do |picto_for_allergies_no_match_with_profil| %>
-                <div class="pictos_for_allergies_no_match_with_profil picto-allergies"><%= image_tag(picto_for_allergies_no_match_with_profil) %>
-                </div>
+                <span class="pictos_for_allergies_no_match_with_profil picto-allergies"><%= image_tag(picto_for_allergies_no_match_with_profil) %>
+                </span>
               <% end %><p>
           </div>
 
 
             <div class="traces">
-              <h3>Traces</h3>
+
+
+            <% no_matching_traces = !(@pictos_for_traces_match_with_profil).empty? %>
+
+            <% no_traces = !(@pictos_for_traces_no_match_with_profil).empty? %>
+
+            <% if (no_traces || no_matching_traces)%>
+                <h3>Traces</h3>
+            <% end %>
+
+
+
               <p class="picto-allergies">
           <!-- trace d'allergène qui match avec le profil -->
                 <% @pictos_for_traces_match_with_profil.each do |picto_for_traces_match_with_profil| %>
-                  <div class="picto-allergies"><%= image_tag(picto_for_traces_match_with_profil) %></div>
+                  <span class="picto-allergies"><%= image_tag(picto_for_traces_match_with_profil) %></span>
                 <% end %>
 
           <!-- trace d'allergène qui ne match pas avec le profil -->
@@ -69,7 +87,7 @@
 
               </div>
 
-              <div class="info-product">
+              <div class="info-product padding-bottom-mobile-60">
                 <h2><%=@product.manufacturer%></h2>
                 <p>Product barcode:  <%=@product.barcode%></p>
                 <p>Last update:      <%=@product.updated_on%></p>
