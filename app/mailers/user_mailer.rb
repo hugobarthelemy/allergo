@@ -5,6 +5,21 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.alert.subject
   #
+  def alert_admins_change(product_changed_id, ingredient_id, action)
+
+    @greeting = "Hi"
+    @product_changed = Product.find(product_changed_id)
+    @changed_ingredients_name = Ingredient.find(ingredient_id).any_name
+    @action = action
+
+    @destination_email = "hugopoubelle@gmail.com"
+    @user_name = "Hugo Barthelemy"
+    # @user_name = "#{@user.first_name} #{@user.last_name}"
+
+    mail(to: @destination_email, subject: 'Product Change Alert')
+    # This will render a view in `app/views/user_mailer`!
+  end
+
 
   def alert(user_id, product_changed_id, added_ingredients=[])
 

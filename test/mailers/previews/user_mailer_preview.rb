@@ -1,7 +1,7 @@
 class UserMailerPreview < ActionMailer::Preview
-  def welcome
-    user = User.first
-    product_changed = Product.first
-    UserMailer.alert(user, product_changed)
+  def alert_admins_change
+    @product_changed_id = Product.last.id
+    @ingredient_id = Ingredient.last.id
+    @action = "added"
   end
 end
