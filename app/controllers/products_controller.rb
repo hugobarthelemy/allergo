@@ -96,10 +96,14 @@ class ProductsController < ApplicationController
       )
       authorize @product
       if product_component.save
+        ## mail to all users who track changed product
+        # MailProductAlertJob.perform_later(@product.id)
+         
+        ## mail to admins who check validity
+        action = "added"
+        UserMailer.alert_admins_change(@product.id, ingredient_id, action).deliver_now
+        
         redirect_to edit_product_path
-        # after update
-        MailProductAlertJob.perform_later(@product.id)
-        ### DO ### redirect
       else
         render :edit
       end

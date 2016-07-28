@@ -10,6 +10,10 @@ class IngredientsController < ApplicationController
                             amount: params[:amount]
                           )
     product_ingredient.first.destroy
+    ## mail to admins who check validity
+    action = "removed"
+    UserMailer.alert_admins_change(@product.id, @ingredient.id, action).deliver_now
+
     redirect_to edit_product_path(@product)
 
   end

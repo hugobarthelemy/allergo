@@ -1,0 +1,11 @@
+<%= @product_changed.name %> has changed!
+
+
+  <%= "#{@greeting} #{@user_name}" %>,
+Ingredient "<%= @changed_ingredients_name unless @changed_ingredients_name.blank? %>" was <%= @action == "added" ? "added to" : "removed from" %>   <%= @product_changed.name %> recipe!
+
+Product barcode: <%= @product_changed.barcode %>
+
+ Please validate the change to alert tracking users.
+
+<hr>
