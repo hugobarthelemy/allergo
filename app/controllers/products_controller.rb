@@ -176,7 +176,7 @@ class ProductsController < ApplicationController
       matching_allergy_or_intolerance = "ok"
     end
 
-########## allergies arrays ###########
+######### allergies arrays ###########
 
     allergens_matching_allergy_or_intolerance = allergens_matching_allergy + allergens_matching_intolerance
 
@@ -201,8 +201,10 @@ class ProductsController < ApplicationController
     )
     allergies_in_product_not_in_user = []
     allergens_not_in_user_allergy.each do |ingredient|
-      ingredient.allergies.each do |allergy|
-        allergies_in_product_not_in_user << allergy.name
+      if ingredient.allergies != NilClass
+        ingredient.allergies.each do |allergy|
+          allergies_in_product_not_in_user << allergy.name
+        end
       end
     end
     allergies_in_product_not_in_user.uniq!
