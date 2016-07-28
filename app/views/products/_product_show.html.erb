@@ -1,3 +1,19 @@
+<!-- Color page depending on eat/non eat -->
+
+<% product_eatable = @matching_allergy[:matching_allergy_or_intolerance] %>
+
+
+
+<div class="product-show" style="background-color:
+  <% if product_eatable == "ok" %>
+    $blue-light;
+  <% elsif product_eatable == "nok" %>
+    #FF6C72;
+  <% else %>
+    $blue-light;
+  <%end%>
+">
+
 <div class="product-top">
   <div class="padding-top-bottom-mobile text-center">
     <h1><%=@product.name%></h1>
@@ -37,6 +53,8 @@
       <div class="col-xs-12">
         <h2>ALLERGENS IN THE PRODUCT</h2>
 
+
+
         <% no_matching_allergies = !(@pictos_for_allergies_match_with_profil).empty? %>
 
         <% no_allergies = !(@pictos_for_allergies_no_match_with_profil).empty? %>
@@ -45,6 +63,8 @@
             <h3>Significant amount</h3>
         <% end %>
 
+
+        <div>
 
               <p><div class="picto-allergies">
                 <% @pictos_for_allergies_match_with_profil.each do |picto_for_allergies_match_with_profil| %>
@@ -84,7 +104,7 @@
                   </span>
                 <% end %>
               </p>
-
+</div>
               </div>
 
               <div class="info-product padding-bottom-mobile-60">
@@ -93,10 +113,13 @@
                 <p>Last update:      <%=@product.updated_on%></p>
               </div>
     </div>
+    </div>
 
-  </div>
+
 </div>
 </div>
+</div>
+
 
 <!-- <div class="folow-btn">
   <button type="button" class="btn btn-default btn-sm">
