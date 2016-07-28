@@ -16,6 +16,23 @@ require 'csv'
   Allergy.destroy_all
 
 
+  avoine = Ingredient.create(fr_name: "flocons d'avoine", en_name: "")
+  seigle = Ingredient.create(fr_name: "flocons de seigle malte", en_name: "")
+  orge = Ingredient.create(fr_name: "farine complete d'orge", en_name: "")
+  epautre = Ingredient.create(fr_name: "farine complete d'epautre", en_name: "")
+  ble = Ingredient.create(fr_name: "farine complete de ble", en_name: "")
+  graisse_v = Ingredient.create(fr_name: "graisse et huile vegetales", en_name: "")
+  s_roux = Ingredient.create(fr_name: "sucre roux de canne", en_name: "")
+  dip = Ingredient.create(fr_name: "diphosphates", en_name: "")
+  carbo_sod = Ingredient.create(fr_name: "carbonate de sodium", en_name: "")
+  carbo_am = Ingredient.create(fr_name: "carbonate d'ammonium", en_name: "")
+  lecithines = Ingredient.create(fr_name: "lecithines", en_name: "")
+  oeuf = Ingredient.create(fr_name: "oeuf", en_name: "")
+  soja = Ingredient.create(fr_name: "soja", en_name: "")
+  fruits_coque = Ingredient.create(fr_name: "fruits a coques", en_name: "")
+
+
+
 
   # GetProductsFromCsvService.create_products_from_codes('sample_real_codes.csv')
 
@@ -37,6 +54,71 @@ require 'csv'
         end
       end
     end
+
+
+
+  ProductComponent.create(amount: 2,
+    product_id: Product.find_by(barcode:"3560070955589").id,
+    ingredient_id: avoine.id
+  )
+
+  ProductComponent.create(amount: 2,
+    product_id: Product.find_by(barcode:"3560070955589").id,
+    ingredient_id: seigle.id
+  )
+
+  ProductComponent.create(amount: 2,
+    product_id: Product.find_by(barcode:"3560070955589").id,
+    ingredient_id: orge.id
+  )
+  ProductComponent.create(amount: 2,
+    product_id: Product.find_by(barcode:"3560070955589").id,
+    ingredient_id: epautre.id
+  )
+  ProductComponent.create(amount: 2,
+    product_id: Product.find_by(barcode:"3560070955589").id,
+    ingredient_id: ble.id
+  )
+  ProductComponent.create(amount: 2,
+    product_id: Product.find_by(barcode:"3560070955589").id,
+    ingredient_id: seigle.id
+  )
+  ProductComponent.create(amount: 2,
+    product_id: Product.find_by(barcode:"3560070955589").id,
+    ingredient_id: graisse_v.id
+  )
+  ProductComponent.create(amount: 2,
+    product_id: Product.find_by(barcode:"3560070955589").id,
+    ingredient_id: s_roux.id
+  )
+  ProductComponent.create(amount: 2,
+    product_id: Product.find_by(barcode:"3560070955589").id,
+    ingredient_id: dip.id
+  )
+  ProductComponent.create(amount: 2,
+    product_id: Product.find_by(barcode:"3560070955589").id,
+    ingredient_id: carbo_am.id
+  )
+  ProductComponent.create(amount: 2,
+    product_id: Product.find_by(barcode:"3560070955589").id,
+    ingredient_id: carbo_sod.id
+  )
+  ProductComponent.create(amount: 2,
+    product_id: Product.find_by(barcode:"3560070955589").id,
+    ingredient_id: lecithines.id
+  )
+  ProductComponent.create(amount: 1,
+    product_id: Product.find_by(barcode:"3560070955589").id,
+    ingredient_id: oeuf.id
+  )
+  ProductComponent.create(amount: 1,
+    product_id: Product.find_by(barcode:"3560070955589").id,
+    ingredient_id: soja.id
+  )
+  ProductComponent.create(amount: 1,
+    product_id: Product.find_by(barcode:"3560070955589").id,
+    ingredient_id: fruits_coque.id
+  )
 
   # seed des tables d'allergies
 
