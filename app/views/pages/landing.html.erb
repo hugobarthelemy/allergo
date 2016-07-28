@@ -3,71 +3,46 @@
     <div class="banner-content">
 
       <div class="landing-title">
-        <h1>Allergo Scan</h1>
-      </div>
+        <h1>Master your food allergies</h1>
 
-      <div class="landing-claim">
-        <p>Master your food allergies, bite into life</p>
-      </div>
-
-      <div class="row">
-
-        <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
-          <div class="landing-step" id="step1">
-            <h3>Step 1</h3>
-            <p>Scan a product or search by product name</p>
-            <div class="step-picto">
-                <%= image_tag "barcode_scanner.ico" %>
-            </div>
-            <span id="step-btn1">next</span>
-          </div>
-        </div>
-
-        <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
-          <div class="landing-step" id="step2">
-            <h3>Step 2</h3>
-            <p>Check the product's allergens and ingredients</p>
-            <div class="step-picto">
-              <ol>
-                <li>
-                  <%= image_tag "picto_allergies/milk_picto.png" %>
-                </li>
-                <li>
-                  <%= image_tag "picto_allergies/peanuts_picto.png" %>
-                </li>
-                <li>
-                  <%= image_tag "picto_allergies/wheat_picto.png" %>
-                </li>
-              </ol>
-            </div>
-            <span id="step-btn2">next</span>
-          </div>
-        </div>
-
-        <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
-          <div class="landing-step" id="step3">
-            <h3>Final Step</h3>
-            <p>Create a profile to get customized recommendations and alerts on products you follow.</p>
-            <div class="step-picto">
-              <ol>
-                <li>
-                  <%= image_tag "avatardefault.jpg", class: "picto-avatar" %>
-                </li>
-              </ol>
-            </div>
-          </div>
+        <div class="step-picto">
+          <ol>
+            <li>
+              <%= image_tag "picto_allergies/milk_picto.png" %>
+            </li>
+            <li>
+              <%= image_tag "picto_allergies/peanuts_picto.png" %>
+            </li>
+            <li>
+              <%= image_tag "picto_allergies/wheat_picto.png" %>
+            </li>
+          </ol>
         </div>
 
       </div>
 
+      <div class="landing-first">
+        <div class="landing-claim">
+          <p>Check a product's allergens and ingredients</p>
+        </div>
 
-      <div class="landing-btn">
-        <% if current_user %>
-          <%= link_to "Edit Profile", user_path(current_user),:class => "btn btn-primary btn-lg" %>
-        <% else %>
-          <%= link_to "Create Profile", new_user_registration_path,:class => "btn btn-primary btn-lg" %>
-        <% end %>
-        <%= link_to "Explore", pages_home_path, :class => "btn btn-primary btn-lg" %>
+        <%= link_to "Start scanning", pages_home_path, :class => "btn btn-primary btn-lg" %>
+      </div>
+
+      <hr>
+
+      <div class="landing-second">
+        <div class="landing-claim">
+          <p>Customized recommendations and alerts on products you follow</p>
+        </div>
+
+        <div class="landing-btn">
+          <% if current_user %>
+            <%= link_to "Edit Profile", user_path(current_user),:class => "btn btn-primary btn-lg" %>
+          <% else %>
+            <%= link_to "Create Profile", new_user_registration_path,:class => "btn btn-primary btn-lg" %>
+          <% end %>
+        </div>
       </div>
 
     </div>
