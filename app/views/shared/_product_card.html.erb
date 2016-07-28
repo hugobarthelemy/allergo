@@ -1,9 +1,9 @@
 <div class="card card-hover">
 
-  <div class="card-container-left">
+  <div class="card-container-left text-center">
 
     <div class="card-product-name">
-      <h2><%= prod.name %></h2>
+      <h2><%= prod.name[0..25] %><%= "(...)" if prod.name.length > 25 %></h2>
     </div>
 
     <div class="card-category">
@@ -25,7 +25,7 @@
         <% when "crustacean" %>
           <%= image_tag ("picto_allergies/crustacean_shellfish_picto.png"), class: "allergy-icon" %>
         <% when "eggs" %>
-          <%= image_tag ("picto_allergies/eggs-picto.png"), class: "allergy-icon" %>
+          <%= image_tag ("picto_allergies/eggs_picto.png"), class: "allergy-icon" %>
         <% when "fish" %>
           <%= image_tag ("picto_allergies/fish_picto.png"), class: "allergy-icon" %>
         <% when "peanuts" %>
@@ -37,7 +37,7 @@
         <% when "gluten" %>
           <%= image_tag ("picto_allergies/wheat_picto.png"), class: "allergy-icon" %>
         <% else %>
-          <span>'Unknow icon'</span>
+          <span></span>
         <% end %>
       <% end %>
 
