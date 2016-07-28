@@ -18,13 +18,20 @@
 <!-- mobile -->
 <div class="hidden-sm hidden-md hidden-lg ">
   <!-- product card -->
-  <div class="product-card-mobile">
-    <%= render 'product_edit', product: @product %>
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <div class="product-card-mobile">
+        <%= render 'product_edit', product: @product %>
+      </div>
+    </div>
   </div>
-  <div class="ingredient-card-mobile hide">
-    <%= render 'ingredients_edit', product: @product %>
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <div class="ingredient-card-mobile">
+        <%= render 'ingredients_edit', product: @product %>
+      </div>
+    </div>
   </div>
-
   <div class="footer">
     <%= render 'shared/footer_mobile' %>
   </div>

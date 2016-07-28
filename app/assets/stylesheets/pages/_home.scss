@@ -11,13 +11,21 @@
     }
     h3 {
       padding-top: 30px;
+      font-size: 25px;
     }
     h4 {
       padding-top: 15px;
       padding-bottom: 10px;
+      font-size: 19px;
     }
 }
 
+.search-button {
+  margin-top: 15px;
+}
+
+
+// SCAN ICON
 #scan-icon {
   animation: shake 1s cubic-bezier(.36,.07,.19,.97) both;
   transform: translate3d(0, 0, 0);

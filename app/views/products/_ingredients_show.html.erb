@@ -32,9 +32,8 @@
     <%= "<p>#{allergen_name}</p>".html_safe unless allergen_name.nil? %>
   <%end%>
 
-  <div class="product-actions">
-    <%= link_to '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'.html_safe, edit_product_path(@product), {class: "edit"} %>
-  </div>
+
+  <a class="btn btn-primary btn-lg" href='/products/<%=@product.id%>/edit' role="button">Edit</a>
   </div>
   </div>
   </div>

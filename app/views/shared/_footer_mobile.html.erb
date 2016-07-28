@@ -17,7 +17,7 @@
       <div class="picto">
         <% if product_eatable == "ok" %>
           <%= image_tag "footer/ingredient-logo-green.png" %>
-        <% elsif @product_eatable == "nok" %>
+        <% elsif product_eatable == "nok" %>
           <%= image_tag "footer/ingredient-logo-red.png" %>
         <% else %>
           <%= image_tag "footer/ingredient-logo-black.png" %>
@@ -28,7 +28,7 @@
       <div class="picto">
         <% if product_eatable == "ok" %>
           <%= image_tag "footer/review-logo-green.png" %>
-        <% elsif @product_eatable == "nok" %>
+        <% elsif product_eatable == "nok" %>
           <%= image_tag "footer/review-logo-red.png" %>
         <% else %>
           <%= image_tag "footer/review-logo-black.png" %>

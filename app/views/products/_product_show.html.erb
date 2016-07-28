@@ -6,9 +6,15 @@
   <div class="text-center avatar-product">
     <%= image_tag @product.img_url %>
   </div>
-
+<% product_eatable = @matching_allergy[:matching_allergy_or_intolerance] %>
   <div class="text-center avatar-alert">
-    <%= image_tag "product_card/orange_alerte.png" %>
+    <% if product_eatable == "ok" %>
+      <%= image_tag "product_card/green_check.png" %>
+    <% elsif @product_eatable == "nok" %>
+      <%= image_tag "product_card/orange_alerte.png" %>
+    <% else %>
+      <%= image_tag "product_card/red_cross.png" %>
+    <%end%>
   </div>
 
 
@@ -38,7 +44,7 @@
     <div class="row">
       <div class="col-xs-12">
   <!-- qte significative d'allergène qui match avec le profil -->
-        <p class="picto-allergies">
+        <p><div class="picto-allergies">
           <% @pictos_for_allergies_match_with_profil.each do |picto_for_allergies_match_with_profil| %>
             <span class="picto-allergies" ><%= image_tag(picto_for_allergies_match_with_profil, class: "pictos_match_with_profil") %>
             </span>
@@ -47,7 +53,7 @@
         <% @pictos_for_allergies_no_match_with_profil.each do |picto_for_allergies_no_match_with_profil| %>
           <div class="pictos_for_allergies_no_match_with_profil picto-allergies"><%= image_tag(picto_for_allergies_no_match_with_profil) %>
           </div>
-        <% end %>
+        <% end %><p>
     </div>
   </div>
 
@@ -72,7 +78,7 @@
     </div>
 
     <div class="row">
-      <div class="col-xs-12 ">
+      <div class="col-xs-12">
         <div class="info-product">
           <h2><%=@product.manufacturer%></h2>
           <p>Product barcode:  <%=@product.barcode%></p>

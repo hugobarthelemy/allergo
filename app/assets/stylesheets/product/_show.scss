@@ -30,9 +30,9 @@ background-color: $pink-light;
 .ok {
 background-color: $blue-light;
 }
-.alert {
-background-color: $white;
-}
+// .alert {
+// background-color: $white;
+// }
 .js-background-color {
   // height: 100%;
   // min-height: 650px;
@@ -66,7 +66,7 @@ background-color: $white;
 }
 .pictos_match_with_profil {
   border-radius:50%;
-  border: 1px solid red;
+  border: 5px solid red;
 }
 .pictos_for_allergies_no_match_with_profil {
   // TODO ?
