@@ -1,6 +1,6 @@
 <div class="card card-hover">
 
-  <div class="card-container-left">
+  <div class="card-container-left text-center">
 
     <div class="card-product-name">
       <h2><%= prod.name[0..25] %><%= "(...)" if prod.name.length > 25 %></h2>
@@ -37,7 +37,7 @@
         <% when "gluten" %>
           <%= image_tag ("picto_allergies/wheat_picto.png"), class: "allergy-icon" %>
         <% else %>
-          <span>'Unknow icon'</span>
+          <span></span>
         <% end %>
       <% end %>
 
