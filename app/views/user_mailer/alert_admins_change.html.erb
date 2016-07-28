@@ -3,7 +3,7 @@
 <p>
   <%= "#{@greeting} #{@user_name}" %>, <br>
 <p>
-  <strong>Ingredient "<%= @changed_ingredients_name unless @changed_ingredients_name.blank? %>" was <%= @action == "added" ? "added to" : "removed from" %>   <%= link_to @product_changed.name, "http://allergo-scan.com#{product_path(@product_changed.id)}" %> recipe!</strong>
+  <strong>Ingredient "<%= @changed_ingredients_name unless @changed_ingredients_name.blank? %>" was <%= @action == "added" ? "added to" : "removed from" %>   <%= link_to @product_changed.name, product_url(@product_changed.id) %> recipe!</strong>
 </p>
 <p>Product barcode: <%= @product_changed.barcode %></p>
 
