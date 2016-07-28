@@ -2,47 +2,38 @@
  * Fonts
  * ------------------------------------- */
 // Google fonts
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500|Muli:400,300);");
 $base-font: "Open Sans", "Helvetica", "sans-serif";
 $header-font: "Open Sans", "Helvetica", "sans-serif";
 
-//Local fonts (uncomment following lines)
-@font-face {
-  font-family: "Futura Std Light";
-  src: font-url("/assets/fonts/FuturaStd-Light.otf");
-  src: font-url("/assets/fonts/FuturaStd-Light.otf?#iefix") format("truetype");
-}
-
-@font-face {
-  font-family: 'FuturaStd-Light';
-  src: url('FuturaStd-Light.eot');
-  src: url('FuturaStd-Light.eot?#iefix') format('embedded-opentype'),
-    url('FuturaStd-Light.woff2') format('woff2'),
-    url('FuturaStd-Light.woff') format('woff'),
-    url('FuturaStd-Light.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-$font-light: "FuturaStd-Light";
-
-@font-face {
-  font-family: 'FuturaStd-Medium';
-  src: url('FuturaStd-Medium.eot');
-  src: url('FuturaStd-Medium.eot?#iefix') format('embedded-opentype'),
-    url('FuturaStd-Medium.woff2') format('woff2'),
-    url('FuturaStd-Medium.woff') format('woff'),
-    url('FuturaStd-Medium.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-$font-medium: "FuturaStd-Medium";
-
-
-
-
+$font-light: "Muli";
+$font-medium: "Muli";
 $font-main-title: 'Fjalla One', sans-serif;
+
+//Local fonts (uncomment following lines)
+// @font-face {
+//   font-family: "Futura Std Light";
+//   src: font-url("/assets/fonts/FuturaStd-Light.otf");
+//   src: font-url("/assets/fonts/FuturaStd-Light.otf?#iefix") format("truetype");
+// }
+
+
+
+
+// @font-face {
+//   font-family: 'FuturaStd-Medium';
+//   src: url('FuturaStd-Medium.eot');
+//   src: url('FuturaStd-Medium.eot?#iefix') format('embedded-opentype'),
+//     url('FuturaStd-Medium.woff2') format('woff2'),
+//     url('FuturaStd-Medium.woff') format('woff'),
+//     url('FuturaStd-Medium.ttf') format('truetype');
+//   font-weight: normal;
+//   font-style: normal;
+// }
+
+
+
+
 
 // Font-size and line-height
 // content text
