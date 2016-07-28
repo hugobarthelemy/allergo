@@ -11,7 +11,7 @@
   <% end %>
   <% allergen_ingredients_names.uniq! %>
   <% allergen_ingredients_names.each do |allergen_name|%>
-    <%= "<p>#{allergen_name}</p>".html_safe unless allergen_name.nil? %>
+    <li><%= "<p>#{allergen_name}</p>".html_safe unless allergen_name.nil? %></li>
   <%end%>
 
   <h2>Traces</h2>
@@ -21,7 +21,7 @@
   <% end %>
   <% trace_ingredients_names.uniq! %>
   <% trace_ingredients_names.each do |trace_name| %>
-      <%= "<p>#{trace_name}</p>".html_safe unless trace_name.nil? %>
+      <li><%= "<p>#{trace_name}</p>".html_safe unless trace_name.nil? %></li>
   <% end %>
 
   <h2>Ingredients</h2>
@@ -31,7 +31,7 @@
   <% end %>
   <% significant_ingredients_names.uniq! %>
   <% significant_ingredients_names.each do |ingredient_name| %>
-    <%= "<p>#{ingredient_name}</p>".html_safe unless ingredient_name.nil? %>
+    <li><%= "<p>#{ingredient_name}</p>".html_safe unless ingredient_name.nil? %></li>
   <%end%>
 
 <p class="padding-bottom-mobile"><a class="btn btn-classic" href='/products/<%=@product.id%>/edit' role="button">Edit</a></p>
