@@ -291,15 +291,40 @@ require 'csv'
   # Reviews # tous les users ont laissé un avis sur chaque produit
   Review.destroy_all
 
-  Product.last(8).each do |product|
-    User.last(4).each do |user|
-      Review.create!(
-        score: [0, 1, 2].sample,
-        user_id: user.id,
-        product_id: product.id
-      )
-    end
+  Product.all.each do |product|
+    Review.create!(
+      score: [0, 1, 2].sample,
+      user_id: User.all.sample.id,
+      product_id: product.id,
+      content: ""
+    )
   end
+
+  Review.create!(score: 2, user_id: User.all.sample.id, \
+    product_id: Product.find_by(barcode:'3017620429484').id, \
+    content:"Got me sick!")
+
+  Review.create!(score: 0, user_id: User.all.sample.id, \
+    product_id: Product.find_by(barcode:'3017620429484').id, \
+    content:"No problem for me")
+
+  Review.create!(score: 1, user_id: User.all.sample.id, \
+    product_id: Product.find_by(barcode:'3017620429484').id, \
+    content:"Tastes good but a lot of additives!")
+
+
+
+    Review.create!(score: 2, user_id: User.all.sample.id, \
+    product_id: Product.find_by(barcode:'3560070955589').id, \
+    content:"Not sure if all traces are indicated. Got a little sick")
+
+  Review.create!(score: 2, user_id: User.all.sample.id, \
+    product_id: Product.find_by(barcode:'3560070955589').id, \
+    content:"Good biscuits. Feel safe.")
+
+  Review.create!(score: 0, user_id: User.all.sample.id, \
+    product_id: Product.find_by(barcode:'3560070955589').id, \
+    content:"Tastes OK but still has gluten")
 
 ##############################################################################
 ##############################################################################
