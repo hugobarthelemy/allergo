@@ -3,6 +3,7 @@ body{
     background-color: $pink-light;
 
     font-family: $font-light;
+    font-weight: 300;
     font-size: $base-size;
 
     h1{
@@ -14,12 +15,14 @@ body{
     h2{
       font-size: $base-size-title;
       font-family: $font-light;
+      font-weight: 300;
       text-transform: uppercase;
     }
 
     h3{
       font-size: $base-size-title;
       font-family:$font-medium;
+      font-weight: 400;
     }
 
     .padding-top-bottom-mobile {
