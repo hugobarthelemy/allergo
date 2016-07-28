@@ -1,4 +1,4 @@
-var sound = new Audio("barcode.wav");
+var sound = new Audio("/barcode.wav");
 
 $(document).ready(function() {
 
