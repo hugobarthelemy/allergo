@@ -1,11 +1,7 @@
 // Place all the styles related to the Reviews controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.review-page-title {
-  h3 {
-    font-size: 18px;
-  }
-}
+
 .review-average-icons {
   li {
     font-size: 18px;
@@ -25,14 +21,18 @@
   padding-bottom: 30px;
 }
 
-.input-label-title {
-  font-size: 20px;
-  padding-top: 20px;
-  padding-bottom: 15px;
-}
+// .input-label-title {
+//   font-size: 20px;
+//   padding-top: 20px;
+//   padding-bottom: 15px;
+// }
 
-.review-input i {
-  padding-left: 10px;
+.review-input {
+  font-size: 18px;
+  i {
+    padding-left: 10px;
+    font-size: 20px;
+  }
 }
 
 

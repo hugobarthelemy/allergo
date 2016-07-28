@@ -1,6 +1,6 @@
 <div class="scss-reviews-card-mobile">
   <div class="text-center review-page-title">
-    <h3>Allergy Reviews for <%= @product.name %></h3>
+    <h1>Allergy Reviews for <%= @product.name %></h1>
   </div>
   <div class="inlinelist text-center review-average-icons">
     <li>
@@ -22,7 +22,7 @@
     </div>
     <div class="row">
         <div class="text-center">
-          <%= link_to "New review", new_product_review_path(@product), class: "btn btn-primary" %>
+          <%= link_to "New review", new_product_review_path(@product), class: "btn btn-classic" %>
         </div>
 
     </div>

@@ -1,12 +1,12 @@
 body{
-    margin-bottom:50px;
+    // margin-bottom:50px;
     background-color: $pink-light;
 
     font-family: $font-light;
     font-size: $base-size;
 
     h1{
-      font-size: $base-size-title;
+      font-size: $base-size-main-title;
       font-family: $font-main-title;
       text-transform: uppercase;
     }
@@ -27,5 +27,9 @@ body{
       padding-bottom: 20px;
     }
 
+  .padding-top-mobile {
+      padding-top: 20px;
+      padding-bottom: 20px;
 
+    }
 }
