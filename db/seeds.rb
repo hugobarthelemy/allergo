@@ -147,6 +147,7 @@ require 'csv'
     AllergyIngredient.create(allergy_id: milk_allergy.id, ingredient_id: allergen.id)
   end
 
+
   # PEANUT ALLERGY #
   contains_peanuts_fr = Ingredient.where('fr_name ~* :name', name: 'cacahuetes')
   contains_peanuts_fr.each do |allergen|
