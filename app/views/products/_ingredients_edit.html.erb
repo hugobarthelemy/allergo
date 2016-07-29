@@ -101,13 +101,24 @@
   <!-- Display traces with remove button -->
 
   <h3>Allergens</h3>
-  <% allergen_ingredients_names = [] %>
+  <% allergen_ingredients = [] %>
   <% @product.allergen_ingredients.each do |allergen| %>
-    <% allergen_ingredients_names << allergen.ingredient.any_name %>
+    <% allergen_ingredients << allergen.ingredient %>
   <% end %>
-  <% allergen_ingredients_names.uniq! %>
-  <% allergen_ingredients_names.each do |allergen_name|%>
-    <%= "<p>#{allergen_name}</p>".html_safe unless allergen_name.nil? %>
+  <% allergen_ingredients.uniq! %>
+  <% allergen_ingredients.each do |allergen|%>
+    <% if allergen.any_name %>
+
+      <div class="row ligne-ingredient-remve">
+        <div class="col-sm-4" style="margin-right:10px;">
+
+          <%= link_to "remove", product_ingredient_path(@product.id, allergen.id, amount: 4), method: :delete, class: "btn btn-danger btn-xs"  %>
+        </div>
+        <div class="col-sm-8">
+        <%= "<p>#{allergen.any_name}</p>".html_safe %>
+        </div>
+      </div>
+    <% end %>
   <%end%>
 
   <div class="product-actions">
