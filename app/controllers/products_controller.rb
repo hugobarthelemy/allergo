@@ -98,11 +98,11 @@ class ProductsController < ApplicationController
       if product_component.save
         ## mail to all users who track changed product
         # MailProductAlertJob.perform_later(@product.id)
-         
+
         ## mail to admins who check validity
         action = "added"
         UserMailer.alert_admins_change(@product.id, ingredient_id, action).deliver_now
-        
+
         redirect_to edit_product_path
       else
         render :edit
@@ -118,6 +118,12 @@ class ProductsController < ApplicationController
     user_traces = []
     product_significant_ingredients = []
     product_traces = []
+
+
+    ## adds allergens to significant ingredients if not detected automatically in ingredients
+    @product.allergen_ingredients.each do |allergen|
+      product_significant_ingredients << allergen.ingredient
+    end
 
 
     @product.significant_ingredients.each do |significant_ingredient| #extracts all allergens contained in the product
