@@ -29,7 +29,7 @@
           <h2>Traces</h2>
           <% trace_ingredients_names = [] %>
           <% @product.trace_ingredients.each do |trace| %>
-            <% trace_ingredients_names << trace.ingredient.any_name %>
+            <% trace_ingredients_names << trace.ingredient.any_name unless trace.ingredient.nil? %>
           <% end %>
           <% trace_ingredients_names.uniq! %>
           <% trace_ingredients_names.each do |trace_name| %>
