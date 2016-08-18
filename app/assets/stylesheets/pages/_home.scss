@@ -34,6 +34,11 @@
   transition: transform 400ms;
   width: 60%;
 }
+@media screen and (min-width: 500px) {
+  #scan-icon {
+    width: 30%;
+  }
+}
 
 @keyframes shake {
   10%, 90% {
