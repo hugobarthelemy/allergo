@@ -86,7 +86,7 @@
   <% end %>
   <% trace_ingredients.uniq! %>
   <% trace_ingredients.each do |trace| %>
-    <% if trace.any_name %>
+    <% if trace && trace.any_name %>
       <div class="row ligne-ingredient-remve">
         <div class="col-sm-4" style="margin-right:10px;">
 

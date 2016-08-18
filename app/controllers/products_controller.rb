@@ -207,7 +207,7 @@ class ProductsController < ApplicationController
     allergies_activated_by_traces.uniq!
 
     allergens_not_in_user_allergy = (
-      product_significant_ingredients + product_traces - allergens_matching_allergy - allergens_matching_intolerance
+      product_significant_ingredients - allergens_matching_allergy - allergens_matching_intolerance
     )
     if allergens_not_in_user_allergy == nil
       allergens_not_in_user_allergy = []
@@ -233,17 +233,22 @@ class ProductsController < ApplicationController
     end
     intolerances_activated_by_traces.uniq! # case "alert"
 
+
+
     intolerances_not_in_user = (
       product_traces - traces_matching_intolerance - traces_matching_allergy
     )
     intolerances_in_product_not_in_user = []
-    intolerances_not_in_user.each do |ingredient|
-      ingredient.allergies.each do |intolerance|
-        intolerances_in_product_not_in_user << intolerance.name
+    if intolerances_not_in_user.first
+      intolerances_not_in_user.each do |ingredient|
+        if ingredient
+          ingredient.allergies.each do |intolerance|
+            intolerances_in_product_not_in_user << intolerance.name
+          end
+        end
       end
+      intolerances_in_product_not_in_user.uniq!
     end
-    intolerances_in_product_not_in_user.uniq!
-
 
   matching_results = {
     matching_allergy_or_intolerance: matching_allergy_or_intolerance,
