@@ -23,6 +23,11 @@
 .search-button {
   margin-top: 15px;
 }
+@media screen and (min-width: 500px) {
+  .search-button {
+    margin-top: 0px;
+  }
+}
 
 
 // SCAN ICON
