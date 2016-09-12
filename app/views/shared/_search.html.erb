@@ -20,8 +20,6 @@
 
 
 
-  <% @searched_words = params[:searched_words] %>
-  <% @products = Product.search_by_manufacturer_and_name(@searched_words) %>
 
 
   <div class="container">
@@ -29,9 +27,11 @@
 
     <% unless @products.empty? %>
       <% @products.each do |result| %>
-        <div class="col-xs-12 col-sm-4">
-          <%= render 'shared/product_card', prod: result %>
-        </div>
+        <% if result.class == Product %>
+          <div class="col-xs-12 col-sm-4">
+            <%= render 'shared/product_card', prod: result %>
+          </div>
+        <% end %>
       <% end %>
     <% else %>
       <p>Your product could not be found.</p>
