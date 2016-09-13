@@ -7,6 +7,17 @@ class ProductsController < ApplicationController
     if params[:product]
       @product_search = params[:product].downcase
       @result = @products.where(name: @product_search)
+    else
+      @searched_words = params[:searched_words]
+      @products = Product.search_by_manufacturer_and_name(@searched_words)
+      if @products.empty?
+        products_from_off = Openfoodfacts::Product.search(@searched_words, locale: 'world')
+        products_from_off.each do |product|
+          product.fetch
+          product_full = Product.create_from_api(product) # creates a product and creates ingredients if new
+          @products << product_full
+        end
+      end
     end
   end
 
